@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Noto_Serif_Bengali, Hind_Siliguri, Plus_Jakarta_Sans } from 'next/font/google';
 import './globals.css';
 import { SiteHeader } from '@/components/layout/site-header';
@@ -10,6 +10,14 @@ import { GlobalPhotoBackground } from '@/components/layout/global-photo-backgrou
 import { SmoothScrollProvider } from '@/components/layout/smooth-scroll-provider';
 import { FloatingAIChat } from '@/components/layout/floating-ai-button';
 import { SITE_CONFIG } from '@/config/site';
+
+export const viewport: Viewport = {
+  themeColor: '#120B09',
+  colorScheme: 'dark',
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+};
 
 const notoBengali = Noto_Serif_Bengali({
   weight: ['400', '600', '700', '800'],
@@ -74,10 +82,10 @@ export default function RootLayout({
   return (
     <html
       lang="bn"
-      className={`${notoBengali.variable} ${hindSiliguri.variable} ${jakarta.variable}`}
+      className={`${notoBengali.variable} ${hindSiliguri.variable} ${jakarta.variable} bg-[#120B09]`}
       suppressHydrationWarning
     >
-      <body className="min-h-screen bg-transparent text-[#FFF8EA] font-sans antialiased selection:bg-[#A61B1B] selection:text-[#FFFDF8] flex flex-col justify-between overflow-x-hidden w-full max-w-[100vw]">
+      <body className="min-h-screen bg-[#120B09] text-[#FFF8EA] font-sans antialiased selection:bg-[#A61B1B] selection:text-[#FFFDF8] flex flex-col justify-between overflow-x-hidden w-full max-w-[100vw]">
         <SmoothScrollProvider>
           {/* Global Blurred Photo Slideshow Background */}
           <GlobalPhotoBackground />

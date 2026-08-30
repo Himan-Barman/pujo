@@ -33,7 +33,10 @@ export const GlobalPhotoBackground: React.FC = () => {
   const photo = BG_PHOTOS[idx];
 
   return (
-    <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none transform-gpu" aria-hidden="true">
+    <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none transform-gpu bg-[#120B09]" aria-hidden="true">
+      {/* Solid dark foundation preventing any root canvas bleed */}
+      <div className="absolute inset-0 bg-[#120B09]" />
+
       {/* Cycling blurred photos with reduced quality for maximum load speed */}
       <AnimatePresence mode="popLayout">
         <motion.div

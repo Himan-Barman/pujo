@@ -13,16 +13,16 @@
     --soft-gold: #E7C878;
     --deep-gold: #9B7226;
 
-    /* 2. Backgrounds (Solid Sacred Ivory & Surfaces) */
-    --background: #FFF8EA;
+    /* 2. Backgrounds (Solid Sacred Night Surface & Warm Cream Text) */
+    --background: #120B09;
     --warm-cream: #F7EEDB;
     --tertiary-cream: #EFE1C7;
-    --card-bg: #FFFDF8;
-    --elevated-surface: #F4E8D4;
-    --subtle-section-bg: #FBF2E2;
+    --card-bg: #1A1210;
+    --elevated-surface: #241A17;
+    --subtle-section-bg: #160E0C;
 
     /* 3. Typography & Dark Accents */
-    --foreground: #241B18;
+    --foreground: #FFF8EA;
     --earth-brown: #5C4940;
     --muted-text: #77655B;
     --subtle-text: #9B897D;
@@ -53,6 +53,8 @@
   }
 
   html {
+    background-color: #120B09 !important;
+    color: #FFF8EA;
     overflow-x: hidden;
     width: 100%;
     max-width: 100vw;
@@ -61,7 +63,7 @@
   }
 
   body {
-    background-color: transparent;
+    background-color: #120B09 !important;
     color: #FFF8EA;
     font-family: var(--font-jakarta), var(--font-hind-siliguri), system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
     overflow-x: hidden;
@@ -138,11 +140,6 @@
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
     border-radius: 24px;
   }
-}
-
-.content-auto {
-  content-visibility: auto;
-  contain-intrinsic-size: 1px 400px;
 }
 
 /* macOS-style Inputs & Form Elements */
