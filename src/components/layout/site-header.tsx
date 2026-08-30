@@ -58,10 +58,10 @@ export const SiteHeader: React.FC = () => {
   return (
     <header
       className={cn(
-        'sticky top-0 z-40 w-full transition-all duration-300 border-b backdrop-blur-2xl',
+        'fixed top-0 left-0 right-0 z-40 w-full transition-all duration-300 border-b backdrop-blur-2xl shadow-[0_4px_25px_rgba(0,0,0,0.55)]',
         isPujaMode
-          ? 'bg-[#171A1B]/90 border-[#4A3B34] text-[#FFF8EA]'
-          : 'bg-[#1A1210]/50 border-[#FFFDF8]/10 text-[#FFF8EA]'
+          ? 'bg-[#171A1B]/95 border-[#4A3B34] text-[#FFF8EA]'
+          : 'bg-[#140D0B]/90 border-[#FFFDF8]/10 text-[#FFF8EA]'
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
