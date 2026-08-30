@@ -1,0 +1,48 @@
+import { GalleryItem } from '@/types/culture';
+
+export const GALLERY_DATA: GalleryItem[] = [
+  {
+    id: 'gal-durga-shilpo',
+    titleBn: 'ডাকের সাজে দেবী দুর্গা ও সপরিবার',
+    titleEn: 'Devi Durga in Traditional Daaker Saaj',
+    category: 'pratima',
+    locationBn: 'বাগবাজার সর্বজনীন, কলকাতা',
+    locationEn: 'Baghbazar Sarbojanin, Kolkata',
+    imageUrl: '/images/durga/durga-hero.jpg',
+    descriptionBn: 'ধবধবে সাদা শোলার কাজ ও সোনার অলংকারে অপরূপ মহিষাসুরমর্দিনী রূপ।',
+    descriptionEn: 'The iconic traditional Daaker Saaj sholapith artwork adorning the Mother.',
+  },
+  {
+    id: 'gal-sandhi-lights',
+    titleBn: 'সন্ধিপূজার ১০৮ প্রদীপের মহাজ্যোতি',
+    titleEn: 'Luminous Glow of 108 Sandhi Puja Diyas',
+    category: 'rituals',
+    locationBn: 'শোভাবাজার রাজবাড়ি',
+    locationEn: 'Sovabazar Rajbari',
+    imageUrl: '/images/gallery/sandhi-puja-diyas.jpg',
+    descriptionBn: 'অষ্টমী-নবমীর মিলনক্ষণে মাটির প্রদীপের স্নিগ্ধ আলোয় উদ্ভাসিত গর্ভগৃহ।',
+    descriptionEn: 'The mystical sanctum sanctorum illuminated with 108 earthen lamps.',
+  },
+  {
+    id: 'gal-dhunuchi-utsav',
+    titleBn: 'নবমীর সন্ধ্যায় ধুনুচি আরতি ও ঢাক',
+    titleEn: 'Ecstatic Dhunuchi Aarti & Dhak Beats',
+    category: 'rituals',
+    locationBn: 'ম্যাডক্স স্কোয়ার, বালিগঞ্জ',
+    locationEn: 'Maddox Square, Ballygunge',
+    imageUrl: '/images/gallery/dhunuchi-naach.jpg',
+    descriptionBn: 'ধুনোর সুবাসে মুখরিত উৎসব প্রাঙ্গণে ভক্তদের ভাবোন্মত্ত সমবেত নৃত্য।',
+    descriptionEn: 'Joyful community devotion amidst swirling incense smoke and thunderous percussion.',
+  },
+  {
+    id: 'gal-bhog-thali',
+    titleBn: 'ঐতিহ্যবাহী শারদ মহাপ্রসাদ থালি',
+    titleEn: 'Traditional Sharad Mahaprasad Offering',
+    category: 'rituals',
+    locationBn: 'বেলুড় মঠ, হাওড়া',
+    locationEn: 'Belur Math, Howrah',
+    imageUrl: '/images/gallery/bhog-prasad.jpg',
+    descriptionBn: 'কাঁসার থালায় গোবিন্দভোগ খিচুড়ি, লাবড়া ও পায়েশের পরম পবিত্র অর্ঘ্য।',
+    descriptionEn: 'Sacred prasad offering prepared with pure devotion and timeless culinary heritage.',
+  },
+];
