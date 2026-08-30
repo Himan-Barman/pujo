@@ -88,64 +88,58 @@ export const DiyaExperience: React.FC = () => {
   };
 
   return (
-    <div className="agomoni-card p-6 sm:p-10 border border-[#FFFDF8]/12 bg-[#1A1210]/95 backdrop-blur-2xl text-[#FFF8EA] relative overflow-hidden shadow-2xl space-y-8">
+    <div className="agomoni-card p-4 sm:p-8 md:p-10 border border-[#FFFDF8]/12 bg-[#1A1210]/95 backdrop-blur-2xl text-[#FFF8EA] relative overflow-hidden shadow-2xl space-y-6 sm:space-y-8">
       {/* 1. Header Info & Counter Bar */}
-      <div className="flex flex-col lg:flex-row items-center justify-between gap-6 pb-6 border-b border-[#FFFDF8]/10">
+      <div className="flex flex-col lg:flex-row items-center justify-between gap-4 sm:gap-6 pb-4 sm:pb-6 border-b border-[#FFFDF8]/10">
         <div className="text-center lg:text-left space-y-1.5">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#241B18] border border-[#E7C878]/30 text-xs text-[#E7C878] font-bold shadow-xs">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#241B18] border border-[#E7C878]/30 text-[11px] sm:text-xs text-[#E7C878] font-bold shadow-xs">
             <Flame className="w-3.5 h-3.5 text-[#E7C878]" />
             <span>
               {language === 'bn' ? 'সন্ধিপূজার ১০৮ প্রদীপ প্রজ্জ্বলন' : 'Sandhi Puja 108 Sacred Diyas'}
             </span>
           </div>
-          <h3 className="text-2xl sm:text-3xl font-bold font-serif text-[#FFF8EA]">
-            {language === 'bn'
-              ? 'মা চামুণ্ডার বন্দনায় ১০৮ প্রদীপ প্রজ্জ্বলন'
-              : 'Illuminate 108 Earthen Diyas for Devi Chamunda'}
+          <h3 className="text-xl sm:text-3xl font-extrabold font-serif text-[#E7C878] tracking-tight">
+            {language === 'bn' ? '১০৮ মাটির প্রদীপে চামুণ্ডা আবাহন' : 'Invoke Maa Chamunda with 108 Diyas'}
           </h3>
-          <p className="text-xs sm:text-sm text-[#E7C878]/90 font-sans max-w-xl">
+          <p className="text-xs sm:text-sm text-[#FFF8EA]/75 max-w-xl font-sans">
             {language === 'bn'
-              ? 'অষ্টমী ও নবমীর সন্ধিক্ষণে প্রতিটি মাটির প্রদীপে ট্যাপ করে অন্ধকার দূর করে শুভ জ্যোতির আবাহন করুন।'
-              : 'Tap each earthen diya to ignite sacred flames or illuminate all 108 lamps simultaneously.'}
+              ? 'অষ্টমী ও নবমীর মিলনক্ষণে ৪৮ মিনিটের সন্ধিক্ষণে দেবী চামুণ্ডার উদ্দেশ্যে প্রতিটি প্রদীপ জ্বালিয়ে ভক্তি নিবেদন করুন।'
+              : 'At the exact juncture of Ashtami and Navami, light 108 sacred earthen lamps to honor Devi Chamunda.'}
           </p>
         </div>
 
-        {/* Counter Display & Progress */}
-        <div className="flex items-center gap-5 p-4 rounded-[24px] bg-[#241B18] border border-[#E7C878]/30 shadow-inner flex-shrink-0">
-          <div className="w-14 h-14 rounded-full bg-[#120B09] border-2 border-[#E7C878] flex items-center justify-center text-[#E7C878] shadow-md">
-            <Flame className={cn('w-7 h-7 transition-all duration-300', litCount > 0 ? 'text-[#E7C878] animate-pulse scale-110' : 'text-[#FFF8EA]/30')} />
+        {/* Lit Count Badge */}
+        <div className="flex items-center gap-4 bg-[#120B09] p-3 sm:p-4 rounded-[22px] border border-[#E7C878]/35 shadow-inner flex-shrink-0">
+          <div className="text-center px-2 sm:px-3">
+            <span className="text-2xl sm:text-4xl font-extrabold font-serif text-[#FFF8EA] leading-none block">
+              {language === 'bn' ? toBengaliNumeral(litCount) : litCount}
+              <span className="text-xs sm:text-base text-[#E7C878]/70 font-normal"> / {language === 'bn' ? '১০৮' : '108'}</span>
+            </span>
+            <span className="text-[10px] text-[#E7C878] uppercase font-mono font-bold tracking-wider block mt-1">
+              {language === 'bn' ? 'প্রজ্বলিত প্রদীপ' : 'Diyas Lit'}
+            </span>
           </div>
 
-          <div className="text-left">
-            <div className="flex items-baseline gap-1">
-              <span className="text-3xl sm:text-4xl font-extrabold text-[#E7C878] font-mono">
-                {language === 'bn' ? toBengaliNumeral(litCount) : litCount}
-              </span>
-              <span className="text-xs text-[#FFF8EA]/50 font-mono">
-                / {language === 'bn' ? toBengaliNumeral(108) : '108'}
-              </span>
-            </div>
-            <p className="text-[10px] text-[#FFF8EA]/70 uppercase tracking-wider font-bold">
-              {language === 'bn' ? `${toBengaliNumeral(progressPercent)}% প্রদীপ প্রজ্বলিত` : `${progressPercent}% Lamps Ignited`}
-            </p>
+          <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#A61B1B]/40 border-2 border-[#E7C878] flex items-center justify-center text-[#E7C878] font-mono font-bold text-xs sm:text-sm shadow-xs">
+            {progressPercent}%
           </div>
         </div>
       </div>
 
       {/* 2. Quick Action Controls */}
-      <div className="flex flex-wrap items-center justify-between gap-3 p-3.5 rounded-[22px] bg-[#FFFDF8]/[0.05] border border-[#FFFDF8]/10">
-        <div className="flex flex-wrap items-center gap-2">
+      <div className="flex flex-col sm:flex-row flex-wrap items-center justify-between gap-2.5 sm:gap-3 p-3 sm:p-3.5 rounded-[20px] sm:rounded-[22px] bg-[#FFFDF8]/[0.05] border border-[#FFFDF8]/10">
+        <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto">
           <button
             type="button"
             onClick={lightAllDiyas}
             disabled={isAutoLighting || isAllLit}
-            className="apple-btn-primary px-5 py-2 text-xs font-bold flex items-center gap-2 cursor-pointer disabled:opacity-50 active:scale-95 shadow-xs"
+            className="apple-btn-primary flex-1 sm:flex-initial px-4 sm:px-5 py-2 text-xs font-bold flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 active:scale-95 shadow-xs"
           >
             <Play className="w-3.5 h-3.5 fill-current" />
             <span>
               {isAutoLighting
                 ? language === 'bn' ? 'প্রদীপ জ্বলছে...' : 'Lighting...'
-                : language === 'bn' ? 'সমগ্র ১০৮ প্রদীপ প্রজ্বলন' : 'Light All 108 Diyas'}
+                : language === 'bn' ? 'সমগ্র ১০৮ প্রদীপ' : 'Light All 108 Diyas'}
             </span>
           </button>
 
@@ -153,7 +147,7 @@ export const DiyaExperience: React.FC = () => {
             type="button"
             onClick={lightTenMore}
             disabled={isAutoLighting || isAllLit}
-            className="apple-btn-secondary px-4 py-2 text-xs font-bold flex items-center gap-1.5 cursor-pointer disabled:opacity-50 active:scale-95"
+            className="apple-btn-secondary flex-1 sm:flex-initial px-3 sm:px-4 py-2 text-xs font-bold flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-50 active:scale-95"
           >
             <Zap className="w-3 h-3 text-[#E7C878]" />
             <span>{language === 'bn' ? '+১০টি জ্বালান' : '+10 Diyas'}</span>
@@ -164,7 +158,7 @@ export const DiyaExperience: React.FC = () => {
           type="button"
           onClick={resetDiyas}
           disabled={isAutoLighting || litCount === 0}
-          className="apple-btn-secondary px-4 py-2 text-xs flex items-center gap-1.5 cursor-pointer disabled:opacity-30 active:scale-95 text-[#FFF8EA]/70 hover:text-[#FFF8EA]"
+          className="apple-btn-secondary w-full sm:w-auto px-4 py-2 text-xs flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-30 active:scale-95 text-[#FFF8EA]/70 hover:text-[#FFF8EA]"
         >
           <RotateCcw className="w-3 h-3" />
           <span>{language === 'bn' ? 'পুনরায় শুরু করুন' : 'Reset All'}</span>
@@ -172,8 +166,8 @@ export const DiyaExperience: React.FC = () => {
       </div>
 
       {/* 3. The 108 Sacred Earthen Diya Grid */}
-      <div className="p-4 sm:p-6 rounded-[28px] bg-[#120B09] border-2 border-[#E7C878]/25 shadow-inner">
-        <div className="grid grid-cols-6 sm:grid-cols-9 md:grid-cols-12 gap-2 sm:gap-3">
+      <div className="p-3 sm:p-6 rounded-[22px] sm:rounded-[28px] bg-[#120B09] border-2 border-[#E7C878]/25 shadow-inner">
+        <div className="grid grid-cols-6 sm:grid-cols-9 md:grid-cols-12 gap-1.5 sm:gap-2.5 md:gap-3">
           {litDiyas.map((isLit, index) => (
             <button
               key={index}
@@ -181,7 +175,7 @@ export const DiyaExperience: React.FC = () => {
               onClick={() => toggleDiya(index)}
               title={language === 'bn' ? `প্রদীপ #${toBengaliNumeral(index + 1)}` : `Diya #${index + 1}`}
               className={cn(
-                'relative aspect-square rounded-[16px] sm:rounded-[18px] flex flex-col items-center justify-center transition-all duration-300 cursor-pointer select-none group',
+                'relative aspect-square rounded-[12px] sm:rounded-[16px] md:rounded-[18px] flex flex-col items-center justify-center transition-all duration-300 cursor-pointer select-none group',
                 isLit
                   ? 'bg-gradient-to-t from-[#741313] via-[#A61B1B] to-[#C99A3D] shadow-[0_0_15px_rgba(231,200,120,0.5)] border border-[#E7C878] scale-105'
                   : 'bg-[#FFFDF8]/[0.05] border border-[#FFFDF8]/10 hover:border-[#E7C878]/40 hover:bg-[#FFFDF8]/[0.08]'
@@ -191,17 +185,17 @@ export const DiyaExperience: React.FC = () => {
               <div className="relative">
                 {isLit ? (
                   <div className="relative flex items-center justify-center">
-                    <span className="absolute w-6 h-6 rounded-full bg-[#E7C878]/30 blur-xs animate-ping" />
-                    <Flame className="w-5 h-5 text-[#FFFDF8] fill-[#E7C878] animate-bounce" />
+                    <span className="absolute w-5 h-5 rounded-full bg-[#E7C878]/30 blur-xs animate-ping" />
+                    <Flame className="w-4 h-4 sm:w-5 sm:h-5 text-[#FFFDF8] fill-[#E7C878] animate-bounce" />
                   </div>
                 ) : (
-                  <Flame className="w-4 h-4 text-[#FFF8EA]/20 group-hover:text-[#E7C878]/60 transition-colors" />
+                  <Flame className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#FFF8EA]/20 group-hover:text-[#E7C878]/60 transition-colors" />
                 )}
               </div>
 
               {/* Number Label */}
               <span className={cn(
-                'text-[9px] font-mono font-bold mt-1 transition-colors',
+                'text-[8px] sm:text-[9px] font-mono font-bold mt-0.5 sm:mt-1 transition-colors',
                 isLit ? 'text-[#FFFDF8]' : 'text-[#FFF8EA]/30 group-hover:text-[#E7C878]'
               )}>
                 {language === 'bn' ? toBengaliNumeral(index + 1) : index + 1}

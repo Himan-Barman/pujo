@@ -98,41 +98,41 @@ export const FeatureGrid: React.FC = () => {
         subtitleEn="Explore rich digital rituals designed to immerse you into the festival spirit."
       />
 
-      <StaggerContainer staggerDelay={0.09} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <StaggerContainer staggerDelay={0.09} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
         {features.map((item) => {
           const Icon = item.icon;
           return (
             <StaggerItem key={item.id}>
               <Link
                 href={item.href}
-                className="agomoni-card p-7 h-full transition-all duration-300 hover:border-[#E7C878]/40 hover:bg-[#FFFDF8]/[0.12] flex flex-col justify-between group cursor-pointer active:scale-[0.98]"
+                className="agomoni-card p-4 sm:p-6 md:p-7 h-full transition-all duration-300 hover:border-[#E7C878]/40 hover:bg-[#FFFDF8]/[0.12] flex flex-col justify-between group cursor-pointer active:scale-[0.98]"
               >
                 <div>
-                  <div className="flex items-center justify-between mb-5">
+                  <div className="flex items-center justify-between mb-4 sm:mb-5">
                     <div
-                      className="w-12 h-12 rounded-[18px] flex items-center justify-center text-white shadow-xs"
+                      className="w-10 h-10 sm:w-12 sm:h-12 rounded-[16px] sm:rounded-[18px] flex items-center justify-center text-white shadow-xs"
                       style={{ backgroundColor: item.accentColor }}
                     >
-                      <Icon className="w-6 h-6 text-[#FFFDF8]" />
+                      <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-[#FFFDF8]" />
                     </div>
 
-                    <span className="px-3.5 py-1 rounded-full bg-[#1A1210]/70 backdrop-blur-md border border-[#FFFDF8]/10 text-[#E7C878] text-[10px] font-bold tracking-wider uppercase">
+                    <span className="px-3 py-1 rounded-full bg-[#1A1210]/70 backdrop-blur-md border border-[#FFFDF8]/10 text-[#E7C878] text-[9.5px] sm:text-[10px] font-bold tracking-wider uppercase">
                       {language === 'bn' ? item.badgeBn : item.badgeEn}
                     </span>
                   </div>
 
-                  <h3 className="text-xl font-bold font-serif text-[#E7C878] mb-2 drop-shadow-sm">
+                  <h3 className="text-lg sm:text-xl font-bold font-serif text-[#E7C878] mb-1.5 sm:mb-2 drop-shadow-sm">
                     {language === 'bn' ? item.titleBn : item.titleEn}
                   </h3>
 
-                  <p className="text-sm text-[#FFF8EA]/75 leading-relaxed mb-6">
+                  <p className="text-xs sm:text-sm text-[#FFF8EA]/75 leading-relaxed mb-4 sm:mb-6">
                     {language === 'bn' ? item.descBn : item.descEn}
                   </p>
                 </div>
 
-                <div className="pt-4 border-t border-[#FFFDF8]/10 flex items-center justify-between text-xs font-bold text-[#E7C878]">
+                <div className="pt-3.5 sm:pt-4 border-t border-[#FFFDF8]/10 flex items-center justify-between text-xs font-bold text-[#E7C878]">
                   <span>{language === 'bn' ? 'অভিজ্ঞতা নিন' : 'Explore Now'}</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" />
                 </div>
               </Link>
             </StaggerItem>

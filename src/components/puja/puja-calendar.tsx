@@ -70,11 +70,11 @@ export const PujaCalendar: React.FC = () => {
       </div>
 
       {/* 2. Master Panjika Astronomical Almanac Card (Luxurious & Symmetrical) */}
-      <div className="agomoni-card p-6 sm:p-8 lg:p-10 relative overflow-hidden border-2 border-[#E7C878]/35 shadow-2xl bg-gradient-to-b from-[#1C120F] to-[#120B09]">
+      <div className="agomoni-card p-4 sm:p-8 lg:p-10 relative overflow-hidden border-2 border-[#E7C878]/35 shadow-2xl bg-gradient-to-b from-[#1C120F] to-[#120B09]">
         {/* Decorative Top Accent Bar with Dual Panjika Switcher */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-[#FFFDF8]/10">
-          <div className="flex flex-wrap items-center gap-2.5">
-            <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#120B09] border border-[#E7C878]/40 text-[#E7C878] text-xs font-bold shadow-xs">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3.5 sm:gap-4 pb-4 sm:pb-5 border-b border-[#FFFDF8]/10">
+          <div className="flex flex-wrap items-center gap-2">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-[#120B09] border border-[#E7C878]/40 text-[#E7C878] text-[11px] sm:text-xs font-bold shadow-xs">
               <CalendarIcon className="w-3.5 h-3.5 text-[#E7C878]" />
               <span>
                 {language === 'bn'
@@ -91,7 +91,7 @@ export const PujaCalendar: React.FC = () => {
               )}
             </div>
 
-            <span className="px-3.5 py-1.5 rounded-full bg-[#A61B1B]/85 border border-[#E7C878]/40 text-xs font-bold text-[#FFFDF8] shadow-xs">
+            <span className="px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-[#A61B1B]/85 border border-[#E7C878]/40 text-[11px] sm:text-xs font-bold text-[#FFFDF8] shadow-xs">
               {language === 'bn' ? currentDay.tithiBn : currentDay.tithiEn}
             </span>
           </div>
@@ -103,12 +103,12 @@ export const PujaCalendar: React.FC = () => {
               <span>{language === 'bn' ? 'পঞ্জিকা নির্বাচন:' : 'Panjika Almanac:'}</span>
             </div>
 
-            <div className="inline-flex items-center p-1 rounded-full bg-[#120B09] border border-[#E7C878]/35 shadow-inner gap-1">
+            <div className="inline-flex items-center p-1 rounded-full bg-[#120B09] border border-[#E7C878]/35 shadow-inner gap-1 w-full sm:w-auto justify-between sm:justify-start">
               <button
                 type="button"
                 onClick={() => setSelectedPanjika('benimadhab')}
                 className={cn(
-                  'px-3.5 py-1 rounded-full text-xs font-bold font-serif transition-all cursor-pointer',
+                  'px-3 sm:px-3.5 py-1 rounded-full text-[11px] sm:text-xs font-bold font-serif transition-all cursor-pointer flex-1 sm:flex-initial text-center',
                   selectedPanjika === 'benimadhab'
                     ? 'bg-gradient-to-r from-[#A61B1B] to-[#741313] text-[#FFFDF8] border border-[#E7C878]/40 shadow-xs scale-[1.02]'
                     : 'text-[#FFF8EA]/70 hover:text-[#FFF8EA] hover:bg-[#FFFDF8]/5'
@@ -121,7 +121,7 @@ export const PujaCalendar: React.FC = () => {
                 type="button"
                 onClick={() => setSelectedPanjika('guptapress')}
                 className={cn(
-                  'px-3.5 py-1 rounded-full text-xs font-bold font-serif transition-all cursor-pointer',
+                  'px-3 sm:px-3.5 py-1 rounded-full text-[11px] sm:text-xs font-bold font-serif transition-all cursor-pointer flex-1 sm:flex-initial text-center',
                   selectedPanjika === 'guptapress'
                     ? 'bg-gradient-to-r from-[#A61B1B] to-[#741313] text-[#FFFDF8] border border-[#E7C878]/40 shadow-xs scale-[1.02]'
                     : 'text-[#FFF8EA]/70 hover:text-[#FFF8EA] hover:bg-[#FFFDF8]/5'
@@ -134,22 +134,22 @@ export const PujaCalendar: React.FC = () => {
         </div>
 
         {/* Master Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch pt-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-stretch pt-4 sm:pt-6">
           {/* Left Column: Title, Description, Tithi Windows & Vahana Lore */}
-          <div className="lg:col-span-7 flex flex-col justify-between space-y-6">
-            <div className="space-y-3">
-              <div className="flex flex-wrap items-center gap-3">
-                <h2 className="text-3xl sm:text-4xl lg:text-[2.6rem] font-extrabold font-serif text-[#FFF8EA] leading-tight tracking-normal">
+          <div className="lg:col-span-7 flex flex-col justify-between space-y-4 sm:space-y-6">
+            <div className="space-y-2 sm:space-y-3">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                <h2 className="text-2xl sm:text-4xl lg:text-[2.6rem] font-extrabold font-serif text-[#FFF8EA] leading-tight tracking-normal">
                   {language === 'bn' ? mainTitleBn : mainTitleEn}
                 </h2>
                 {(subTitleBn || subTitleEn) && (
-                  <span className="px-3 py-1 rounded-full bg-[#E7C878]/15 border border-[#E7C878]/40 text-xs sm:text-sm font-serif font-bold text-[#E7C878] shadow-xs">
+                  <span className="px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-[#E7C878]/15 border border-[#E7C878]/40 text-xs sm:text-sm font-serif font-bold text-[#E7C878] shadow-xs">
                     {language === 'bn' ? subTitleBn : subTitleEn}
                   </span>
                 )}
               </div>
 
-              <p className="text-sm sm:text-base text-[#FFF8EA]/85 leading-relaxed font-sans">
+              <p className="text-xs sm:text-base text-[#FFF8EA]/85 leading-relaxed font-sans">
                 {language === 'bn' ? currentDay.descriptionBn : currentDay.descriptionEn}
               </p>
             </div>

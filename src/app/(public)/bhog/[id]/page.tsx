@@ -92,20 +92,20 @@ export default function BhogDetailPage({ params }: BhogDetailPageProps) {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-12">
       {/* 1. Top Navigation Bar */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
         <Link
           href="/bhog"
-          className="apple-btn-secondary px-5 py-2.5 text-xs flex items-center gap-2 cursor-pointer shadow-xs active:scale-95 w-fit"
+          className="apple-btn-secondary px-4 sm:px-5 py-2.5 text-xs flex items-center justify-center gap-2 cursor-pointer shadow-xs active:scale-95 w-full sm:w-fit"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>{language === 'bn' ? 'সকল মহাপ্রসাদে ফিরে যান' : 'Back to All Offerings'}</span>
         </Link>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 w-full sm:w-auto">
           <button
             type="button"
             onClick={handleShare}
-            className="apple-btn-secondary px-5 py-2.5 text-xs flex items-center gap-2 cursor-pointer shadow-xs active:scale-95 w-fit"
+            className="apple-btn-secondary px-4 sm:px-5 py-2.5 text-xs flex items-center justify-center gap-2 cursor-pointer shadow-xs active:scale-95 w-full sm:w-fit"
           >
             {copied ? <Check className="w-3.5 h-3.5 text-green-400" /> : <Share2 className="w-3.5 h-3.5 text-[#E7C878]" />}
             <span>
@@ -133,10 +133,10 @@ export default function BhogDetailPage({ params }: BhogDetailPageProps) {
 
       {/* 3. Hero Showcase Banner with Photo & Mantra */}
       <ScrollReveal delay={0.08} distance={40}>
-        <div className="agomoni-card overflow-hidden relative shadow-2xl p-4 sm:p-6 border border-[#E7C878]/35 bg-[#1A1210]/95">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+        <div className="agomoni-card overflow-hidden relative shadow-2xl p-3.5 sm:p-6 border border-[#E7C878]/35 bg-[#1A1210]/95">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-stretch">
             {/* Left Photo Showcase */}
-            <div className="lg:col-span-5 relative min-h-[340px] sm:min-h-[420px] w-full overflow-hidden rounded-[28px] border-2 border-[#E7C878]/40 bg-[#120B09] shadow-2xl group">
+            <div className="lg:col-span-5 relative min-h-[260px] sm:min-h-[420px] w-full overflow-hidden rounded-[22px] sm:rounded-[28px] border-2 border-[#E7C878]/40 bg-[#120B09] shadow-2xl group">
               <Image
                 src={item.image}
                 alt={item.nameEn}
@@ -147,19 +147,19 @@ export default function BhogDetailPage({ params }: BhogDetailPageProps) {
               <div className="absolute inset-0 bg-gradient-to-t from-[#1A1210] via-[#1A1210]/20 to-transparent" />
 
               {/* Floating Top Badge */}
-              <div className="absolute top-3.5 left-3.5 flex items-center gap-2">
-                <span className="px-3.5 py-1.5 rounded-full bg-[#1A1210]/90 border border-[#E7C878]/50 text-xs font-bold text-[#E7C878] shadow-lg backdrop-blur-md flex items-center gap-1.5">
+              <div className="absolute top-2.5 left-2.5 sm:top-3.5 sm:left-3.5 flex items-center gap-2">
+                <span className="px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-[#1A1210]/90 border border-[#E7C878]/50 text-[11px] sm:text-xs font-bold text-[#E7C878] shadow-lg backdrop-blur-md flex items-center gap-1.5">
                   <Utensils className="w-3.5 h-3.5 text-[#E7C878]" />
                   <span>{item.category.toUpperCase()}</span>
                 </span>
               </div>
 
               {/* Bottom Tagline Overlay */}
-              <div className="absolute bottom-3.5 left-3.5 right-3.5 p-4 rounded-[20px] bg-[#1A1210]/90 backdrop-blur-md border border-[#E7C878]/30 shadow-xl text-center space-y-1">
-                <h3 className="text-lg sm:text-xl font-bold font-serif text-[#FFF8EA]">
+              <div className="absolute bottom-2.5 left-2.5 right-2.5 sm:bottom-3.5 sm:left-3.5 sm:right-3.5 p-3 sm:p-4 rounded-[16px] sm:rounded-[20px] bg-[#1A1210]/90 backdrop-blur-md border border-[#E7C878]/30 shadow-xl text-center space-y-0.5 sm:space-y-1">
+                <h3 className="text-base sm:text-xl font-bold font-serif text-[#FFF8EA]">
                   {language === 'bn' ? item.nameBn : item.nameEn}
                 </h3>
-                <p className="text-xs font-sans text-[#E7C878] font-medium">
+                <p className="text-[11px] sm:text-xs font-sans text-[#E7C878] font-medium">
                   {language === 'bn' ? item.pujaDayAssocBn : item.pujaDayAssocEn}
                 </p>
               </div>

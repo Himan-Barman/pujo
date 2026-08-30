@@ -255,7 +255,7 @@ export const BhogExplorer: React.FC = () => {
         </div>
 
         {/* Horizontal Category Segmented Pill Bar */}
-        <div className="flex items-center justify-center gap-2 overflow-x-auto no-scrollbar py-2">
+        <div className="flex items-center justify-start sm:justify-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar py-2 px-1">
           {CATEGORIES.map((cat) => {
             const Icon = cat.icon;
             const isActive = activeCategory === cat.id;
@@ -266,7 +266,7 @@ export const BhogExplorer: React.FC = () => {
                 type="button"
                 onClick={() => setActiveCategory(cat.id)}
                 className={cn(
-                  'flex items-center gap-2 px-4 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all duration-200 whitespace-nowrap cursor-pointer select-none active:scale-95 border',
+                  'flex items-center gap-1.5 sm:gap-2 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all duration-200 whitespace-nowrap cursor-pointer select-none active:scale-95 border flex-shrink-0',
                   isActive
                     ? 'bg-[#A61B1B] text-[#FFFDF8] border-[#A61B1B] shadow-md'
                     : 'bg-[#FFFDF8]/[0.08] backdrop-blur-md border-[#FFFDF8]/12 text-[#FFF8EA]/70 hover:text-[#FFF8EA] hover:bg-[#FFFDF8]/[0.12]'
@@ -280,7 +280,7 @@ export const BhogExplorer: React.FC = () => {
         </div>
 
         {/* 3. Course Cards Grid with Dedicated Photo for Every Recipe */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 items-stretch">
           {filteredItems.map((item) => (
             <Link
               key={item.id}
@@ -289,7 +289,7 @@ export const BhogExplorer: React.FC = () => {
             >
               <div className="flex flex-col flex-1">
                 {/* Photo Banner with Zoom on Hover */}
-                <div className="relative w-full h-48 sm:h-56 overflow-hidden bg-[#1A1210] flex-shrink-0">
+                <div className="relative w-full h-44 sm:h-56 overflow-hidden bg-[#1A1210] flex-shrink-0">
                   <Image
                     src={item.image}
                     alt={item.nameEn}

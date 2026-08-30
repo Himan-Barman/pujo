@@ -44,7 +44,7 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
         ease: [0.16, 1, 0.3, 1],
       }}
       className={cn(
-        'max-w-3xl mb-10 select-none',
+        'max-w-3xl mb-6 sm:mb-10 px-2 sm:px-0 select-none',
         align === 'center' && 'mx-auto text-center',
         align === 'left' && 'text-left',
         align === 'right' && 'text-right',
@@ -57,7 +57,7 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#FFFDF8]/10 backdrop-blur-md border border-[#E7C878]/30 text-[#E7C878] text-xs font-semibold tracking-wider uppercase mb-3 shadow-xs"
+          className="inline-flex items-center gap-1.5 px-3 py-0.5 sm:px-3.5 sm:py-1 rounded-full bg-[#FFFDF8]/10 backdrop-blur-md border border-[#E7C878]/30 text-[#E7C878] text-[10.5px] sm:text-xs font-semibold tracking-wider uppercase mb-2 sm:mb-3 shadow-xs"
         >
           <span className="w-1.5 h-1.5 rounded-full bg-[#E7C878] animate-pulse" />
           <span>{activeTag}</span>
@@ -69,7 +69,7 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.65, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-        className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-2 text-[#E7C878] font-serif drop-shadow-md leading-[1.35] sm:leading-[1.4] tracking-normal py-1"
+        className="text-2xl sm:text-3xl md:text-5xl font-extrabold mb-2 text-[#E7C878] font-serif drop-shadow-md leading-[1.3] sm:leading-[1.4] tracking-normal py-0.5 sm:py-1"
       >
         <span className="block">{activeTitle}</span>
       </motion.h2>
@@ -80,7 +80,7 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.65, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
-          className="text-sm sm:text-base text-[#FFF8EA]/75 leading-relaxed mt-2 max-w-2xl mx-auto"
+          className="text-xs sm:text-base text-[#FFF8EA]/75 leading-relaxed mt-1 sm:mt-2 max-w-2xl mx-auto"
         >
           {activeSubtitle}
         </motion.p>

@@ -14,15 +14,15 @@ export const CultureInteractiveHighlights: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'nabapatrika' | 'weapons'>('nabapatrika');
 
   return (
-    <div className="agomoni-card p-6 sm:p-10 space-y-7 shadow-2xl relative overflow-hidden">
+    <div className="agomoni-card p-4 sm:p-8 md:p-10 space-y-5 sm:space-y-7 shadow-2xl relative overflow-hidden">
       {/* Header and Apple-style Segmented Switcher */}
-      <div className="flex flex-col lg:flex-row items-center justify-between gap-5 pb-6 border-b border-[#FFFDF8]/10">
+      <div className="flex flex-col lg:flex-row items-center justify-between gap-4 sm:gap-5 pb-4 sm:pb-6 border-b border-[#FFFDF8]/10">
         <div className="text-center lg:text-left space-y-1.5">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#1A1210]/80 border border-[#E7C878]/30 text-[#E7C878] text-xs font-semibold shadow-xs">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#1A1210]/80 border border-[#E7C878]/30 text-[#E7C878] text-[11px] sm:text-xs font-semibold shadow-xs">
             <Sparkles className="w-3.5 h-3.5 text-[#E7C878]" />
             <span>{language === 'bn' ? 'ঐতিহ্যের প্রামাণ্য চিত্রশালা ও দর্শন' : 'Sacred Illustrated Lore & Gallery'}</span>
           </div>
-          <h3 className="text-2xl sm:text-3xl font-extrabold font-serif text-[#FFF8EA] drop-shadow-sm">
+          <h3 className="text-xl sm:text-3xl font-extrabold font-serif text-[#FFF8EA] drop-shadow-sm">
             {activeTab === 'nabapatrika'
               ? language === 'bn'
                 ? 'নবপত্রিকা বা কলাবউয়ের ৯টি পবিত্র উদ্ভিদ'
@@ -43,39 +43,39 @@ export const CultureInteractiveHighlights: React.FC = () => {
         </div>
 
         {/* Apple-style Recessed Segmented Capsule Switcher */}
-        <div className="flex items-center p-1 rounded-full bg-[#1A1210]/80 backdrop-blur-xl border border-[#FFFDF8]/15 text-xs shadow-inner flex-shrink-0">
+        <div className="flex items-center p-1 rounded-full bg-[#1A1210]/80 backdrop-blur-xl border border-[#FFFDF8]/15 text-xs shadow-inner flex-shrink-0 w-full sm:w-auto">
           <button
             type="button"
             onClick={() => setActiveTab('nabapatrika')}
             className={cn(
-              'px-4 py-2.5 rounded-full font-bold flex items-center gap-2 transition-all duration-200 cursor-pointer active:scale-95 text-xs sm:text-sm',
+              'px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full font-bold flex items-center justify-center gap-1.5 sm:gap-2 transition-all duration-200 cursor-pointer active:scale-95 text-xs sm:text-sm flex-1 sm:flex-initial text-center',
               activeTab === 'nabapatrika'
                 ? 'bg-[#A61B1B] text-[#FFFDF8] shadow-md border border-[#E7C878]/30'
                 : 'text-[#FFF8EA]/70 hover:text-[#FFF8EA] hover:bg-[#FFFDF8]/8'
             )}
           >
-            <Leaf className="w-4 h-4 text-[#6EE7B7]" />
-            <span>{language === 'bn' ? 'নবপত্রিকা (৯ উদ্ভিদ)' : 'Nabapatrika (9 Plants)'}</span>
+            <Leaf className="w-3.5 h-3.5 text-[#6EE7B7]" />
+            <span>{language === 'bn' ? 'নবপত্রিকা (৯ উদ্ভিদ)' : 'Nabapatrika (9)'}</span>
           </button>
           <button
             type="button"
             onClick={() => setActiveTab('weapons')}
             className={cn(
-              'px-4 py-2.5 rounded-full font-bold flex items-center gap-2 transition-all duration-200 cursor-pointer active:scale-95 text-xs sm:text-sm',
+              'px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full font-bold flex items-center justify-center gap-1.5 sm:gap-2 transition-all duration-200 cursor-pointer active:scale-95 text-xs sm:text-sm flex-1 sm:flex-initial text-center',
               activeTab === 'weapons'
                 ? 'bg-[#A61B1B] text-[#FFFDF8] shadow-md border border-[#E7C878]/30'
                 : 'text-[#FFF8EA]/70 hover:text-[#FFF8EA] hover:bg-[#FFFDF8]/8'
             )}
           >
-            <Shield className="w-4 h-4 text-[#E7C878]" />
-            <span>{language === 'bn' ? 'মহাশস্ত্র (১০ অস্ত্র)' : '10 Divine Weapons'}</span>
+            <Shield className="w-3.5 h-3.5 text-[#E7C878]" />
+            <span>{language === 'bn' ? 'মহাশস্ত্র (১০ অস্ত্র)' : '10 Weapons'}</span>
           </button>
         </div>
       </div>
 
       {/* Grid Content with Authentic Photos on every Card */}
       {activeTab === 'nabapatrika' ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5">
           {NABAPATRIKA_PLANTS_DATA.map((item) => (
             <Link
               key={item.id}

@@ -37,13 +37,14 @@ export default function GalleryPage() {
 
       {/* Category Pills in Apple-style capsule bar */}
       <ScrollReveal delay={0.05} distance={30}>
-        <div className="flex items-center justify-center gap-2">
+        <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2">
           {CATEGORIES.map((cat) => (
             <button
               key={cat.id}
+              type="button"
               onClick={() => setActiveCategory(cat.id)}
               className={cn(
-                'px-5 py-2 rounded-full text-xs font-semibold border transition-all duration-200 cursor-pointer active:scale-[0.97]',
+                'px-4 sm:px-5 py-1.5 sm:py-2 rounded-full text-[11px] sm:text-xs font-semibold border transition-all duration-200 cursor-pointer active:scale-[0.97]',
                 activeCategory === cat.id
                   ? 'bg-[#A61B1B] text-[#FFFDF8] border-[#741313] shadow-xs'
                   : 'bg-[#FFFDF8]/10 backdrop-blur-md text-[#FFF8EA]/70 border-[#FFFDF8]/12 hover:border-[#E7C878]/30'
@@ -56,11 +57,11 @@ export default function GalleryPage() {
       </ScrollReveal>
 
       {/* Gallery Grid with 32px squircle cards */}
-      <StaggerContainer staggerDelay={0.09} className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+      <StaggerContainer staggerDelay={0.09} className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8">
         {filteredItems.map((item) => (
           <StaggerItem key={item.id}>
-            <div className="rounded-[32px] overflow-hidden border border-[#E7C878]/25 bg-[#1A1210]/65 backdrop-blur-xl text-[#FFF8EA] group transition-all duration-300 hover:border-[#E7C878]/40 shadow-xl">
-              <div className="relative h-64 sm:h-80 w-full overflow-hidden">
+            <div className="rounded-[24px] sm:rounded-[32px] overflow-hidden border border-[#E7C878]/25 bg-[#1A1210]/65 backdrop-blur-xl text-[#FFF8EA] group transition-all duration-300 hover:border-[#E7C878]/40 shadow-xl">
+              <div className="relative h-52 sm:h-80 w-full overflow-hidden">
                 <Image
                   src={item.imageUrl}
                   alt={item.titleEn}
@@ -69,14 +70,14 @@ export default function GalleryPage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#1A1210]/80 via-transparent to-transparent" />
 
-                <div className="absolute top-4 left-4 px-3.5 py-1 rounded-full bg-[#1A1210]/70 backdrop-blur-xl border border-[#E7C878]/30 text-[11px] text-[#E7C878] flex items-center gap-1.5 shadow-xs">
+                <div className="absolute top-3 left-3 sm:top-4 sm:left-4 px-3 py-0.5 sm:px-3.5 sm:py-1 rounded-full bg-[#1A1210]/70 backdrop-blur-xl border border-[#E7C878]/30 text-[10px] sm:text-[11px] text-[#E7C878] flex items-center gap-1.5 shadow-xs">
                   <MapPin className="w-3.5 h-3.5 text-[#E7C878]" />
                   <span>{language === 'bn' ? item.locationBn : item.locationEn}</span>
                 </div>
               </div>
 
-              <div className="p-6 sm:p-7">
-                <h3 className="text-xl font-bold font-serif text-[#E7C878] mb-1">
+              <div className="p-4 sm:p-6 md:p-7">
+                <h3 className="text-lg sm:text-xl font-bold font-serif text-[#E7C878] mb-1">
                   {language === 'bn' ? item.titleBn : item.titleEn}
                 </h3>
                 <p className="text-xs sm:text-sm text-[#FFF8EA]/75 leading-relaxed">

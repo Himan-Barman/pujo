@@ -119,15 +119,15 @@ export const HeroSection: React.FC = () => {
           initial={{ opacity: 0, scale: 0.94, y: 15 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FFFDF8]/15 backdrop-blur-md border border-[#E7C878]/30 text-[#FFF8EA] text-xs font-semibold tracking-wide shadow-xs mb-4"
+          className="inline-flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-[#FFFDF8]/15 backdrop-blur-md border border-[#E7C878]/30 text-[#FFF8EA] text-[11px] sm:text-xs font-semibold tracking-wide shadow-xs mb-4 max-w-full text-center"
         >
-          <span className="text-sm">🪔</span>
-          <span>
+          <span className="text-xs sm:text-sm">🪔</span>
+          <span className="truncate">
             {language === 'bn'
               ? 'শারদীয়া দুর্গোৎসবের আন্তরিক প্রীতি ও শুভেচ্ছা'
               : 'Warm Sharodiya Durga Puja Greetings & Blessings'}
           </span>
-          <span className="text-[#E7C878] text-[10px]">❖</span>
+          <span className="text-[#E7C878] text-[10px] hidden sm:inline">❖</span>
         </motion.div>
 
         {/* 2. Headline & Subtitle */}
@@ -135,12 +135,12 @@ export const HeroSection: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.75, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="space-y-2 mb-8"
+          className="space-y-2 mb-6 sm:mb-8"
         >
-          <h1 className="text-5xl sm:text-7xl lg:text-[5.5rem] font-black font-serif tracking-tight text-[#FFF8EA] leading-[0.95] drop-shadow-lg">
+          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-black font-serif tracking-tight text-[#FFF8EA] leading-[0.95] drop-shadow-lg">
             {language === 'bn' ? 'মা আসছেন…' : 'Maa Is Arriving…'}
           </h1>
-          <p className="text-xs sm:text-sm tracking-[0.3em] uppercase font-sans font-bold text-[#E7C878]/90">
+          <p className="text-[10.5px] sm:text-xs md:text-sm tracking-[0.22em] sm:tracking-[0.3em] uppercase font-sans font-bold text-[#E7C878]/90">
             {language === 'bn'
               ? 'আগমনী — যেখানে জীবন্ত হয়ে ওঠেন মা দুর্গা'
               : 'AGOMONI — WHERE MAA COMES ALIVE'}
@@ -152,34 +152,34 @@ export const HeroSection: React.FC = () => {
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 w-full max-w-4xl mx-auto items-stretch mb-6"
+          className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 w-full max-w-4xl mx-auto items-stretch mb-6"
         >
           {/* Card A: Dynamic Countdown Time Box */}
-          <div className="agomoni-card p-4 sm:p-5 w-full shadow-2xl flex flex-col justify-between text-left">
-            <div className="flex items-center justify-between gap-2 mb-3 px-1">
+          <div className="agomoni-card p-3.5 sm:p-5 w-full shadow-2xl flex flex-col justify-between text-left">
+            <div className="flex items-center justify-between gap-2 mb-2.5 sm:mb-3 px-1">
               <div className="flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-[#D95757] animate-pulse" />
-                <span className="text-xs font-bold text-[#FFF8EA] font-serif">
+                <span className="w-2 h-2 rounded-full bg-[#D95757] animate-pulse flex-shrink-0" />
+                <span className="text-xs font-bold text-[#FFF8EA] font-serif truncate">
                   {language === 'bn' ? countdown.eventLabelBn : countdown.eventLabelEn}
                 </span>
               </div>
-              <span className="text-[10px] px-2.5 py-0.5 rounded-full bg-[#1A1210]/60 border border-[#E7C878]/30 text-[#E7C878] font-bold">
+              <span className="text-[9.5px] sm:text-[10px] px-2.5 py-0.5 rounded-full bg-[#1A1210]/60 border border-[#E7C878]/30 text-[#E7C878] font-bold flex-shrink-0">
                 {language === 'bn' ? countdown.eventTitleBn : countdown.eventTitleEn}
               </span>
             </div>
 
-            <div className="grid grid-cols-4 gap-2 sm:gap-2.5">
+            <div className="grid grid-cols-4 gap-1.5 sm:gap-2.5">
               {[
                 { val: language === 'bn' ? countdownBn.days : countdown.days, label: language === 'bn' ? 'দিন' : 'Days' },
                 { val: language === 'bn' ? countdownBn.hours : countdown.hours, label: language === 'bn' ? 'ঘণ্টা' : 'Hours' },
                 { val: language === 'bn' ? countdownBn.minutes : countdown.minutes, label: language === 'bn' ? 'মিনিট' : 'Mins' },
                 { val: language === 'bn' ? countdownBn.seconds : countdown.seconds, label: language === 'bn' ? 'সেকেন্ড' : 'Secs' },
               ].map((item, i) => (
-                <div key={i} className="rounded-[20px] p-2.5 sm:p-3 text-center bg-[#FFFDF8]/10 backdrop-blur-md border border-[#FFFDF8]/15">
-                  <div className="text-2xl sm:text-3xl font-extrabold font-serif text-[#FFF8EA] leading-none">
+                <div key={i} className="rounded-[16px] sm:rounded-[20px] p-2 sm:p-3 text-center bg-[#FFFDF8]/10 backdrop-blur-md border border-[#FFFDF8]/15">
+                  <div className="text-xl sm:text-3xl font-extrabold font-serif text-[#FFF8EA] leading-none">
                     {item.val}
                   </div>
-                  <div className="text-[10px] text-[#E7C878]/80 uppercase font-bold tracking-wider mt-1">
+                  <div className="text-[9px] sm:text-[10px] text-[#E7C878]/80 uppercase font-bold tracking-wider mt-1">
                     {item.label}
                   </div>
                 </div>
@@ -188,12 +188,12 @@ export const HeroSection: React.FC = () => {
           </div>
 
           {/* Card B: Auto-Changing Slogan Box (Smooth Blur & Vertical Fade Transition) */}
-          <div className="agomoni-card p-5 sm:p-6 w-full shadow-2xl flex flex-col justify-center items-center text-center relative overflow-hidden">
+          <div className="agomoni-card p-4 sm:p-6 w-full shadow-2xl flex flex-col justify-center items-center text-center relative overflow-hidden">
             {/* Subtle background radial glow */}
             <div className="absolute inset-0 bg-radial from-[#E7C878]/8 via-transparent to-transparent pointer-events-none" />
 
-            <div className="relative z-10 w-full flex flex-col justify-center items-center min-h-[95px]">
-              <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-[#1A1210]/60 border border-[#E7C878]/30 text-[10px] font-bold text-[#E7C878] mb-2.5 shadow-xs">
+            <div className="relative z-10 w-full flex flex-col justify-center items-center min-h-[90px] sm:min-h-[95px]">
+              <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-[#1A1210]/60 border border-[#E7C878]/30 text-[10px] font-bold text-[#E7C878] mb-2 shadow-xs">
                 <Sparkles className="w-3 h-3 text-[#E7C878] animate-pulse" />
                 <span>{language === 'bn' ? 'শারদ আগমনী মহিমা' : 'Festival Reflection'}</span>
               </div>
@@ -210,10 +210,10 @@ export const HeroSection: React.FC = () => {
                   }}
                   className="space-y-1 w-full"
                 >
-                  <h3 className="text-lg sm:text-xl font-bold font-serif text-[#FFF8EA] drop-shadow-sm">
+                  <h3 className="text-base sm:text-xl font-bold font-serif text-[#FFF8EA] drop-shadow-sm">
                     {language === 'bn' ? slogan.titleBn : slogan.titleEn}
                   </h3>
-                  <p className="text-sm sm:text-base font-serif text-[#E7C878] italic leading-relaxed drop-shadow-sm">
+                  <p className="text-xs sm:text-base font-serif text-[#E7C878] italic leading-relaxed drop-shadow-sm">
                     {language === 'bn' ? slogan.quoteBn : slogan.quoteEn}
                   </p>
                 </motion.div>
@@ -222,17 +222,17 @@ export const HeroSection: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* 4. Action Buttons (Horizontally Center-Aligned Below: 3 Full Capsule Buttons) */}
+        {/* 4. Action Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.75, delay: 0.26, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-wrap items-center justify-center gap-3.5 pt-2"
+          className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-2.5 sm:gap-3.5 pt-2 w-full sm:w-auto"
         >
           {/* Button 1: Digital Anjali */}
           <Link
             href="/anjali"
-            className="apple-btn-primary px-8 py-3.5 flex items-center gap-2 text-sm cursor-pointer shadow-lg active:scale-[0.97]"
+            className="apple-btn-primary w-full sm:w-auto px-7 sm:px-8 py-3 sm:py-3.5 flex items-center justify-center gap-2 text-xs sm:text-sm cursor-pointer shadow-lg active:scale-[0.97]"
           >
             <Flame className="w-4 h-4 text-[#E7C878]" />
             <span>{language === 'bn' ? 'অঞ্জলি দিন' : 'Offer Pushpanjali'}</span>
@@ -242,15 +242,15 @@ export const HeroSection: React.FC = () => {
           {/* Button 2: Calendar */}
           <Link
             href="/calendar"
-            className="apple-btn-secondary px-7 py-3.5 flex items-center gap-2 text-sm cursor-pointer active:scale-[0.97]"
+            className="apple-btn-secondary w-full sm:w-auto px-6 sm:px-7 py-3 sm:py-3.5 flex items-center justify-center gap-2 text-xs sm:text-sm cursor-pointer active:scale-[0.97]"
           >
             <span>{language === 'bn' ? 'পঞ্জিকা দেখুন' : 'View Calendar'}</span>
           </Link>
 
-          {/* Button 3: Sharod Melodies & Bhakti Sangeet (Dedicated Puja Songs Hub) */}
+          {/* Button 3: Sharod Melodies */}
           <Link
             href="/songs"
-            className="apple-btn-secondary px-7 py-3.5 flex items-center gap-2 text-sm cursor-pointer active:scale-[0.97] shadow-xs text-[#FFF8EA]"
+            className="apple-btn-secondary w-full sm:w-auto px-6 sm:px-7 py-3 sm:py-3.5 flex items-center justify-center gap-2 text-xs sm:text-sm cursor-pointer active:scale-[0.97] shadow-xs text-[#FFF8EA]"
           >
             <Music className="w-4 h-4 text-[#E7C878]" />
             <span>{language === 'bn' ? 'শারদ সুর ও ভক্তিগীতি' : 'Puja Melodies & Songs'}</span>

@@ -168,7 +168,7 @@ export const MantraExplorer: React.FC<MantraExplorerProps> = ({ mantras }) => {
         {/* Left Edge Progressive Blur Overlay */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute left-0 top-0 bottom-0 w-16 sm:w-28 z-20 rounded-l-[28px] sm:rounded-l-[32px]"
+          className="pointer-events-none absolute left-0 top-0 bottom-0 w-8 sm:w-28 z-20 rounded-l-[28px] sm:rounded-l-[32px]"
           style={{
             background:
               'linear-gradient(to right, rgba(18, 11, 9, 0.98) 0%, rgba(18, 11, 9, 0.85) 30%, rgba(18, 11, 9, 0.45) 70%, transparent 100%)',
@@ -184,7 +184,7 @@ export const MantraExplorer: React.FC<MantraExplorerProps> = ({ mantras }) => {
         {/* Right Edge Progressive Blur Overlay */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute right-0 top-0 bottom-0 w-16 sm:w-28 z-20 rounded-r-[28px] sm:rounded-r-[32px]"
+          className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 sm:w-28 z-20 rounded-r-[28px] sm:rounded-r-[32px]"
           style={{
             background:
               'linear-gradient(to left, rgba(18, 11, 9, 0.98) 0%, rgba(18, 11, 9, 0.85) 30%, rgba(18, 11, 9, 0.45) 70%, transparent 100%)',
@@ -219,23 +219,23 @@ export const MantraExplorer: React.FC<MantraExplorerProps> = ({ mantras }) => {
       </div>
 
       {/* 2. Master Selected Mantra Showcase Card (Luxurious & Symmetrical) */}
-      <div className="agomoni-card p-6 sm:p-8 lg:p-10 relative overflow-hidden border-2 border-[#E7C878]/35 shadow-2xl bg-gradient-to-b from-[#1C120F] to-[#120B09] space-y-8">
+      <div className="agomoni-card p-4 sm:p-8 lg:p-10 relative overflow-hidden border-2 border-[#E7C878]/35 shadow-2xl bg-gradient-to-b from-[#1C120F] to-[#120B09] space-y-6 sm:space-y-8">
         {/* Top Header & Actions Bar */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-[#FFFDF8]/10">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 sm:pb-6 border-b border-[#FFFDF8]/10">
           {/* Title & Deity Meta */}
           <div className="space-y-1.5">
-            <div className="flex flex-wrap items-center gap-2.5">
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#120B09] border border-[#E7C878]/40 text-[#E7C878] text-xs font-bold shadow-xs">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="inline-flex items-center gap-1.5 px-3 py-0.5 sm:px-3.5 sm:py-1 rounded-full bg-[#120B09] border border-[#E7C878]/40 text-[#E7C878] text-[11px] sm:text-xs font-bold shadow-xs">
                 <Sparkles className="w-3.5 h-3.5 text-[#E7C878]" />
                 <span>{language === 'bn' ? selectedMantra.deityBn : selectedMantra.deityEn}</span>
               </span>
 
-              <span className="px-3 py-1 rounded-full bg-[#A61B1B]/80 border border-[#E7C878]/40 text-xs font-bold text-[#FFFDF8] shadow-xs">
+              <span className="px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-[#A61B1B]/80 border border-[#E7C878]/40 text-[11px] sm:text-xs font-bold text-[#FFFDF8] shadow-xs">
                 {language === 'bn' ? selectedMantra.purposeBn : selectedMantra.purposeEn}
               </span>
             </div>
 
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-serif text-[#FFF8EA] leading-tight pt-1">
+            <h2 className="text-xl sm:text-3xl lg:text-4xl font-extrabold font-serif text-[#FFF8EA] leading-tight pt-1">
               {language === 'bn' ? selectedMantra.titleBn : selectedMantra.titleEn}
             </h2>
           </div>

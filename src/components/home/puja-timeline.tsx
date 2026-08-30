@@ -26,7 +26,7 @@ export const PujaTimeline: React.FC = () => {
         subtitleEn="Follow the celestial trajectory of Sharodotsav across seven sacred moments."
       />
 
-      <StaggerContainer staggerDelay={0.08} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <StaggerContainer staggerDelay={0.08} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-5">
         {PUJA_DAYS.map((day) => {
           const isSelected = selectedPujaDay === day.id;
           return (
@@ -34,7 +34,7 @@ export const PujaTimeline: React.FC = () => {
               <div
                 onClick={() => setSelectedPujaDay(day.id as PujaDayId)}
                 className={cn(
-                  'agomoni-card p-6 h-full flex flex-col justify-between cursor-pointer group active:scale-[0.98] transition-all duration-300',
+                  'agomoni-card p-4 sm:p-6 h-full flex flex-col justify-between cursor-pointer group active:scale-[0.98] transition-all duration-300',
                   isSelected
                     ? 'border-[#E7C878] bg-[#FFFDF8]/[0.15] shadow-[0_12px_40px_rgba(201,154,61,0.2)]'
                     : 'hover:border-[#E7C878]/40 hover:bg-[#FFFDF8]/[0.12]'

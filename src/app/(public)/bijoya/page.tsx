@@ -69,16 +69,16 @@ export default function BijoyaPage() {
         subtitleEn="Generate, personalize, and share traditional Bijoya Dashami benediction cards."
       />
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
         {/* Left Column: Generator Form */}
         <ScrollReveal delay={0.05} distance={45} className="lg:col-span-6">
-          <div className="agomoni-card p-6 sm:p-8 space-y-5">
-            <h3 className="text-xl font-bold font-serif text-[#E7C878] mb-2 drop-shadow-sm">
+          <div className="agomoni-card p-4 sm:p-8 space-y-4 sm:space-y-5">
+            <h3 className="text-lg sm:text-xl font-bold font-serif text-[#E7C878] mb-1 sm:mb-2 drop-shadow-sm">
               {language === 'bn' ? 'শুভেচ্ছা কার্ডের তথ্য' : 'Card Customization'}
             </h3>
 
             <div>
-              <label className="block text-xs font-bold text-[#E7C878] uppercase tracking-wider mb-2">
+              <label className="block text-[11px] sm:text-xs font-bold text-[#E7C878] uppercase tracking-wider mb-1.5 sm:mb-2">
                 {language === 'bn' ? '১. প্রাপকের নাম' : '1. Recipient Name'} *
               </label>
               <input
@@ -95,7 +95,7 @@ export default function BijoyaPage() {
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-[#E7C878] uppercase tracking-wider mb-2">
+              <label className="block text-[11px] sm:text-xs font-bold text-[#E7C878] uppercase tracking-wider mb-1.5 sm:mb-2">
                 {language === 'bn' ? '২. আপনার নাম' : '2. Your Name'} *
               </label>
               <input
@@ -108,7 +108,7 @@ export default function BijoyaPage() {
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-[#E7C878] uppercase tracking-wider mb-2">
+              <label className="block text-[11px] sm:text-xs font-bold text-[#E7C878] uppercase tracking-wider mb-1.5 sm:mb-2">
                 {language === 'bn' ? '৩. সম্ভাষণ শ্রেণি' : '3. Greeting Type'}
               </label>
               <div className="grid grid-cols-3 gap-2">
@@ -116,7 +116,7 @@ export default function BijoyaPage() {
                   type="button"
                   onClick={() => setMessageType('elder')}
                   className={cn(
-                    'p-3 rounded-[18px] text-xs font-semibold border transition-all duration-200 cursor-pointer text-center active:scale-[0.97]',
+                    'p-2.5 sm:p-3 rounded-[16px] sm:rounded-[18px] text-[11px] sm:text-xs font-semibold border transition-all duration-200 cursor-pointer text-center active:scale-[0.97]',
                     messageType === 'elder'
                       ? 'bg-[#A61B1B] border-[#741313] text-white shadow-xs'
                       : 'bg-[#FFFDF8]/10 backdrop-blur-md border-[#FFFDF8]/12 text-[#FFF8EA]/70 hover:text-[#FFF8EA]'
@@ -129,7 +129,7 @@ export default function BijoyaPage() {
                   type="button"
                   onClick={() => setMessageType('peer')}
                   className={cn(
-                    'p-3 rounded-[18px] text-xs font-semibold border transition-all duration-200 cursor-pointer text-center active:scale-[0.97]',
+                    'p-2.5 sm:p-3 rounded-[16px] sm:rounded-[18px] text-[11px] sm:text-xs font-semibold border transition-all duration-200 cursor-pointer text-center active:scale-[0.97]',
                     messageType === 'peer'
                       ? 'bg-[#A61B1B] border-[#741313] text-white shadow-xs'
                       : 'bg-[#FFFDF8]/10 backdrop-blur-md border-[#FFFDF8]/12 text-[#FFF8EA]/70 hover:text-[#FFF8EA]'
@@ -142,7 +142,7 @@ export default function BijoyaPage() {
                   type="button"
                   onClick={() => setMessageType('younger')}
                   className={cn(
-                    'p-3 rounded-[18px] text-xs font-semibold border transition-all duration-200 cursor-pointer text-center active:scale-[0.97]',
+                    'p-2.5 sm:p-3 rounded-[16px] sm:rounded-[18px] text-[11px] sm:text-xs font-semibold border transition-all duration-200 cursor-pointer text-center active:scale-[0.97]',
                     messageType === 'younger'
                       ? 'bg-[#A61B1B] border-[#741313] text-white shadow-xs'
                       : 'bg-[#FFFDF8]/10 backdrop-blur-md border-[#FFFDF8]/12 text-[#FFF8EA]/70 hover:text-[#FFF8EA]'
@@ -154,7 +154,7 @@ export default function BijoyaPage() {
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-[#E7C878] uppercase tracking-wider mb-2">
+              <label className="block text-[11px] sm:text-xs font-bold text-[#E7C878] uppercase tracking-wider mb-1.5 sm:mb-2">
                 {language === 'bn' ? '৪. কার্ডের শৈলী' : '4. Visual Style'}
               </label>
               <div className="flex gap-2">
@@ -162,7 +162,7 @@ export default function BijoyaPage() {
                   type="button"
                   onClick={() => setThemeStyle('sindoor')}
                   className={cn(
-                    'flex-1 py-2.5 rounded-[18px] text-xs font-semibold border transition-all duration-200 active:scale-[0.97]',
+                    'flex-1 py-2 sm:py-2.5 rounded-[16px] sm:rounded-[18px] text-[11px] sm:text-xs font-semibold border transition-all duration-200 active:scale-[0.97]',
                     themeStyle === 'sindoor'
                       ? 'bg-[#A61B1B] border-[#741313] text-white shadow-xs'
                       : 'bg-[#FFFDF8]/10 backdrop-blur-md border-[#FFFDF8]/12 text-[#FFF8EA]/70'
@@ -174,7 +174,7 @@ export default function BijoyaPage() {
                   type="button"
                   onClick={() => setThemeStyle('gold')}
                   className={cn(
-                    'flex-1 py-2.5 rounded-[18px] text-xs font-semibold border transition-all duration-200 active:scale-[0.97]',
+                    'flex-1 py-2 sm:py-2.5 rounded-[16px] sm:rounded-[18px] text-[11px] sm:text-xs font-semibold border transition-all duration-200 active:scale-[0.97]',
                     themeStyle === 'gold'
                       ? 'bg-[#C99A3D] text-[#FFF8EA] border-[#9B7226] shadow-xs'
                       : 'bg-[#FFFDF8]/10 backdrop-blur-md border-[#FFFDF8]/12 text-[#FFF8EA]/70'
@@ -186,7 +186,7 @@ export default function BijoyaPage() {
                   type="button"
                   onClick={() => setThemeStyle('maroon')}
                   className={cn(
-                    'flex-1 py-2.5 rounded-[18px] text-xs font-semibold border transition-all duration-200 active:scale-[0.97]',
+                    'flex-1 py-2 sm:py-2.5 rounded-[16px] sm:rounded-[18px] text-[11px] sm:text-xs font-semibold border transition-all duration-200 active:scale-[0.97]',
                     themeStyle === 'maroon'
                       ? 'bg-[#4A0E0E] border-[#8C4C3F] text-white shadow-xs'
                       : 'bg-[#FFFDF8]/10 backdrop-blur-md border-[#FFFDF8]/12 text-[#FFF8EA]/70'
@@ -203,7 +203,7 @@ export default function BijoyaPage() {
         <ScrollReveal delay={0.12} distance={45} className="lg:col-span-6 space-y-4">
           <div
             className={cn(
-              'rounded-[32px] p-8 sm:p-10 border-2 transition-all duration-300 shadow-2xl relative overflow-hidden flex flex-col justify-between min-h-[380px]',
+              'rounded-[24px] sm:rounded-[32px] p-5 sm:p-10 border-2 transition-all duration-300 shadow-2xl relative overflow-hidden flex flex-col justify-between min-h-[340px] sm:min-h-[380px]',
               themeStyle === 'sindoor' &&
                 'bg-gradient-to-br from-[#A61B1B] to-[#741313] border-[#E7C878]/30 text-white',
               themeStyle === 'gold' &&
@@ -212,43 +212,43 @@ export default function BijoyaPage() {
             )}
           >
             {/* Top Ornamental Badge */}
-            <div className="flex items-center justify-between pb-4 border-b border-white/20">
-              <div className="flex items-center gap-2">
-                <span className="text-xl">🪔</span>
-                <span className="text-xs uppercase tracking-widest text-[#E7C878] font-bold">
+            <div className="flex items-center justify-between pb-3 sm:pb-4 border-b border-white/20">
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                <span className="text-lg sm:text-xl">🪔</span>
+                <span className="text-[10.5px] sm:text-xs uppercase tracking-widest text-[#E7C878] font-bold">
                   {language === 'bn' ? 'আগমনী • শুভ বিজয়া' : 'Agomoni • Subho Bijoya'}
                 </span>
               </div>
-              <span className="text-xs text-white/80 font-mono">
+              <span className="text-[10.5px] sm:text-xs text-white/80 font-mono">
                 {language === 'bn' ? 'বিজয়া দশমী ২০২৬' : 'Bijoya Dashami 2026'}
               </span>
             </div>
 
             {/* Message Center */}
-            <div className="my-6 space-y-3">
-              <p className="text-sm font-bold text-[#E7C878]">
+            <div className="my-4 sm:my-6 space-y-2 sm:space-y-3">
+              <p className="text-xs sm:text-sm font-bold text-[#E7C878]">
                 {language === 'bn' ? 'প্রিয়' : 'Dear'}{' '}
                 {recipient.trim() || (language === 'bn' ? 'সুহৃদ' : 'Friend')},
               </p>
 
-              <h4 className="text-2xl sm:text-3xl font-bold font-serif leading-relaxed">
+              <h4 className="text-lg sm:text-2xl lg:text-3xl font-bold font-serif leading-relaxed">
                 “{language === 'bn' ? greetingsPresets[messageType].bn : greetingsPresets[messageType].en}”
               </h4>
             </div>
 
             {/* Bottom Signature */}
-            <div className="pt-4 border-t border-white/20 flex items-center justify-between">
+            <div className="pt-3 sm:pt-4 border-t border-white/20 flex items-center justify-between">
               <div>
-                <p className="text-[11px] opacity-70">
+                <p className="text-[10px] sm:text-[11px] opacity-70">
                   {language === 'bn' ? 'শুভেচ্ছান্তে / প্রণামান্তে,' : 'With Warm Regards & Blessings,'}
                 </p>
-                <p className="text-base font-bold font-serif text-[#E7C878]">
+                <p className="text-sm sm:text-base font-bold font-serif text-[#E7C878]">
                   {sender.trim() || (language === 'bn' ? 'আপনার প্রিয়জন' : 'Your Well-Wisher')}
                 </p>
               </div>
 
               <div className="text-right">
-                <p className="text-xs font-serif opacity-90">
+                <p className="text-[11px] sm:text-xs font-serif opacity-90">
                   {language === 'bn' ? '“আসছে বছর আবার হবে…”' : '“Asche Bochor Abar Hobe…”'}
                 </p>
               </div>
@@ -258,8 +258,9 @@ export default function BijoyaPage() {
           {/* Share & Copy Action Buttons */}
           <div className="flex items-center gap-3">
             <button
+              type="button"
               onClick={handleShare}
-              className="apple-btn-primary flex-1 py-3.5 text-xs flex items-center justify-center gap-2 cursor-pointer shadow-lg"
+              className="apple-btn-primary flex-1 py-3 text-xs sm:text-sm font-bold flex items-center justify-center gap-2 cursor-pointer shadow-lg active:scale-95"
             >
               {copied ? <Check className="w-4 h-4 text-green-300" /> : <Copy className="w-4 h-4" />}
               <span>

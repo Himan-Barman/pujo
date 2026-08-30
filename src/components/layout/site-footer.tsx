@@ -11,11 +11,11 @@ export const SiteFooter: React.FC = () => {
   const language = useUIStore((state) => state.language);
 
   return (
-    <footer className="relative bg-[#1A1210]/60 backdrop-blur-2xl text-[#FFF8EA] pt-16 pb-24 overflow-hidden border-t border-[#FFFDF8]/10">
+    <footer className="relative bg-[#1A1210]/60 backdrop-blur-2xl text-[#FFF8EA] pt-12 pb-24 sm:pt-16 sm:pb-24 overflow-hidden border-t border-[#FFFDF8]/10">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-12">
+        <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
           {/* Borderless Glowing Durga Logo */}
-          <div className="w-16 h-16 relative mx-auto mb-4">
+          <div className="w-14 h-14 sm:w-16 sm:h-16 relative mx-auto mb-3 sm:mb-4">
             <Image
               src="/durga.png"
               alt="Agomoni Durga Logo"
@@ -24,44 +24,44 @@ export const SiteFooter: React.FC = () => {
               className="object-contain filter drop-shadow-[0_2px_12px_rgba(231,200,120,0.6)]"
             />
           </div>
-          <h3 className="text-3xl sm:text-4xl font-black font-serif bg-gradient-to-r from-[#FFF8EA] via-[#F3DE9C] to-[#E7C878] bg-clip-text text-transparent drop-shadow-md">
+          <h3 className="text-2xl sm:text-4xl font-black font-serif bg-gradient-to-r from-[#FFF8EA] via-[#F3DE9C] to-[#E7C878] bg-clip-text text-transparent drop-shadow-md">
             আগমনী
           </h3>
-          <p className="text-xs uppercase tracking-[0.25em] text-[#E7C878] mt-1 font-bold">
+          <p className="text-[10px] sm:text-xs uppercase tracking-[0.25em] text-[#E7C878] mt-1 font-bold">
             {language === 'bn'
               ? 'আগমনী • শারদোৎসবের ডিজিটাল মিলনমেলা'
               : 'AGOMONI • A Digital Celebration of Durga Puja'}
           </p>
-          <p className="text-sm text-[#E9D8C6] mt-3 leading-relaxed">
+          <p className="text-xs sm:text-sm text-[#E9D8C6] mt-2 sm:mt-3 leading-relaxed">
             {language === 'bn'
               ? 'যেখানে জীবন্ত হয়ে ওঠেন মা দুর্গা। শারদোৎসবের ভক্তি, ঐতিহ্য, সুর ও পবিত্র মিলনমেলা।'
               : 'Where Maa Comes Alive. A digital autumn in Bengal celebrating devotion, sacred rituals, music, and heritage.'}
           </p>
-          <div className="w-24 h-[1px] bg-[#8C4C3F] mx-auto my-6" />
+          <div className="w-20 sm:w-24 h-[1px] bg-[#8C4C3F] mx-auto my-4 sm:my-6" />
         </div>
 
         {/* Navigation Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 text-center sm:text-left mb-12 border-b border-[#8C4C3F] pb-12">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-6 text-center sm:text-left mb-8 sm:mb-12 border-b border-[#8C4C3F]/60 pb-8 sm:pb-12">
           {MAIN_NAV_ITEMS.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="text-sm text-[#E9D8C6] hover:text-[#E7C878] transition-colors py-1 flex items-center gap-1.5 justify-center sm:justify-start"
+              className="text-xs sm:text-sm text-[#E9D8C6] hover:text-[#E7C878] transition-colors py-1 flex items-center gap-1.5 justify-center sm:justify-start"
             >
-              <span className="text-xs text-[#C99A3D]">❖</span>
+              <span className="text-[10px] sm:text-xs text-[#C99A3D]">❖</span>
               <span>{language === 'bn' ? item.titleBn : item.titleEn}</span>
             </Link>
           ))}
         </div>
 
         {/* Bottom Farewell Message */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#E9D8C6]/80">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 text-[11px] sm:text-xs text-[#E9D8C6]/80 text-center sm:text-left">
           <p>
             {language === 'bn'
               ? `© ${new Date().getFullYear()} আগমনী। সর্বস্বত্ব সংরক্ষিত।`
               : `© ${new Date().getFullYear()} Agomoni. All cultural rights reserved.`}
           </p>
-          <div className="flex items-center gap-2 text-[#E7C878] font-serif text-base font-bold">
+          <div className="flex items-center gap-2 text-[#E7C878] font-serif text-sm sm:text-base font-bold">
             <span>{language === 'bn' ? '“আসছে বছর আবার হবে…”' : '“Asche Bochor Abar Hobe…”'}</span>
           </div>
         </div>
