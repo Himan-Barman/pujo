@@ -122,10 +122,20 @@ export const MobileNavigation: React.FC = () => {
                 </button>
               </div>
 
-              {/* Quick Puja Mode & Language Toggles */}
-              <div className="flex items-center justify-between gap-2 p-2 rounded-2xl bg-[#1A1210] border border-[#FFFDF8]/10 shadow-inner">
-                <PujaModeToggle className="flex-1 justify-center py-2 text-xs" />
-                <LanguageToggle />
+              {/* Quick Language Switcher & Ceremonial Mode */}
+              <div className="p-3 rounded-2xl bg-[#1A1210] border border-[#FFFDF8]/12 shadow-inner space-y-2.5">
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-xs font-bold text-[#E7C878] font-serif">
+                    {language === 'bn' ? 'ভাষা নির্বাচন' : 'Language'}
+                  </span>
+                  <LanguageToggle />
+                </div>
+                <div className="pt-2 border-t border-[#FFFDF8]/8 flex items-center justify-between gap-2">
+                  <span className="text-xs font-semibold text-[#FFF8EA]/75 font-sans">
+                    {language === 'bn' ? 'পূজা মোড' : 'Puja Mode'}
+                  </span>
+                  <PujaModeToggle />
+                </div>
               </div>
 
               {/* Core Primary Navigation Links */}

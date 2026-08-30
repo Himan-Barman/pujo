@@ -82,21 +82,21 @@ export const SiteHeader: React.FC = () => {
             />
           </div>
 
-          {/* Premium Bengali & English Royal Typography */}
-          <div className="flex flex-col">
-            <div className="flex items-center gap-1">
-              <span className="text-xl sm:text-2xl font-black tracking-tight font-serif leading-none bg-gradient-to-r from-[#FFF8EA] via-[#F3DE9C] to-[#E7C878] bg-clip-text text-transparent drop-shadow-[0_2px_12px_rgba(201,154,61,0.35)]">
-                আগমনী
+            {/* Premium Bengali & English Royal Typography (Clean AGOMONI on mobile, full on desktop) */}
+            <div className="flex flex-col">
+              <div className="flex items-center gap-1">
+                <span className="text-xl sm:text-2xl font-black tracking-tight font-serif leading-none bg-gradient-to-r from-[#FFF8EA] via-[#F3DE9C] to-[#E7C878] bg-clip-text text-transparent drop-shadow-[0_2px_12px_rgba(201,154,61,0.35)]">
+                  আগমনী
+                </span>
+                <span className="text-[#E7C878] text-[10px] animate-pulse">❖</span>
+              </div>
+              <span className="text-[8.5px] tracking-[0.24em] uppercase font-sans font-extrabold text-[#E7C878]/80 mt-0.5 flex items-center gap-1">
+                <span>AGOMONI</span>
+                <span className="hidden sm:inline text-[#A61B1B] text-[7px]">•</span>
+                <span className="hidden sm:inline text-[7.5px] tracking-wider text-[#FFF8EA]/60">SHARODOTSAV</span>
               </span>
-              <span className="text-[#E7C878] text-[10px] animate-pulse">❖</span>
             </div>
-            <span className="text-[8.5px] tracking-[0.24em] uppercase font-sans font-extrabold text-[#E7C878]/80 mt-0.5 flex items-center gap-1">
-              <span>AGOMONI</span>
-              <span className="text-[#A61B1B] text-[7px]">•</span>
-              <span className="text-[7.5px] tracking-wider text-[#FFF8EA]/60">SHARODOTSAV</span>
-            </span>
-          </div>
-        </Link>
+          </Link>
 
         {/* Desktop Apple-style Capsule Navigation with Sliding Pill Animation */}
         <nav className="hidden lg:flex items-center gap-1 p-1.5 rounded-full bg-[#FFFDF8]/8 backdrop-blur-xl border border-[#FFFDF8]/12 shadow-xs relative">
@@ -273,10 +273,10 @@ export const SiteHeader: React.FC = () => {
           </div>
         </nav>
 
-        {/* Action Controls: Puja Mode, Language Selector, Mobile Hamburger */}
+        {/* Action Controls: Puja Mode (desktop), Language Selector (desktop), Mobile Hamburger */}
         <div className="flex items-center gap-2 sm:gap-3">
           <PujaModeToggle className="hidden sm:inline-flex" />
-          <LanguageToggle />
+          <LanguageToggle className="hidden lg:inline-flex" />
 
           {/* Mobile menu button with smooth morphing icon animation */}
           <button
