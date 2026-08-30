@@ -93,8 +93,8 @@
 /* macOS-inspired Smooth Physics & Standardized 32px Corner System */
 .agomoni-card {
   background: rgba(255, 253, 248, 0.08);
-  -webkit-backdrop-filter: blur(28px) saturate(1.5);
-  backdrop-filter: blur(28px) saturate(1.5);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  backdrop-filter: blur(24px) saturate(1.4);
   border: 1px solid rgba(231, 200, 120, 0.22);
   border-radius: 32px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 253, 248, 0.12);
@@ -109,8 +109,8 @@
 
 .agomoni-card-featured {
   background: rgba(201, 154, 61, 0.14);
-  -webkit-backdrop-filter: blur(28px) saturate(1.5);
-  backdrop-filter: blur(28px) saturate(1.5);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  backdrop-filter: blur(24px) saturate(1.4);
   border: 1px solid rgba(231, 200, 120, 0.4);
   border-radius: 32px;
   box-shadow: 0 20px 60px rgba(201, 154, 61, 0.2), inset 0 1px 0 rgba(255, 253, 248, 0.15);
@@ -119,13 +119,30 @@
 
 .agomoni-card-dark {
   background: rgba(26, 18, 16, 0.65);
-  -webkit-backdrop-filter: blur(28px) saturate(1.5);
-  backdrop-filter: blur(28px) saturate(1.5);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  backdrop-filter: blur(24px) saturate(1.4);
   border: 1px solid rgba(231, 200, 120, 0.2);
   color: #FFF8EA;
   border-radius: 32px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 253, 248, 0.1);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* High-Performance Mobile GPU Acceleration */
+@media (max-width: 768px) {
+  .agomoni-card,
+  .agomoni-card-featured,
+  .agomoni-card-dark {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+    border-radius: 24px;
+  }
+}
+
+.content-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 400px;
 }
 
 /* macOS-style Inputs & Form Elements */

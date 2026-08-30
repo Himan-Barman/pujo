@@ -18,10 +18,10 @@ export const ScrollSection: React.FC<ScrollSectionProps> = ({
   children,
   className,
   id,
-  padding = 'py-12 sm:py-20',
+  padding = 'py-10 sm:py-20',
 }) => {
   return (
-    <section id={id} className={cn('relative w-full bg-transparent overflow-hidden', padding)}>
+    <section id={id} className={cn('relative w-full bg-transparent overflow-hidden content-auto', padding)}>
       <div className={cn('max-w-7xl mx-auto px-4 sm:px-6 lg:px-8', className)}>
         {children}
       </div>

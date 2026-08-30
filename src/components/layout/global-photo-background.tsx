@@ -22,39 +22,42 @@ export const GlobalPhotoBackground: React.FC = () => {
   const [idx, setIdx] = useState(0);
 
   useEffect(() => {
+    // On mobile / low power devices, use longer cycle interval to save CPU & battery
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
     const interval = setInterval(() => {
       setIdx((prev) => (prev + 1) % BG_PHOTOS.length);
-    }, 6000);
+    }, isMobile ? 12000 : 7000);
     return () => clearInterval(interval);
   }, []);
 
   const photo = BG_PHOTOS[idx];
 
   return (
-    <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none" aria-hidden="true">
-      {/* Cycling blurred photos */}
+    <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none transform-gpu" aria-hidden="true">
+      {/* Cycling blurred photos with reduced quality for maximum load speed */}
       <AnimatePresence mode="popLayout">
         <motion.div
           key={`global-bg-${photo.id}`}
-          initial={{ opacity: 0, scale: 1.1 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 1.05 }}
-          transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute inset-0"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.5, ease: 'easeInOut' }}
+          className="absolute inset-0 will-change-[opacity]"
         >
           <Image
             src={photo.src}
             alt={photo.alt}
             fill
-            priority
-            className="object-cover blur-[22px] scale-110"
-            sizes="100vw"
+            priority={idx === 0}
+            quality={50}
+            className="object-cover blur-[18px] sm:blur-[22px] scale-105"
+            sizes="(max-width: 768px) 100vw, 100vw"
           />
         </motion.div>
       </AnimatePresence>
 
       {/* Dark warm overlay */}
-      <div className="absolute inset-0 bg-[#1A1210]/55" />
+      <div className="absolute inset-0 bg-[#1A1210]/60" />
       {/* Top-bottom gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#1A1210]/50 via-[#1A1210]/30 to-[#1A1210]/60" />
       {/* Side vignette */}

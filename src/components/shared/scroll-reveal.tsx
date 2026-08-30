@@ -23,9 +23,9 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
   children,
   delay = 0,
   direction = 'up',
-  distance = 55,
-  duration = 0.85,
-  amount = 0.15,
+  distance = 25,
+  duration = 0.5,
+  amount = 0.05,
   once = true,
   className,
   ...props
@@ -33,15 +33,15 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
   const getInitial = () => {
     switch (direction) {
       case 'up':
-        return { opacity: 0, y: distance, scale: 0.97 };
+        return { opacity: 0, y: distance };
       case 'down':
         return { opacity: 0, y: -distance };
       case 'left':
-        return { opacity: 0, x: distance, scale: 0.98 };
+        return { opacity: 0, x: distance };
       case 'right':
-        return { opacity: 0, x: -distance, scale: 0.98 };
+        return { opacity: 0, x: -distance };
       case 'scale':
-        return { opacity: 0, scale: 0.92, y: 35 };
+        return { opacity: 0, scale: 0.95, y: 15 };
       default:
         return { opacity: 0, y: distance };
     }
@@ -51,7 +51,7 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
     <motion.div
       initial={getInitial()}
       whileInView={{ opacity: 1, y: 0, x: 0, scale: 1 }}
-      viewport={{ once, amount, margin: '0px 0px -60px 0px' }}
+      viewport={{ once, amount, margin: '0px 0px 40px 0px' }}
       transition={{
         duration,
         delay,
@@ -73,23 +73,22 @@ interface StaggerContainerProps extends HTMLMotionProps<'div'> {
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
-  visible: (staggerDelay = 0.1) => ({
+  visible: (staggerDelay = 0.06) => ({
     opacity: 1,
     transition: {
       staggerChildren: staggerDelay,
-      delayChildren: 0.05,
+      delayChildren: 0.02,
     },
   }),
 };
 
 export const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 45, scale: 0.97 },
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
-    scale: 1,
     transition: {
-      duration: 0.8,
+      duration: 0.45,
       ease: [0.16, 1, 0.3, 1],
     },
   },
@@ -97,7 +96,7 @@ export const itemVariants: Variants = {
 
 export const StaggerContainer: React.FC<StaggerContainerProps> = ({
   children,
-  staggerDelay = 0.1,
+  staggerDelay = 0.06,
   className,
   ...props
 }) => {
@@ -107,7 +106,7 @@ export const StaggerContainer: React.FC<StaggerContainerProps> = ({
       custom={staggerDelay}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.1, margin: '0px 0px -50px 0px' }}
+      viewport={{ once: true, amount: 0.05, margin: '0px 0px 40px 0px' }}
       className={className}
       {...props}
     >
