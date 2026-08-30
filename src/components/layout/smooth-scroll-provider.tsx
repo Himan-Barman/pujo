@@ -19,14 +19,26 @@ export const SmoothScrollProvider: React.FC<SmoothScrollProviderProps> = ({ chil
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
 
+    // Check if device is a touch/mobile device
+    const isTouchDevice =
+      'ontouchstart' in window ||
+      navigator.maxTouchPoints > 0 ||
+      window.matchMedia('(pointer: coarse)').matches;
+
+    // On touch/mobile devices, let native hardware-accelerated 120Hz smooth inertia scroll handle scrolling without Lenis RAF lag/drag interference.
+    if (isTouchDevice) {
+      document.documentElement.style.scrollBehavior = 'smooth';
+      return;
+    }
+
     const lenis = new Lenis({
-      duration: 1.25,
+      duration: 1.2,
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Apple smooth exponential easeOut
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
       wheelMultiplier: 1.0,
-      touchMultiplier: 1.6,
+      touchMultiplier: 0,
       infinite: false,
     });
 

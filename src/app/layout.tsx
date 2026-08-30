@@ -77,7 +77,7 @@ export default function RootLayout({
       className={`${notoBengali.variable} ${hindSiliguri.variable} ${jakarta.variable}`}
       suppressHydrationWarning
     >
-      <body className="min-h-screen bg-transparent text-[#FFF8EA] font-sans antialiased selection:bg-[#A61B1B] selection:text-[#FFFDF8] flex flex-col justify-between">
+      <body className="min-h-screen bg-transparent text-[#FFF8EA] font-sans antialiased selection:bg-[#A61B1B] selection:text-[#FFFDF8] flex flex-col justify-between overflow-x-hidden w-full max-w-[100vw]">
         <SmoothScrollProvider>
           {/* Global Blurred Photo Slideshow Background */}
           <GlobalPhotoBackground />
@@ -92,7 +92,7 @@ export default function RootLayout({
           <MobileNavigation />
 
           {/* Main Content Area */}
-          <main className="relative z-10 flex-1 w-full pb-20">{children}</main>
+          <main className="relative z-10 flex-1 w-full max-w-[100vw] overflow-x-hidden pb-20">{children}</main>
 
           {/* Global Persistent Bottom Audio Player */}
           <PersistentAudioPlayer />

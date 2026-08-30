@@ -278,14 +278,36 @@ export const SiteHeader: React.FC = () => {
           <PujaModeToggle className="hidden sm:inline-flex" />
           <LanguageToggle />
 
-          {/* Mobile menu button */}
+          {/* Mobile menu button with smooth morphing icon animation */}
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2.5 rounded-[18px] bg-[#FFFDF8]/8 backdrop-blur-md border border-[#FFFDF8]/10 text-[#FFF8EA] hover:text-[#E7C878] focus:outline-none shadow-xs active:scale-[0.96] transition-all"
+            className="lg:hidden relative w-10 h-10 rounded-[16px] bg-[#FFFDF8]/8 backdrop-blur-md border border-[#FFFDF8]/10 text-[#FFF8EA] hover:text-[#E7C878] focus:outline-none shadow-xs active:scale-95 transition-all flex items-center justify-center cursor-pointer"
             aria-label="Toggle navigation menu"
           >
-            {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            <AnimatePresence mode="wait" initial={false}>
+              {isMobileMenuOpen ? (
+                <motion.div
+                  key="close-icon"
+                  initial={{ rotate: -90, opacity: 0, scale: 0.8 }}
+                  animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                  exit={{ rotate: 90, opacity: 0, scale: 0.8 }}
+                  transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  <X className="w-5 h-5 text-[#E7C878]" />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="menu-icon"
+                  initial={{ rotate: 90, opacity: 0, scale: 0.8 }}
+                  animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                  exit={{ rotate: -90, opacity: 0, scale: 0.8 }}
+                  transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  <Menu className="w-5 h-5 text-[#FFF8EA]" />
+                </motion.div>
+              )}
+            </AnimatePresence>
           </button>
         </div>
       </div>

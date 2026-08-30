@@ -19,6 +19,22 @@ export const MobileNavigation: React.FC = () => {
   const setMobileMenuOpen = useUIStore((state) => state.setMobileMenuOpen);
   const isPujaMode = useUIStore((state) => state.isPujaMode);
 
+  // Lock body scroll smoothly when mobile drawer is open
+  React.useEffect(() => {
+    if (isMobileMenuOpen) {
+      const scrollY = window.scrollY;
+      document.body.style.overflow = 'hidden';
+      document.body.style.touchAction = 'none';
+    } else {
+      document.body.style.overflow = '';
+      document.body.style.touchAction = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+      document.body.style.touchAction = '';
+    };
+  }, [isMobileMenuOpen]);
+
   const getNavIcon = (href: string) => {
     switch (href) {
       case '/':
@@ -43,7 +59,7 @@ export const MobileNavigation: React.FC = () => {
   };
 
   return (
-    <AnimatePresence>
+    <AnimatePresence mode="wait">
       {isMobileMenuOpen && (
         <div className="fixed inset-0 z-50 lg:hidden flex">
           {/* Backdrop */}
@@ -51,17 +67,22 @@ export const MobileNavigation: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 bg-black/70 backdrop-blur-md"
+            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed inset-0 bg-black/75 backdrop-blur-md"
             onClick={() => setMobileMenuOpen(false)}
           />
 
           {/* Slide-in Drawer */}
           <motion.div
-            initial={{ x: '100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '100%' }}
-            transition={{ type: 'spring', stiffness: 380, damping: 36 }}
+            initial={{ x: '100%', opacity: 0.8 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: '100%', opacity: 0 }}
+            transition={{
+              type: 'spring',
+              stiffness: 280,
+              damping: 32,
+              mass: 0.8,
+            }}
             className={cn(
               'relative ml-auto w-[85%] max-w-sm h-full p-5 sm:p-6 flex flex-col justify-between shadow-2xl overflow-y-auto border-l overscroll-contain z-10',
               isPujaMode
