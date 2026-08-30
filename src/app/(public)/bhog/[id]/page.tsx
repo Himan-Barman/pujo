@@ -141,6 +141,7 @@ export default function BhogDetailPage({ params }: BhogDetailPageProps) {
                 src={item.image}
                 alt={item.nameEn}
                 fill
+                sizes="(max-width: 1024px) 100vw, 40vw"
                 className="object-cover group-hover:scale-105 transition-transform duration-700"
                 priority
               />

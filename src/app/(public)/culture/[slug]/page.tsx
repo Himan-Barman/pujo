@@ -96,6 +96,7 @@ export default function CultureDetailPage({ params }: CultureDetailPageProps) {
                 src={article.coverImage}
                 alt={article.titleEn}
                 fill
+                sizes="(max-width: 1024px) 100vw, 60vw"
                 className="object-cover"
                 priority
               />

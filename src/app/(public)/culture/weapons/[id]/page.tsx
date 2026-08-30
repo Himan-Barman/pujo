@@ -98,6 +98,7 @@ export default function WeaponDetailPage({ params }: WeaponDetailPageProps) {
                 src={weapon.image}
                 alt={weapon.nameEn}
                 fill
+                sizes="(max-width: 1024px) 100vw, 40vw"
                 className="object-cover group-hover:scale-105 transition-transform duration-700"
                 priority
               />

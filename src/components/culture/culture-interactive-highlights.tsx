@@ -88,6 +88,7 @@ export const CultureInteractiveHighlights: React.FC = () => {
                   src={item.image}
                   alt={item.nameEn}
                   fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#1A1210] via-[#1A1210]/25 to-transparent" />
@@ -150,6 +151,7 @@ export const CultureInteractiveHighlights: React.FC = () => {
                   src={item.image}
                   alt={item.nameEn}
                   fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#1A1210] via-[#1A1210]/20 to-transparent" />
