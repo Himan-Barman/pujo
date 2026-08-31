@@ -32,9 +32,9 @@ export const CultureInteractiveHighlights: React.FC<CultureInteractiveHighlights
   const displayedWeapons = limit ? WEAPONS_DATA.slice(0, limit) : WEAPONS_DATA;
 
   return (
-    <div className="agomoni-card p-4 sm:p-8 md:p-10 space-y-5 sm:space-y-7 shadow-2xl relative overflow-hidden">
+    <div className="space-y-6 sm:space-y-8 relative">
       {/* Header and Segmented Switcher */}
-      <div className="flex flex-col lg:flex-row items-center justify-between gap-4 sm:gap-5 pb-4 sm:pb-6 border-b border-[#FFFDF8]/10">
+      <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 sm:gap-5 pb-4 sm:pb-6 border-b border-[#FFFDF8]/10">
         <div className="text-center lg:text-left space-y-1.5">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#1A1210]/80 border border-[#E7C878]/30 text-[#E7C878] text-[11px] sm:text-xs font-semibold shadow-xs">
             <Sparkles className="w-3.5 h-3.5 text-[#E7C878]" />
