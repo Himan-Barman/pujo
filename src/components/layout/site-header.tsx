@@ -65,38 +65,23 @@ export const SiteHeader: React.FC = () => {
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
-        {/* Brand / Logo with durga.png and Sacred Royal Bengali Typography */}
+        {/* Brand / Logo with authentic Agomoni Calligraphic Emblem */}
         <Link
           href="/"
-          className="flex items-center gap-2.5 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C99A3D] rounded-full p-1 transition-transform duration-200 active:scale-[0.96]"
+          className="flex items-center group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C99A3D] rounded-2xl p-0.5 transition-transform duration-200 active:scale-[0.96]"
         >
-          {/* Borderless Glowing Durga Logo */}
-          <div className="w-10 h-10 relative flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
+          {/* Authentic High-Res Sacred Emblem */}
+          <div className="h-11 sm:h-12 w-32 sm:w-40 relative flex-shrink-0 group-hover:scale-[1.03] transition-all duration-300">
             <Image
-              src="/durga.png"
-              alt="Agomoni Durga Logo"
+              src="/images/logo/agomoni-logo.jpg"
+              alt="আগমনী — Agomoni Sharodotsav"
               fill
               priority
-              sizes="40px"
-              className="object-contain filter drop-shadow-[0_2px_10px_rgba(231,200,120,0.55)] group-hover:drop-shadow-[0_4px_16px_rgba(231,200,120,0.75)] transition-all duration-300"
+              sizes="(max-width: 640px) 130px, 160px"
+              className="object-contain filter drop-shadow-[0_2px_14px_rgba(201,154,61,0.45)] group-hover:drop-shadow-[0_4px_20px_rgba(201,154,61,0.7)] transition-all duration-300 rounded-xl"
             />
           </div>
-
-            {/* Premium Bengali & English Royal Typography (Clean AGOMONI on mobile, full on desktop) */}
-            <div className="flex flex-col">
-              <div className="flex items-center gap-1">
-                <span className="text-xl sm:text-2xl font-black tracking-tight font-serif leading-none bg-gradient-to-r from-[#FFF8EA] via-[#F3DE9C] to-[#E7C878] bg-clip-text text-transparent drop-shadow-[0_2px_12px_rgba(201,154,61,0.35)]">
-                  আগমনী
-                </span>
-                <span className="text-[#E7C878] text-[10px] animate-pulse">❖</span>
-              </div>
-              <span className="text-[8.5px] tracking-[0.24em] uppercase font-sans font-extrabold text-[#E7C878]/80 mt-0.5 flex items-center gap-1">
-                <span>AGOMONI</span>
-                <span className="hidden sm:inline text-[#A61B1B] text-[7px]">•</span>
-                <span className="hidden sm:inline text-[7.5px] tracking-wider text-[#FFF8EA]/60">SHARODOTSAV</span>
-              </span>
-            </div>
-          </Link>
+        </Link>
 
         {/* Desktop Apple-style Capsule Navigation with Sliding Pill Animation */}
         <nav className="hidden lg:flex items-center gap-1 p-1.5 rounded-full bg-[#FFFDF8]/8 backdrop-blur-xl border border-[#FFFDF8]/12 shadow-xs relative">

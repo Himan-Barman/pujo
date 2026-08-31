@@ -93,24 +93,14 @@ export const MobileNavigation: React.FC = () => {
             <div className="space-y-6">
               {/* Header */}
               <div className="flex items-center justify-between pb-4 border-b border-[#FFFDF8]/12">
-                <div className="flex items-center gap-2.5">
-                  <div className="w-9 h-9 relative flex-shrink-0">
-                    <Image
-                      src="/durga.png"
-                      alt="Agomoni Durga Logo"
-                      fill
-                      sizes="36px"
-                      className="object-contain filter drop-shadow-[0_2px_8px_rgba(231,200,120,0.6)]"
-                    />
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="text-xl font-black font-serif leading-none bg-gradient-to-r from-[#FFF8EA] via-[#F3DE9C] to-[#E7C878] bg-clip-text text-transparent">
-                      আগমনী
-                    </span>
-                    <span className="text-[7.5px] tracking-[0.24em] uppercase font-bold text-[#E7C878]/80 mt-0.5">
-                      AGOMONI
-                    </span>
-                  </div>
+                <div className="h-10 w-36 relative flex-shrink-0">
+                  <Image
+                    src="/images/logo/agomoni-logo.jpg"
+                    alt="Agomoni Durga Logo"
+                    fill
+                    sizes="150px"
+                    className="object-contain filter drop-shadow-[0_2px_10px_rgba(231,200,120,0.6)] rounded-lg"
+                  />
                 </div>
                 <button
                   type="button"

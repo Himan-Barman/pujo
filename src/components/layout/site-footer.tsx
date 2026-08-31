@@ -14,19 +14,16 @@ export const SiteFooter: React.FC = () => {
     <footer className="relative bg-[#1A1210]/60 backdrop-blur-2xl text-[#FFF8EA] pt-12 pb-24 sm:pt-16 sm:pb-24 overflow-hidden border-t border-[#FFFDF8]/10">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
-          {/* Borderless Glowing Durga Logo */}
-          <div className="w-14 h-14 sm:w-16 sm:h-16 relative mx-auto mb-3 sm:mb-4">
+          {/* Authentic Glowing Agomoni Logo Emblem */}
+          <div className="h-16 sm:h-20 w-48 sm:w-60 relative mx-auto mb-3 sm:mb-4">
             <Image
-              src="/durga.png"
+              src="/images/logo/agomoni-logo.jpg"
               alt="Agomoni Durga Logo"
               fill
-              sizes="64px"
-              className="object-contain filter drop-shadow-[0_2px_12px_rgba(231,200,120,0.6)]"
+              sizes="(max-width: 640px) 190px, 240px"
+              className="object-contain filter drop-shadow-[0_4px_20px_rgba(231,200,120,0.6)] rounded-xl"
             />
           </div>
-          <h3 className="text-2xl sm:text-4xl font-black font-serif bg-gradient-to-r from-[#FFF8EA] via-[#F3DE9C] to-[#E7C878] bg-clip-text text-transparent drop-shadow-md">
-            আগমনী
-          </h3>
           <p className="text-[10px] sm:text-xs uppercase tracking-[0.25em] text-[#E7C878] mt-1 font-bold">
             {language === 'bn'
               ? 'আগমনী • শারদোৎসবের ডিজিটাল মিলনমেলা'

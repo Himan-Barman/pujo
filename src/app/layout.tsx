@@ -74,15 +74,15 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/durga.png', sizes: 'any', type: 'image/png' },
-      { url: '/durga.png', sizes: '32x32', type: 'image/png' },
-      { url: '/durga.png', sizes: '192x192', type: 'image/png' },
-      { url: '/durga.png', sizes: '512x512', type: 'image/png' },
+      { url: '/images/logo/agomoni-icon.jpg', sizes: 'any', type: 'image/jpeg' },
+      { url: '/favicon.png', sizes: '32x32', type: 'image/png' },
+      { url: '/images/logo/agomoni-icon.jpg', sizes: '192x192', type: 'image/jpeg' },
+      { url: '/images/logo/agomoni-icon.jpg', sizes: '512x512', type: 'image/jpeg' },
     ],
     apple: [
-      { url: '/durga.png', sizes: '180x180', type: 'image/png' },
+      { url: '/images/logo/agomoni-icon.jpg', sizes: '180x180', type: 'image/jpeg' },
     ],
-    shortcut: '/durga.png',
+    shortcut: '/favicon.png',
   },
 };
 
