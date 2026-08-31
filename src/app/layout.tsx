@@ -97,7 +97,10 @@ export default function RootLayout({
       className={`${notoBengali.variable} ${hindSiliguri.variable} ${jakarta.variable} bg-[#120B09]`}
       suppressHydrationWarning
     >
-      <body className="min-h-screen bg-[#120B09] text-[#FFF8EA] font-sans antialiased selection:bg-[#A61B1B] selection:text-[#FFFDF8] flex flex-col justify-between overflow-x-hidden w-full max-w-[100vw]">
+      <body
+        className="min-h-screen bg-[#120B09] text-[#FFF8EA] font-sans antialiased selection:bg-[#A61B1B] selection:text-[#FFFDF8] flex flex-col justify-between overflow-x-hidden w-full max-w-[100vw]"
+        suppressHydrationWarning
+      >
         <SmoothScrollProvider>
           {/* Global Blurred Photo Slideshow Background */}
           <GlobalPhotoBackground />
