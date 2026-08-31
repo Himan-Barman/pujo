@@ -2,20 +2,38 @@
 
 import React, { useState } from 'react';
 import { useUIStore } from '@/stores/ui-store';
-import { Sparkles, Shield, Leaf, ArrowRight, BookOpen } from 'lucide-react';
+import { Sparkles, Shield, Leaf, ArrowRight, BookOpen, Layers } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { WEAPONS_DATA } from '@/data/weapons';
 import { NABAPATRIKA_PLANTS_DATA } from '@/data/nabapatrika-plants';
+import { StaggerContainer, StaggerItem } from '@/components/shared/scroll-reveal';
 
-export const CultureInteractiveHighlights: React.FC = () => {
+interface CultureInteractiveHighlightsProps {
+  limit?: number;
+  showViewAllButton?: boolean;
+  activeFilterTab?: 'all' | 'nabapatrika' | 'weapons';
+  onTabChange?: (tab: 'nabapatrika' | 'weapons') => void;
+}
+
+export const CultureInteractiveHighlights: React.FC<CultureInteractiveHighlightsProps> = ({
+  limit,
+  showViewAllButton = true,
+  activeFilterTab,
+}) => {
   const language = useUIStore((state) => state.language);
   const [activeTab, setActiveTab] = useState<'nabapatrika' | 'weapons'>('nabapatrika');
 
+  // If controlled by parent
+  const currentTab = activeFilterTab && activeFilterTab !== 'all' ? activeFilterTab : activeTab;
+
+  const displayedPlants = limit ? NABAPATRIKA_PLANTS_DATA.slice(0, limit) : NABAPATRIKA_PLANTS_DATA;
+  const displayedWeapons = limit ? WEAPONS_DATA.slice(0, limit) : WEAPONS_DATA;
+
   return (
     <div className="agomoni-card p-4 sm:p-8 md:p-10 space-y-5 sm:space-y-7 shadow-2xl relative overflow-hidden">
-      {/* Header and Apple-style Segmented Switcher */}
+      {/* Header and Segmented Switcher */}
       <div className="flex flex-col lg:flex-row items-center justify-between gap-4 sm:gap-5 pb-4 sm:pb-6 border-b border-[#FFFDF8]/10">
         <div className="text-center lg:text-left space-y-1.5">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#1A1210]/80 border border-[#E7C878]/30 text-[#E7C878] text-[11px] sm:text-xs font-semibold shadow-xs">
@@ -23,16 +41,16 @@ export const CultureInteractiveHighlights: React.FC = () => {
             <span>{language === 'bn' ? 'ঐতিহ্যের প্রামাণ্য চিত্রশালা ও দর্শন' : 'Sacred Illustrated Lore & Gallery'}</span>
           </div>
           <h3 className="text-xl sm:text-3xl font-extrabold font-serif text-[#FFF8EA] drop-shadow-sm">
-            {activeTab === 'nabapatrika'
+            {currentTab === 'nabapatrika'
               ? language === 'bn'
-                ? 'নবপত্রিকা বা কলাবউয়ের ৯টি পবিত্র উদ্ভিদ'
-                : '9 Sacred Botanical Incarnations of Nabapatrika'
+                ? `নবপত্রিকা বা কলাবউয়ের ৯টি পবিত্র উদ্ভিদ ${limit ? `(প্রথম ৩টি রূপ)` : ''}`
+                : `9 Sacred Botanical Incarnations of Nabapatrika ${limit ? `(Top 3)` : ''}`
               : language === 'bn'
-              ? 'দেবী দুর্গার দশভুজার ১০টি মহাশস্ত্র ও দর্শন'
-              : '10 Divine Weapons & Spiritual Symbolism'}
+              ? `দেবী দুর্গার দশভুজার ১০টি মহাশস্ত্র ও দর্শন ${limit ? `(প্রথম ৩টি অস্ত্র)` : ''}`
+              : `10 Divine Weapons & Spiritual Symbolism ${limit ? `(Top 3)` : ''}`}
           </h3>
           <p className="text-xs sm:text-sm text-[#E7C878]/90 font-sans max-w-2xl">
-            {activeTab === 'nabapatrika'
+            {currentTab === 'nabapatrika'
               ? language === 'bn'
                 ? 'প্রতিটি উদ্ভিদের ছবিতে ট্যাপ করে তার পূর্ণাঙ্গ পৌরাণিক আখ্যান, অধিষ্ঠাত্রী দেবী ও ভেষজ দর্শন পাঠ করুন।'
                 : 'Tap any botanical photo card to open its dedicated page with complete Vedic history and Ayurvedic lore.'
@@ -42,14 +60,14 @@ export const CultureInteractiveHighlights: React.FC = () => {
           </p>
         </div>
 
-        {/* Apple-style Recessed Segmented Capsule Switcher */}
+        {/* Segmented Capsule Switcher */}
         <div className="flex items-center p-1 rounded-full bg-[#1A1210]/80 backdrop-blur-xl border border-[#FFFDF8]/15 text-xs shadow-inner flex-shrink-0 w-full sm:w-auto">
           <button
             type="button"
             onClick={() => setActiveTab('nabapatrika')}
             className={cn(
               'px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full font-bold flex items-center justify-center gap-1.5 sm:gap-2 transition-all duration-200 cursor-pointer active:scale-95 text-xs sm:text-sm flex-1 sm:flex-initial text-center',
-              activeTab === 'nabapatrika'
+              currentTab === 'nabapatrika'
                 ? 'bg-[#A61B1B] text-[#FFFDF8] shadow-md border border-[#E7C878]/30'
                 : 'text-[#FFF8EA]/70 hover:text-[#FFF8EA] hover:bg-[#FFFDF8]/8'
             )}
@@ -62,7 +80,7 @@ export const CultureInteractiveHighlights: React.FC = () => {
             onClick={() => setActiveTab('weapons')}
             className={cn(
               'px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full font-bold flex items-center justify-center gap-1.5 sm:gap-2 transition-all duration-200 cursor-pointer active:scale-95 text-xs sm:text-sm flex-1 sm:flex-initial text-center',
-              activeTab === 'weapons'
+              currentTab === 'weapons'
                 ? 'bg-[#A61B1B] text-[#FFFDF8] shadow-md border border-[#E7C878]/30'
                 : 'text-[#FFF8EA]/70 hover:text-[#FFF8EA] hover:bg-[#FFFDF8]/8'
             )}
@@ -73,153 +91,176 @@ export const CultureInteractiveHighlights: React.FC = () => {
         </div>
       </div>
 
-      {/* Grid Content with Authentic Photos on every Card */}
-      {activeTab === 'nabapatrika' ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5">
-          {NABAPATRIKA_PLANTS_DATA.map((item) => (
-            <Link
-              key={item.id}
-              href={`/culture/plants/${item.id}`}
-              className="agomoni-card overflow-hidden transition-all duration-300 flex flex-col justify-between h-full group hover:border-[#6EE7B7]/70 hover:bg-[#FFFDF8]/[0.12] cursor-pointer active:scale-[0.98] text-left p-0 shadow-lg"
-            >
-              {/* Photo Banner with Zoom on Hover */}
-              <div className="relative w-full h-44 sm:h-48 overflow-hidden bg-[#1A1210]">
-                <Image
-                  src={item.image}
-                  alt={item.nameEn}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className="object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1A1210] via-[#1A1210]/25 to-transparent" />
+      {/* Grid Content with Floating Cards and Smooth Staggering */}
+      {currentTab === 'nabapatrika' ? (
+        <StaggerContainer staggerDelay={0.07} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
+          {displayedPlants.map((item) => (
+            <StaggerItem key={item.id} className="h-full">
+              <Link
+                href={`/culture/plants/${item.id}`}
+                className="agomoni-card overflow-hidden transition-all duration-300 flex flex-col justify-between h-full group hover:border-[#6EE7B7]/80 hover:bg-[#FFFDF8]/[0.12] cursor-pointer active:scale-[0.98] text-left p-0 shadow-xl hover:-translate-y-2.5 hover:shadow-[0_20px_45px_rgba(0,0,0,0.7),0_0_25px_rgba(110,231,183,0.2)]"
+              >
+                {/* Photo Banner with Zoom on Hover */}
+                <div className="relative w-full h-44 sm:h-52 overflow-hidden bg-[#1A1210]">
+                  <Image
+                    src={item.image}
+                    alt={item.nameEn}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1A1210] via-[#1A1210]/25 to-transparent" />
 
-                {/* Badges on Top of Photo */}
-                <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#1A1210]/85 border border-[#6EE7B7]/30 text-[11px] text-[#6EE7B7] font-bold shadow-xs backdrop-blur-md flex items-center gap-1.5">
-                  <Leaf className="w-3 h-3 text-[#6EE7B7]" />
-                  <span>{item.number}/৯</span>
-                </div>
-
-                <div className="absolute top-3 right-3 px-3 py-1 rounded-full bg-[#1A1210]/85 border border-[#FFFDF8]/15 text-[10px] text-[#E7C878] font-mono italic backdrop-blur-md shadow-xs">
-                  {item.botanical}
-                </div>
-              </div>
-
-              {/* Card Body */}
-              <div className="p-5 flex flex-col flex-1 justify-between space-y-3">
-                <div>
-                  <div className="flex items-center justify-between gap-2 mb-1.5">
-                    <h4 className="text-lg font-bold text-[#FFF8EA] group-hover:text-[#6EE7B7] font-serif transition-colors">
-                      {language === 'bn' ? item.nameBn : item.nameEn}
-                    </h4>
+                  {/* Badges on Top of Photo */}
+                  <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#1A1210]/85 border border-[#6EE7B7]/30 text-[11px] text-[#6EE7B7] font-bold shadow-xs backdrop-blur-md flex items-center gap-1.5">
+                    <Leaf className="w-3 h-3 text-[#6EE7B7]" />
+                    <span>{item.number}/৯</span>
                   </div>
 
-                  <span className="text-xs text-[#E7C878] font-bold block mb-2">
-                    {language === 'bn' ? `অধিষ্ঠাত্রী: ${item.deityBn}` : `Presiding: ${item.deityEn}`}
-                  </span>
-
-                  <p className="text-xs text-[#FFF8EA]/80 leading-relaxed font-sans line-clamp-2">
-                    {language === 'bn' ? item.significanceBn : item.significanceEn}
-                  </p>
+                  <div className="absolute top-3 right-3 px-3 py-1 rounded-full bg-[#1A1210]/85 border border-[#FFFDF8]/15 text-[10px] text-[#E7C878] font-mono italic backdrop-blur-md shadow-xs">
+                    {item.botanical}
+                  </div>
                 </div>
 
-                {/* Footer Action */}
-                <div className="pt-3 border-t border-[#FFFDF8]/8 flex items-center justify-between text-xs text-[#6EE7B7] font-bold">
-                  <span className="truncate text-[11px] text-[#E7C878] font-serif italic max-w-[150px]">
-                    {language === 'bn' ? item.mantraBn : item.mantraEn}
-                  </span>
-                  <span className="flex items-center gap-1 group-hover:translate-x-0.5 transition-transform text-[11px]">
-                    <span>{language === 'bn' ? 'সম্পূর্ণ কাহিনী' : 'Full Story'}</span>
-                    <ArrowRight className="w-3 h-3" />
-                  </span>
+                {/* Card Body */}
+                <div className="p-5 flex flex-col flex-1 justify-between space-y-3">
+                  <div>
+                    <div className="flex items-center justify-between gap-2 mb-1.5">
+                      <h4 className="text-lg font-bold text-[#FFF8EA] group-hover:text-[#6EE7B7] font-serif transition-colors">
+                        {language === 'bn' ? item.nameBn : item.nameEn}
+                      </h4>
+                    </div>
+
+                    <span className="text-xs text-[#E7C878] font-bold block mb-2">
+                      {language === 'bn' ? `অধিষ্ঠাত্রী: ${item.deityBn}` : `Presiding: ${item.deityEn}`}
+                    </span>
+
+                    <p className="text-xs text-[#FFF8EA]/80 leading-relaxed font-sans line-clamp-2">
+                      {language === 'bn' ? item.significanceBn : item.significanceEn}
+                    </p>
+                  </div>
+
+                  {/* Footer Action */}
+                  <div className="pt-3 border-t border-[#FFFDF8]/8 flex items-center justify-between text-xs text-[#6EE7B7] font-bold">
+                    <span className="truncate text-[11px] text-[#E7C878] font-serif italic max-w-[150px]">
+                      {language === 'bn' ? item.mantraBn : item.mantraEn}
+                    </span>
+                    <span className="flex items-center gap-1 group-hover:translate-x-1 transition-transform text-[11px]">
+                      <span>{language === 'bn' ? 'সম্পূর্ণ কাহিনী' : 'Full Story'}</span>
+                      <ArrowRight className="w-3 h-3" />
+                    </span>
+                  </div>
                 </div>
-              </div>
-            </Link>
+              </Link>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       ) : (
-        /* 10 Weapons with High-Res Weapon Photo on each Card (3 items in a row) */
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
-          {WEAPONS_DATA.map((item) => (
-            <Link
-              key={item.id}
-              href={`/culture/weapons/${item.id}`}
-              className="agomoni-card overflow-hidden transition-all duration-300 flex flex-col justify-between h-full group hover:border-[#E7C878]/70 hover:bg-[#FFFDF8]/[0.12] cursor-pointer active:scale-[0.98] text-left p-0 shadow-lg"
-            >
-              {/* Photo Banner with Zoom on Hover */}
-              <div className="relative w-full h-44 sm:h-48 overflow-hidden bg-[#1A1210]">
-                <Image
-                  src={item.image}
-                  alt={item.nameEn}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className="object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1A1210] via-[#1A1210]/20 to-transparent" />
+        /* 10 Weapons with Floating Hover and High-Res Weapon Photo */
+        <StaggerContainer staggerDelay={0.07} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
+          {displayedWeapons.map((item) => (
+            <StaggerItem key={item.id} className="h-full">
+              <Link
+                href={`/culture/weapons/${item.id}`}
+                className="agomoni-card overflow-hidden transition-all duration-300 flex flex-col justify-between h-full group hover:border-[#E7C878]/80 hover:bg-[#FFFDF8]/[0.12] cursor-pointer active:scale-[0.98] text-left p-0 shadow-xl hover:-translate-y-2.5 hover:shadow-[0_20px_45px_rgba(0,0,0,0.7),0_0_25px_rgba(231,200,120,0.25)]"
+              >
+                {/* Photo Banner with Zoom on Hover */}
+                <div className="relative w-full h-44 sm:h-52 overflow-hidden bg-[#1A1210]">
+                  <Image
+                    src={item.image}
+                    alt={item.nameEn}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1A1210] via-[#1A1210]/20 to-transparent" />
 
-                {/* Sequence Badge */}
-                <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#1A1210]/90 border border-[#E7C878]/35 text-[11px] text-[#E7C878] font-bold shadow-xs backdrop-blur-md flex items-center gap-1.5">
-                  <Shield className="w-3.5 h-3.5 text-[#E7C878]" />
-                  <span>{item.number}/১০</span>
-                </div>
-
-                <div className="absolute top-3 right-3 px-3 py-1 rounded-full bg-[#1A1210]/85 border border-[#FFFDF8]/15 text-[10px] text-[#D4AA50] font-bold backdrop-blur-md shadow-xs truncate max-w-[160px]">
-                  {language === 'bn' ? item.donorBn : item.donorEn}
-                </div>
-              </div>
-
-              {/* Card Body */}
-              <div className="p-5 flex flex-col flex-1 justify-between space-y-3">
-                <div>
-                  <div className="flex items-center justify-between gap-2 mb-1.5">
-                    <h4 className="text-lg font-bold text-[#FFF8EA] group-hover:text-[#E7C878] font-serif transition-colors">
-                      {language === 'bn' ? item.nameBn : item.nameEn}
-                    </h4>
+                  {/* Sequence Badge */}
+                  <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#1A1210]/90 border border-[#E7C878]/35 text-[11px] text-[#E7C878] font-bold shadow-xs backdrop-blur-md flex items-center gap-1.5">
+                    <Shield className="w-3.5 h-3.5 text-[#E7C878]" />
+                    <span>{item.number}/১০</span>
                   </div>
 
-                  <span className="text-xs text-[#D4AA50] font-bold block mb-2">
-                    {language === 'bn' ? `উৎস: ${item.donorBn}` : `Source: ${item.donorEn}`}
-                  </span>
-
-                  <p className="text-xs text-[#FFF8EA]/80 leading-relaxed font-sans line-clamp-2">
-                    {language === 'bn' ? item.significanceBn : item.significanceEn}
-                  </p>
+                  <div className="absolute top-3 right-3 px-3 py-1 rounded-full bg-[#1A1210]/85 border border-[#FFFDF8]/15 text-[10px] text-[#D4AA50] font-bold backdrop-blur-md shadow-xs truncate max-w-[160px]">
+                    {language === 'bn' ? item.donorBn : item.donorEn}
+                  </div>
                 </div>
 
-                {/* Footer Action */}
-                <div className="pt-3 border-t border-[#FFFDF8]/8 flex items-center justify-between text-xs text-[#E7C878] font-bold">
-                  <span className="truncate text-[11px] text-[#6EE7B7] font-sans">
-                    {language === 'bn' ? item.focusBn : item.focusEn}
-                  </span>
-                  <span className="flex items-center gap-1 group-hover:translate-x-0.5 transition-transform text-[11px]">
-                    <span>{language === 'bn' ? 'পৌরাণিক কাহিনী' : 'Full Lore'}</span>
-                    <ArrowRight className="w-3 h-3" />
-                  </span>
+                {/* Card Body */}
+                <div className="p-5 flex flex-col flex-1 justify-between space-y-3">
+                  <div>
+                    <div className="flex items-center justify-between gap-2 mb-1.5">
+                      <h4 className="text-lg font-bold text-[#FFF8EA] group-hover:text-[#E7C878] font-serif transition-colors">
+                        {language === 'bn' ? item.nameBn : item.nameEn}
+                      </h4>
+                    </div>
+
+                    <span className="text-xs text-[#D4AA50] font-bold block mb-2">
+                      {language === 'bn' ? `উৎস: ${item.donorBn}` : `Source: ${item.donorEn}`}
+                    </span>
+
+                    <p className="text-xs text-[#FFF8EA]/80 leading-relaxed font-sans line-clamp-2">
+                      {language === 'bn' ? item.significanceBn : item.significanceEn}
+                    </p>
+                  </div>
+
+                  {/* Footer Action */}
+                  <div className="pt-3 border-t border-[#FFFDF8]/8 flex items-center justify-between text-xs text-[#E7C878] font-bold">
+                    <span className="truncate text-[11px] text-[#6EE7B7] font-sans">
+                      {language === 'bn' ? item.focusBn : item.focusEn}
+                    </span>
+                    <span className="flex items-center gap-1 group-hover:translate-x-1 transition-transform text-[11px]">
+                      <span>{language === 'bn' ? 'পৌরাণিক কাহিনী' : 'Full Lore'}</span>
+                      <ArrowRight className="w-3 h-3" />
+                    </span>
+                  </div>
                 </div>
-              </div>
-            </Link>
+              </Link>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       )}
 
-      {/* Centered Footer Link to Full Lore Detail Page */}
-      <div className="pt-4 border-t border-[#FFFDF8]/10 flex items-center justify-center">
-        <Link
-          href={activeTab === 'nabapatrika' ? '/culture/plants/kadali' : '/culture/weapons/trishula'}
-          className="apple-btn-secondary px-7 py-3 text-xs sm:text-sm font-bold text-[#E7C878] hover:text-[#FFF8EA] flex items-center gap-2 transition-all active:scale-95 shadow-md"
-        >
-          <BookOpen className="w-4 h-4" />
-          <span>
-            {activeTab === 'nabapatrika'
-              ? language === 'bn'
-                ? 'নবপত্রিকার সম্পূর্ণ বৈদিক, শাস্ত্রীয় ও ভেষজ অধ্যায় শুরু করুন'
-                : 'Start Full Nabapatrika Scriptural & Ayurvedic Chapter'
-              : language === 'bn'
-                ? '১০টি মহাশস্ত্রের পৌরাণিক রহস্য ও শ্লোক পাঠ শুরু করুন'
-                : 'Start 10 Divine Weapons Lore & Vedic Hymns Chapter'}
-          </span>
-          <ArrowRight className="w-4 h-4" />
-        </Link>
-      </div>
+      {/* Action Button: When limited to 3 on landing page OR full view */}
+      {showViewAllButton && (
+        <div className="pt-4 border-t border-[#FFFDF8]/10 flex flex-col sm:flex-row items-center justify-center gap-3">
+          {limit ? (
+            <Link
+              href="/culture"
+              className="apple-btn-primary px-7 py-3 text-xs sm:text-sm font-bold flex items-center gap-2 transition-all active:scale-95 shadow-xl border border-[#E7C878]/40"
+            >
+              <Layers className="w-4 h-4 text-[#E7C878]" />
+              <span>
+                {currentTab === 'nabapatrika'
+                  ? language === 'bn'
+                    ? 'সব ৯টি পবিত্র উদ্ভিদের দর্শন ও কাহিনী দেখুন'
+                    : 'View All 9 Sacred Plants of Nabapatrika'
+                  : language === 'bn'
+                  ? 'দশভুজার সব ১০টি মহাশস্ত্রের পৌরাণিক কাহিনী দেখুন'
+                  : 'View All 10 Divine Weapons & Hymns'}
+              </span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          ) : (
+            <Link
+              href={currentTab === 'nabapatrika' ? '/culture/plants/kadali' : '/culture/weapons/trishula'}
+              className="apple-btn-secondary px-7 py-3 text-xs sm:text-sm font-bold text-[#E7C878] hover:text-[#FFF8EA] flex items-center gap-2 transition-all active:scale-95 shadow-md"
+            >
+              <BookOpen className="w-4 h-4" />
+              <span>
+                {currentTab === 'nabapatrika'
+                  ? language === 'bn'
+                    ? 'নবপত্রিকার সম্পূর্ণ বৈদিক, শাস্ত্রীয় ও ভেষজ অধ্যায় শুরু করুন'
+                    : 'Start Full Nabapatrika Scriptural & Ayurvedic Chapter'
+                  : language === 'bn'
+                    ? '১০টি মহাশস্ত্রের পৌরাণিক রহস্য ও শ্লোক পাঠ শুরু করুন'
+                    : 'Start 10 Divine Weapons Lore & Vedic Hymns Chapter'}
+              </span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          )}
+        </div>
+      )}
     </div>
   );
 };
