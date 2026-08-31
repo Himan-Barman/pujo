@@ -15,12 +15,14 @@ interface CultureInteractiveHighlightsProps {
   showViewAllButton?: boolean;
   activeFilterTab?: 'all' | 'nabapatrika' | 'weapons';
   onTabChange?: (tab: 'nabapatrika' | 'weapons') => void;
+  hideSwitcher?: boolean;
 }
 
 export const CultureInteractiveHighlights: React.FC<CultureInteractiveHighlightsProps> = ({
   limit,
   showViewAllButton = true,
   activeFilterTab,
+  hideSwitcher = false,
 }) => {
   const language = useUIStore((state) => state.language);
   const [activeTab, setActiveTab] = useState<'nabapatrika' | 'weapons'>('nabapatrika');
@@ -60,35 +62,37 @@ export const CultureInteractiveHighlights: React.FC<CultureInteractiveHighlights
           </p>
         </div>
 
-        {/* Segmented Capsule Switcher */}
-        <div className="flex items-center p-1 rounded-full bg-[#1A1210]/80 backdrop-blur-xl border border-[#FFFDF8]/15 text-xs shadow-inner flex-shrink-0 w-full sm:w-auto">
-          <button
-            type="button"
-            onClick={() => setActiveTab('nabapatrika')}
-            className={cn(
-              'px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full font-bold flex items-center justify-center gap-1.5 sm:gap-2 transition-all duration-200 cursor-pointer active:scale-95 text-xs sm:text-sm flex-1 sm:flex-initial text-center',
-              currentTab === 'nabapatrika'
-                ? 'bg-[#A61B1B] text-[#FFFDF8] shadow-md border border-[#E7C878]/30'
-                : 'text-[#FFF8EA]/70 hover:text-[#FFF8EA] hover:bg-[#FFFDF8]/8'
-            )}
-          >
-            <Leaf className="w-3.5 h-3.5 text-[#6EE7B7]" />
-            <span>{language === 'bn' ? 'নবপত্রিকা (৯ উদ্ভিদ)' : 'Nabapatrika (9)'}</span>
-          </button>
-          <button
-            type="button"
-            onClick={() => setActiveTab('weapons')}
-            className={cn(
-              'px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full font-bold flex items-center justify-center gap-1.5 sm:gap-2 transition-all duration-200 cursor-pointer active:scale-95 text-xs sm:text-sm flex-1 sm:flex-initial text-center',
-              currentTab === 'weapons'
-                ? 'bg-[#A61B1B] text-[#FFFDF8] shadow-md border border-[#E7C878]/30'
-                : 'text-[#FFF8EA]/70 hover:text-[#FFF8EA] hover:bg-[#FFFDF8]/8'
-            )}
-          >
-            <Shield className="w-3.5 h-3.5 text-[#E7C878]" />
-            <span>{language === 'bn' ? 'মহাশস্ত্র (১০ অস্ত্র)' : '10 Weapons'}</span>
-          </button>
-        </div>
+        {/* Segmented Capsule Switcher (Hidden when hideSwitcher is true) */}
+        {!hideSwitcher && (
+          <div className="flex items-center p-1 rounded-full bg-[#1A1210]/80 backdrop-blur-xl border border-[#FFFDF8]/15 text-xs shadow-inner flex-shrink-0 w-full sm:w-auto">
+            <button
+              type="button"
+              onClick={() => setActiveTab('nabapatrika')}
+              className={cn(
+                'px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full font-bold flex items-center justify-center gap-1.5 sm:gap-2 transition-all duration-200 cursor-pointer active:scale-95 text-xs sm:text-sm flex-1 sm:flex-initial text-center',
+                currentTab === 'nabapatrika'
+                  ? 'bg-[#A61B1B] text-[#FFFDF8] shadow-md border border-[#E7C878]/30'
+                  : 'text-[#FFF8EA]/70 hover:text-[#FFF8EA] hover:bg-[#FFFDF8]/8'
+              )}
+            >
+              <Leaf className="w-3.5 h-3.5 text-[#6EE7B7]" />
+              <span>{language === 'bn' ? 'নবপত্রিকা (৯ উদ্ভিদ)' : 'Nabapatrika (9)'}</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveTab('weapons')}
+              className={cn(
+                'px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full font-bold flex items-center justify-center gap-1.5 sm:gap-2 transition-all duration-200 cursor-pointer active:scale-95 text-xs sm:text-sm flex-1 sm:flex-initial text-center',
+                currentTab === 'weapons'
+                  ? 'bg-[#A61B1B] text-[#FFFDF8] shadow-md border border-[#E7C878]/30'
+                  : 'text-[#FFF8EA]/70 hover:text-[#FFF8EA] hover:bg-[#FFFDF8]/8'
+              )}
+            >
+              <Shield className="w-3.5 h-3.5 text-[#E7C878]" />
+              <span>{language === 'bn' ? 'মহাশস্ত্র (১০ অস্ত্র)' : '10 Weapons'}</span>
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Grid Content with Floating Cards and Smooth Staggering */}

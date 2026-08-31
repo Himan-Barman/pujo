@@ -96,37 +96,47 @@ export const CulturePageView: React.FC = () => {
         </div>
       </ScrollReveal>
 
-      {/* 3. Interactive Illustrated Lore Explorer (Shown for All, Plants, Weapons) */}
-      {(activeFilter === 'all' || activeFilter === 'plants' || activeFilter === 'weapons') && (
-        <ScrollReveal delay={0.1} distance={40}>
-          <CultureInteractiveHighlights
-            activeFilterTab={
-              activeFilter === 'plants'
-                ? 'nabapatrika'
-                : activeFilter === 'weapons'
-                ? 'weapons'
-                : 'all'
-            }
-          />
+      {/* 3. Illustrated Lore Explorers (Controlled exclusively by Upper Filters) */}
+      {activeFilter === 'all' && (
+        <div className="space-y-12">
+          {/* Nabapatrika 9 Sacred Plants */}
+          <ScrollReveal delay={0.08} distance={35}>
+            <CultureInteractiveHighlights activeFilterTab="nabapatrika" hideSwitcher={true} />
+          </ScrollReveal>
+
+          {/* 10 Divine Weapons */}
+          <ScrollReveal delay={0.12} distance={35}>
+            <CultureInteractiveHighlights activeFilterTab="weapons" hideSwitcher={true} />
+          </ScrollReveal>
+        </div>
+      )}
+
+      {activeFilter === 'plants' && (
+        <ScrollReveal delay={0.08} distance={35}>
+          <CultureInteractiveHighlights activeFilterTab="nabapatrika" hideSwitcher={true} />
+        </ScrollReveal>
+      )}
+
+      {activeFilter === 'weapons' && (
+        <ScrollReveal delay={0.08} distance={35}>
+          <CultureInteractiveHighlights activeFilterTab="weapons" hideSwitcher={true} />
         </ScrollReveal>
       )}
 
       {/* 4. Editorial History Articles (Shown for All and Articles) */}
       {(activeFilter === 'all' || activeFilter === 'articles') && (
-        <div className="space-y-6 pt-4">
-          {activeFilter === 'all' && (
-            <div className="flex items-center justify-between gap-4 pb-2 border-b border-[#FFFDF8]/10">
-              <div className="space-y-1 text-left">
-                <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-[#1A1210]/80 border border-[#E7C878]/30 text-[10px] uppercase font-bold text-[#E7C878] tracking-wider shadow-xs">
-                  <BookOpen className="w-3 h-3 text-[#C99A3D]" />
-                  <span>{language === 'bn' ? 'প্রামাণ্য প্রবন্ধাবলী' : 'Editorial Articles'}</span>
-                </div>
-                <h3 className="text-2xl sm:text-3xl font-extrabold font-serif text-[#FFF8EA]">
-                  {language === 'bn' ? 'ঐতিহাসিক ও পৌরাণিক ইতিবৃত্ত' : 'Historical & Scriptural Chronicles'}
-                </h3>
+        <div className="space-y-6 pt-6">
+          <div className="flex items-center justify-between gap-4 pb-2 border-b border-[#FFFDF8]/10">
+            <div className="space-y-1 text-left">
+              <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-[#1A1210]/80 border border-[#E7C878]/30 text-[10px] uppercase font-bold text-[#E7C878] tracking-wider shadow-xs">
+                <BookOpen className="w-3 h-3 text-[#C99A3D]" />
+                <span>{language === 'bn' ? 'প্রামাণ্য প্রবন্ধাবলী' : 'Editorial Articles'}</span>
               </div>
+              <h3 className="text-2xl sm:text-3xl font-extrabold font-serif text-[#FFF8EA]">
+                {language === 'bn' ? 'ঐতিহাসিক ও পৌরাণিক ইতিবৃত্ত' : 'Historical & Scriptural Chronicles'}
+              </h3>
             </div>
-          )}
+          </div>
 
           {/* Articles Grid with equal heights */}
           <StaggerContainer staggerDelay={0.08} className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
