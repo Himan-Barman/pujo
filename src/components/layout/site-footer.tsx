@@ -14,11 +14,11 @@ export const SiteFooter: React.FC = () => {
     <footer className="relative bg-[#1A1210]/60 backdrop-blur-2xl text-[#FFF8EA] pt-12 pb-24 sm:pt-16 sm:pb-24 overflow-hidden border-t border-[#FFFDF8]/10">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
-          {/* Authentic Glowing Agomoni Logo Emblem */}
+          {/* Authentic Glowing Agomoni Logo Emblem (Bilingual) */}
           <div className="h-16 sm:h-20 w-48 sm:w-60 relative mx-auto mb-3 sm:mb-4">
             <Image
-              src="/images/logo/agomoni-logo.jpg"
-              alt="Agomoni Durga Logo"
+              src={language === 'bn' ? '/images/logo/agomoni-logo-bn.jpg' : '/images/logo/agomoni-logo-en.jpg'}
+              alt={language === 'bn' ? 'আগমনী — শারদোৎসব' : 'Agomoni — Sharodotsav'}
               fill
               sizes="(max-width: 640px) 190px, 240px"
               className="object-contain filter drop-shadow-[0_4px_20px_rgba(231,200,120,0.6)] rounded-xl"

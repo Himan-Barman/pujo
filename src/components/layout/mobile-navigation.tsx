@@ -95,8 +95,8 @@ export const MobileNavigation: React.FC = () => {
               <div className="flex items-center justify-between pb-4 border-b border-[#FFFDF8]/12">
                 <div className="h-10 w-36 relative flex-shrink-0">
                   <Image
-                    src="/images/logo/agomoni-logo.jpg"
-                    alt="Agomoni Durga Logo"
+                    src={language === 'bn' ? '/images/logo/agomoni-logo-bn.jpg' : '/images/logo/agomoni-logo-en.jpg'}
+                    alt={language === 'bn' ? 'আগমনী — শারদোৎসব' : 'Agomoni — Sharodotsav'}
                     fill
                     sizes="150px"
                     className="object-contain filter drop-shadow-[0_2px_10px_rgba(231,200,120,0.6)] rounded-lg"

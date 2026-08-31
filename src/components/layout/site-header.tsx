@@ -70,11 +70,11 @@ export const SiteHeader: React.FC = () => {
           href="/"
           className="flex items-center group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C99A3D] rounded-2xl p-0.5 transition-transform duration-200 active:scale-[0.96]"
         >
-          {/* Authentic High-Res Sacred Emblem */}
+          {/* Authentic High-Res Sacred Emblem (Bilingual) */}
           <div className="h-11 sm:h-12 w-32 sm:w-40 relative flex-shrink-0 group-hover:scale-[1.03] transition-all duration-300">
             <Image
-              src="/images/logo/agomoni-logo.jpg"
-              alt="আগমনী — Agomoni Sharodotsav"
+              src={language === 'bn' ? '/images/logo/agomoni-logo-bn.jpg' : '/images/logo/agomoni-logo-en.jpg'}
+              alt={language === 'bn' ? 'আগমনী — শারদোৎসব' : 'Agomoni — Sharodotsav'}
               fill
               priority
               sizes="(max-width: 640px) 130px, 160px"
