@@ -65,20 +65,20 @@ export const SiteHeader: React.FC = () => {
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
-        {/* Brand / Logo with authentic Agomoni Calligraphic Emblem */}
+        {/* Brand / Logo with authentic Agomoni Calligraphic Emblem spanning full navbar height */}
         <Link
           href="/"
-          className="flex items-center group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C99A3D] rounded-2xl p-0.5 transition-transform duration-200 active:scale-[0.96]"
+          className="flex items-center h-16 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C99A3D] transition-transform duration-200 active:scale-[0.97]"
         >
-          {/* Authentic High-Res Sacred Emblem (Bilingual) */}
-          <div className="h-11 sm:h-12 w-32 sm:w-40 relative flex-shrink-0 group-hover:scale-[1.03] transition-all duration-300">
+          {/* Entire Nav Height Clean Sacred Emblem */}
+          <div className="h-16 w-36 sm:w-48 md:w-56 relative flex-shrink-0">
             <Image
               src={language === 'bn' ? '/images/logo/agomoni-logo-bn.jpg' : '/images/logo/agomoni-logo-en.jpg'}
               alt={language === 'bn' ? 'আগমনী — শারদোৎসব' : 'Agomoni — Sharodotsav'}
               fill
               priority
-              sizes="(max-width: 640px) 130px, 160px"
-              className="object-contain filter drop-shadow-[0_2px_14px_rgba(201,154,61,0.45)] group-hover:drop-shadow-[0_4px_20px_rgba(201,154,61,0.7)] transition-all duration-300 rounded-xl"
+              sizes="(max-width: 640px) 150px, 220px"
+              className="object-contain transition-transform duration-300 group-hover:scale-[1.02]"
             />
           </div>
         </Link>
