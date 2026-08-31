@@ -24,7 +24,7 @@ export interface PujaKeyMilestone {
 export const PUJA_MILESTONES: PujaKeyMilestone[] = [
   {
     id: 'mahalaya',
-    targetDate: new Date('2026-10-10T05:00:00+05:30'),
+    targetDate: new Date('2026-10-10T04:00:00+05:30'),
     eventTitleBn: 'মহালয়ার পুণ্য প্রভাত',
     eventTitleEn: 'Auspicious Mahalaya Dawn',
     eventLabelBn: 'মহালয়ার আগমনী ক্ষণগণনা',
@@ -48,7 +48,7 @@ export const PUJA_MILESTONES: PujaKeyMilestone[] = [
   },
   {
     id: 'ashtami',
-    targetDate: new Date('2026-10-18T06:00:00+05:30'),
+    targetDate: new Date('2026-10-18T06:30:00+05:30'),
     eventTitleBn: 'মহাষ্টমী পুষ্পাঞ্জলি ও কুমারী পূজা',
     eventTitleEn: 'Maha Ashtami Pushpanjali',
     eventLabelBn: 'মহাষ্টমীর পুণ্য ক্ষণগণনা',
@@ -56,7 +56,7 @@ export const PUJA_MILESTONES: PujaKeyMilestone[] = [
   },
   {
     id: 'sandhi',
-    targetDate: new Date('2026-10-18T17:15:00+05:30'),
+    targetDate: new Date('2026-10-18T17:24:00+05:30'),
     eventTitleBn: 'সন্ধিপূজা (১০৮ পদ্ম ও প্রদীপ)',
     eventTitleEn: 'Sandhi Puja (108 Lotuses & Diyas)',
     eventLabelBn: 'সন্ধিপূজার শুভ ক্ষণ',
@@ -64,7 +64,7 @@ export const PUJA_MILESTONES: PujaKeyMilestone[] = [
   },
   {
     id: 'navami',
-    targetDate: new Date('2026-10-19T06:00:00+05:30'),
+    targetDate: new Date('2026-10-19T06:30:00+05:30'),
     eventTitleBn: 'মহানবমী ভোগ ও ধুনুচি আরতি',
     eventTitleEn: 'Maha Navami Dhunuchi Aarti',
     eventLabelBn: 'মহানবমীর ক্ষণগণনা',
@@ -72,7 +72,7 @@ export const PUJA_MILESTONES: PujaKeyMilestone[] = [
   },
   {
     id: 'dashami',
-    targetDate: new Date('2026-10-20T08:00:00+05:30'),
+    targetDate: new Date('2026-10-20T08:30:00+05:30'),
     eventTitleBn: 'বিজয়া দশমী সিঁদুরখেলা ও বিসর্জন',
     eventTitleEn: 'Vijaya Dashami & Sindoor Khela',
     eventLabelBn: 'বিজয়া দশমীর ক্ষণগণনা',

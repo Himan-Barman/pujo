@@ -5,7 +5,8 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useUIStore } from '@/stores/ui-store';
 import { getCurrentPujaCountdown, formatCountdownBn, CountdownTime } from '@/lib/dates';
-import { Music, ArrowRight, Flame, Sparkles } from 'lucide-react';
+import { useUserTimezone } from '@/hooks/use-user-timezone';
+import { Music, ArrowRight, Flame, Sparkles, MapPin } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 // Sacred slogans and festive lore rotating automatically
@@ -56,6 +57,7 @@ const PUJA_SLOGANS = [
 
 export const HeroSection: React.FC = () => {
   const language = useUIStore((state) => state.language);
+  const userTz = useUserTimezone();
 
   // ── Dynamic Countdown ──
   const [countdown, setCountdown] = useState<CountdownTime>({
@@ -154,17 +156,23 @@ export const HeroSection: React.FC = () => {
           transition={{ duration: 0.8, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
           className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 w-full max-w-4xl mx-auto items-stretch mb-6"
         >
-          {/* Card A: Dynamic Countdown Time Box */}
+          {/* Card A: Dynamic Countdown Time Box with Real-Time Local Timezone Badge */}
           <div className="agomoni-card p-3.5 sm:p-5 w-full shadow-2xl flex flex-col justify-between text-left">
             <div className="flex items-center justify-between gap-2 mb-2.5 sm:mb-3 px-1">
-              <div className="flex items-center gap-1.5">
+              <div className="flex items-center gap-1.5 min-w-0">
                 <span className="w-2 h-2 rounded-full bg-[#D95757] animate-pulse flex-shrink-0" />
                 <span className="text-xs font-bold text-[#FFF8EA] font-serif truncate">
                   {language === 'bn' ? countdown.eventLabelBn : countdown.eventLabelEn}
                 </span>
               </div>
-              <span className="text-[9.5px] sm:text-[10px] px-2.5 py-0.5 rounded-full bg-[#1A1210]/60 border border-[#E7C878]/30 text-[#E7C878] font-bold flex-shrink-0">
-                {language === 'bn' ? countdown.eventTitleBn : countdown.eventTitleEn}
+              <span
+                title={language === 'bn' ? `সময় অঞ্চল: ${userTz.timezone} (${userTz.utcOffsetString})` : `Timezone: ${userTz.timezone} (${userTz.utcOffsetString})`}
+                className="text-[9.5px] sm:text-[10px] px-2.5 py-0.5 rounded-full bg-[#1A1210]/75 border border-[#E7C878]/35 text-[#E7C878] font-bold flex-shrink-0 inline-flex items-center gap-1 shadow-xs"
+              >
+                <MapPin className="w-2.5 h-2.5 text-[#E7C878] flex-shrink-0" />
+                <span className="truncate max-w-[135px] sm:max-w-none">
+                  {language === 'bn' ? userTz.zoneNameBn : userTz.zoneNameEn}
+                </span>
               </span>
             </div>
 
