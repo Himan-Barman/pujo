@@ -9,8 +9,6 @@ export interface UserLocationTimezone {
   cityBn: string;
   cityEn: string;
   utcOffsetString: string;
-  hasGeoPermission: boolean;
-  requestGeoPermission: () => void;
 }
 
 const DEFAULT_TIMEZONE = 'Asia/Kolkata';
@@ -210,10 +208,7 @@ export function useUserTimezone(): UserLocationTimezone {
     utcOffsetString: string;
   }>(() => resolveTimezoneInfo(DEFAULT_TIMEZONE));
 
-  const [hasGeoPermission, setHasGeoPermission] = useState(false);
-
   useEffect(() => {
-    // 1. Detect browser timezone automatically
     try {
       const browserTz = Intl.DateTimeFormat().resolvedOptions().timeZone;
       if (browserTz) {
@@ -222,46 +217,8 @@ export function useUserTimezone(): UserLocationTimezone {
     } catch {
       setInfo(resolveTimezoneInfo(DEFAULT_TIMEZONE));
     }
-
-    // 2. Request Geolocation quietly to refine position if user permits
-    if (typeof window !== 'undefined' && navigator?.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        () => {
-          setHasGeoPermission(true);
-          // With geo granted, confirm timezone
-          const browserTz = Intl.DateTimeFormat().resolvedOptions().timeZone || DEFAULT_TIMEZONE;
-          setInfo(resolveTimezoneInfo(browserTz));
-        },
-        () => {
-          // If user denies permission, gracefully default to detected timezone or Asia/Kolkata
-          setHasGeoPermission(false);
-          const browserTz = Intl.DateTimeFormat().resolvedOptions().timeZone || DEFAULT_TIMEZONE;
-          setInfo(resolveTimezoneInfo(browserTz));
-        },
-        { timeout: 5000, maximumAge: 60000 }
-      );
-    }
   }, []);
 
-  const requestGeoPermission = () => {
-    if (typeof window !== 'undefined' && navigator?.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        () => {
-          setHasGeoPermission(true);
-          const browserTz = Intl.DateTimeFormat().resolvedOptions().timeZone || DEFAULT_TIMEZONE;
-          setInfo(resolveTimezoneInfo(browserTz));
-        },
-        () => {
-          setHasGeoPermission(false);
-          setInfo(resolveTimezoneInfo(DEFAULT_TIMEZONE));
-        }
-      );
-    }
-  };
-
-  return {
-    ...info,
-    hasGeoPermission,
-    requestGeoPermission,
-  };
+  return info;
 }
+

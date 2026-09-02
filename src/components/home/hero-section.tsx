@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useUIStore } from '@/stores/ui-store';
 import { getCurrentPujaCountdown, formatCountdownBn, CountdownTime } from '@/lib/dates';
 import { useUserTimezone } from '@/hooks/use-user-timezone';
-import { Music, ArrowRight, Flame, Sparkles, MapPin } from 'lucide-react';
+import { Music, ArrowRight, Flame, Sparkles, Globe } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 // Sacred slogans and festive lore rotating automatically
@@ -169,7 +169,7 @@ export const HeroSection: React.FC = () => {
                 title={language === 'bn' ? `সময় অঞ্চল: ${userTz.timezone} (${userTz.utcOffsetString})` : `Timezone: ${userTz.timezone} (${userTz.utcOffsetString})`}
                 className="text-[9.5px] sm:text-[10px] px-2.5 py-0.5 rounded-full bg-[#1A1210]/75 border border-[#E7C878]/35 text-[#E7C878] font-bold flex-shrink-0 inline-flex items-center gap-1 shadow-xs"
               >
-                <MapPin className="w-2.5 h-2.5 text-[#E7C878] flex-shrink-0" />
+                <Globe className="w-2.5 h-2.5 text-[#E7C878] flex-shrink-0" />
                 <span className="truncate max-w-[135px] sm:max-w-none">
                   {language === 'bn' ? userTz.zoneNameBn : userTz.zoneNameEn}
                 </span>
