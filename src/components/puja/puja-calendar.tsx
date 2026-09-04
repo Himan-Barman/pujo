@@ -83,6 +83,37 @@ export const PujaCalendar: React.FC = () => {
         <PujaDaySelector />
       </div>
 
+      {/* Mobile Panjika Switcher (Positioned cleanly above the master box on mobile) */}
+      <div className="flex sm:hidden items-center justify-center -mt-6 mb-2">
+        <div className="inline-flex items-center p-1 rounded-full bg-[#120B09]/95 border border-[#E7C878]/35 shadow-lg gap-1">
+          <button
+            type="button"
+            onClick={() => setSelectedPanjika('benimadhab')}
+            className={cn(
+              'px-4 py-1.5 rounded-full text-xs font-bold font-serif transition-all cursor-pointer text-center',
+              selectedPanjika === 'benimadhab'
+                ? 'bg-gradient-to-r from-[#A61B1B] to-[#741313] text-[#FFFDF8] border border-[#E7C878]/40 shadow-xs scale-[1.02]'
+                : 'text-[#FFF8EA]/70 hover:text-[#FFF8EA] hover:bg-[#FFFDF8]/5'
+            )}
+          >
+            {language === 'bn' ? 'বেণীমাধব শীল' : 'Benimadhab Seal'}
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setSelectedPanjika('guptapress')}
+            className={cn(
+              'px-4 py-1.5 rounded-full text-xs font-bold font-serif transition-all cursor-pointer text-center',
+              selectedPanjika === 'guptapress'
+                ? 'bg-gradient-to-r from-[#A61B1B] to-[#741313] text-[#FFFDF8] border border-[#E7C878]/40 shadow-xs scale-[1.02]'
+                : 'text-[#FFF8EA]/70 hover:text-[#FFF8EA] hover:bg-[#FFFDF8]/5'
+            )}
+          >
+            {language === 'bn' ? 'গুপ্তপ্রেস' : 'Gupta Press'}
+          </button>
+        </div>
+      </div>
+
       {/* 2. Master Panjika Astronomical Almanac Card (Luxurious & Symmetrical) */}
       <div className="agomoni-card p-4 sm:p-8 lg:p-10 relative overflow-hidden border-2 border-[#E7C878]/35 shadow-2xl bg-gradient-to-b from-[#1C120F] to-[#120B09]">
         {/* Decorative Top Accent Bar with Dual Panjika Switcher */}
@@ -112,8 +143,8 @@ export const PujaCalendar: React.FC = () => {
             </div>
           </div>
 
-          {/* Interactive Panjika Selection Capsule (Benimadhab Shil vs Gupta Press) */}
-          <div className="flex items-center gap-2">
+          {/* Interactive Panjika Selection Capsule (Benimadhab Shil vs Gupta Press - Desktop view) */}
+          <div className="hidden sm:flex items-center gap-2">
             <div className="hidden md:flex items-center gap-1.5 text-xs text-[#E7C878]/80 font-mono">
               <Compass className="w-3.5 h-3.5 text-[#E7C878]" />
               <span>{language === 'bn' ? 'পঞ্জিকা নির্বাচন:' : 'Panjika Almanac:'}</span>
