@@ -9,8 +9,11 @@ import confetti from 'canvas-confetti';
 import { audioSynth } from '@/lib/audio-synth';
 import { cn } from '@/lib/utils';
 
+import { useShare } from '@/hooks/use-share';
+
 export default function BijoyaPage() {
   const language = useUIStore((state) => state.language);
+  const { openShare } = useShare();
 
   const [recipient, setRecipient] = useState('');
   const [sender, setSender] = useState('');
@@ -56,6 +59,19 @@ export default function BijoyaPage() {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     }
+
+    openShare({
+      titleBn: `শুভ বিজয়া • ${recipientText}`,
+      titleEn: `Subho Bijoya • ${recipientText}`,
+      descriptionBn: greetingBody,
+      descriptionEn: greetingsPresets[messageType].en,
+      categoryBn: 'বিজয়া দশমীর শুভেচ্ছা কার্ড',
+      categoryEn: 'Bijoya Dashami Greeting Card',
+      tagBn: `শুভেচ্ছান্তে: ${senderText}`,
+      tagEn: `From: ${senderText}`,
+      customQuoteBn: 'আসছে বছর আবার হবে…',
+      customQuoteEn: 'Asche Bochor Abar Hobe…',
+    });
   };
 
   return (

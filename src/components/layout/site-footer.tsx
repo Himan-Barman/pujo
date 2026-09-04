@@ -7,12 +7,31 @@ import { usePathname } from 'next/navigation';
 import { useUIStore } from '@/stores/ui-store';
 import { BengaliPattern } from '@/components/shared/bengali-pattern';
 import { MAIN_NAV_ITEMS } from '@/config/navigation';
+import { useShare } from '@/hooks/use-share';
+import { Share2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export const SiteFooter: React.FC = () => {
   const pathname = usePathname();
   const isHomePage = pathname === '/';
   const language = useUIStore((state) => state.language);
+  const { openShare } = useShare();
+
+  const handleShareAgomoni = () => {
+    openShare({
+      titleBn: 'আগমনী — যেখানে জীবন্ত হয়ে ওঠেন মা দুর্গা',
+      titleEn: 'Agomoni — Where Maa Comes Alive',
+      descriptionBn: 'বাঙালির শারদোৎসবের এক নিবিড়, পবিত্র ও জীবন্ত ডিজিটাল রূপ। পুষ্পাঞ্জলি, দেবভোগ, স্তোত্র ও চিরায়ত ঐতিহ্যের আবহ।',
+      descriptionEn: 'A digital autumn in Bengal celebrating devotion, sacred rituals, music, and heritage.',
+      categoryBn: 'শারদোৎসব ২০২৬ • Sharodotsav',
+      categoryEn: 'Sharodotsav 2026',
+      tagBn: 'পবিত্র ডিজিটাল তীর্থ',
+      tagEn: 'SACRED DIGITAL EXPERIENCE',
+      image: '/images/durga/durga-hero.jpg',
+      customQuoteBn: 'মা আসছেন…',
+      customQuoteEn: 'Where Maa Comes Alive',
+    });
+  };
 
   return (
     <footer
@@ -43,6 +62,17 @@ export const SiteFooter: React.FC = () => {
               ? 'যেখানে জীবন্ত হয়ে ওঠেন মা দুর্গা। শারদোৎসবের ভক্তি, ঐতিহ্য, সুর ও পবিত্র মিলনমেলা।'
               : 'Where Maa Comes Alive. A digital autumn in Bengal celebrating devotion, sacred rituals, music, and heritage.'}
           </p>
+
+          {/* Quick Share Button */}
+          <button
+            type="button"
+            onClick={handleShareAgomoni}
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#1A1210]/90 border border-[#E7C878]/35 hover:border-[#E7C878]/70 text-[#FFF8EA] hover:text-[#E7C878] text-xs font-bold shadow-md cursor-pointer transition-all active:scale-95 mx-auto mt-4"
+          >
+            <Share2 className="w-3.5 h-3.5 text-[#E7C878]" />
+            <span>{language === 'bn' ? 'শারদোৎসবের বার্তা শেয়ার করুন' : 'Share Agomoni Experience'}</span>
+          </button>
+
           <div className="w-20 sm:w-24 h-[1px] bg-[#8C4C3F] mx-auto my-4 sm:my-6" />
         </div>
 

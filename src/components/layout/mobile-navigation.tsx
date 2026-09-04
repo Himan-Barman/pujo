@@ -17,8 +17,10 @@ import {
   Heart,
   X,
   ChevronRight,
+  Share2,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useShare } from '@/hooks/use-share';
 
 interface BottomNavItem {
   id: string;
@@ -122,6 +124,7 @@ export const MobileNavigation: React.FC = () => {
   const pathname = usePathname();
   const language = useUIStore((state) => state.language);
   const isPujaMode = useUIStore((state) => state.isPujaMode);
+  const { openShare } = useShare();
 
   const [isMoreDrawerOpen, setIsMoreDrawerOpen] = useState(false);
 
@@ -256,6 +259,41 @@ export const MobileNavigation: React.FC = () => {
                     </Link>
                   );
                 })}
+
+                {/* Direct Share Button in Mobile Drawer */}
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsMoreDrawerOpen(false);
+                    openShare({
+                      titleBn: 'আগমনী — যেখানে জীবন্ত হয়ে ওঠেন মা দুর্গা',
+                      titleEn: 'Agomoni — Where Maa Comes Alive',
+                      descriptionBn: 'বাঙালির শারদোৎসবের এক নিবিড়, পবিত্র ও জীবন্ত ডিজিটাল রূপ।',
+                      descriptionEn: 'A digital autumn in Bengal celebrating devotion, sacred rituals, music, and heritage.',
+                      categoryBn: 'শারদোৎসব ২০২৬ • Sharodotsav',
+                      categoryEn: 'Sharodotsav 2026',
+                      image: '/images/durga/durga-hero.jpg',
+                    });
+                  }}
+                  className="w-full px-3.5 py-3 rounded-2xl flex items-center justify-between transition-all duration-150 text-left bg-gradient-to-r from-[#A61B1B]/30 to-[#741313]/20 border border-[#E7C878]/35 text-[#FFF8EA] hover:border-[#E7C878]/60 cursor-pointer active:scale-[0.98] mt-2"
+                >
+                  <div className="flex items-center gap-3.5 min-w-0">
+                    <div className="w-10 h-10 rounded-full bg-[#A61B1B] border border-[#E7C878]/40 flex items-center justify-center flex-shrink-0 shadow-xs">
+                      <Share2 className="w-4 h-4 text-[#FFFDF8]" />
+                    </div>
+                    <div className="min-w-0">
+                      <span className="text-sm font-bold font-serif text-[#FFF8EA] block">
+                        {language === 'bn' ? 'শারদোৎসব শেয়ার করুন' : 'Share Agomoni'}
+                      </span>
+                      <p className="text-xs text-[#FFF8EA]/65 truncate mt-0.5 font-sans">
+                        {language === 'bn' ? 'প্রিয়জনদের সাথে আনন্দ ভাগ করে নিন' : 'Spread the joy with friends & family'}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="pr-1.5 flex items-center justify-center">
+                    <ChevronRight className="w-4 h-4 text-[#E7C878]" />
+                  </div>
+                </button>
               </div>
 
               {/* Bottom Quote & Cultural Farewell in Sheet */}

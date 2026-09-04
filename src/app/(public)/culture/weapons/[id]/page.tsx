@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useUIStore } from '@/stores/ui-store';
+import { useShare } from '@/hooks/use-share';
 import { WEAPONS_DATA } from '@/data/weapons';
 import { ArrowLeft, Shield, Sparkles, BookOpen, Share2, Check, Sparkle, ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 import { SectionHeading } from '@/components/shared/section-heading';
@@ -19,6 +20,7 @@ export default function WeaponDetailPage({ params }: WeaponDetailPageProps) {
   const resolvedParams = use(params);
   const language = useUIStore((state) => state.language);
   const [copied, setCopied] = useState(false);
+  const { openShare } = useShare();
 
   const weaponIndex = WEAPONS_DATA.findIndex((w) => w.id === resolvedParams.id);
   const weapon = WEAPONS_DATA[weaponIndex];
@@ -31,19 +33,19 @@ export default function WeaponDetailPage({ params }: WeaponDetailPageProps) {
   const nextWeapon = weaponIndex < WEAPONS_DATA.length - 1 ? WEAPONS_DATA[weaponIndex + 1] : WEAPONS_DATA[0];
 
   const handleShare = () => {
-    if (typeof window !== 'undefined') {
-      if (navigator.share) {
-        navigator.share({
-          title: language === 'bn' ? weapon.nameBn : weapon.nameEn,
-          text: language === 'bn' ? weapon.significanceBn : weapon.significanceEn,
-          url: window.location.href,
-        }).catch(() => {});
-      } else if (navigator.clipboard) {
-        navigator.clipboard.writeText(window.location.href);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
-      }
-    }
+    openShare({
+      titleBn: weapon.nameBn,
+      titleEn: weapon.nameEn,
+      descriptionBn: weapon.significanceBn,
+      descriptionEn: weapon.significanceEn,
+      categoryBn: `দশভুজার মহাশস্ত্র • ক্রম ${weapon.number}/১০`,
+      categoryEn: `Divine Sacred Astra • ${weapon.number}/10`,
+      tagBn: `দাতা দেবতা: ${weapon.donorBn}`,
+      tagEn: `Bestowed by: ${weapon.donorEn}`,
+      image: weapon.image,
+      customQuoteBn: weapon.shlokaBn,
+      customQuoteEn: weapon.shlokaEn,
+    });
   };
 
   return (

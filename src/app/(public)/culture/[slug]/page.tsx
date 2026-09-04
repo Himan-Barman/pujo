@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useUIStore } from '@/stores/ui-store';
+import { useShare } from '@/hooks/use-share';
 import { CULTURE_ARTICLES } from '@/data/culture-articles';
 import { ArrowLeft, Clock, Sparkles, BookOpen, Share2, Check, Leaf, Shield, Heart } from 'lucide-react';
 import { SectionHeading } from '@/components/shared/section-heading';
@@ -19,6 +20,7 @@ export default function CultureDetailPage({ params }: CultureDetailPageProps) {
   const resolvedParams = use(params);
   const language = useUIStore((state) => state.language);
   const [copied, setCopied] = React.useState(false);
+  const { openShare } = useShare();
 
   const article = CULTURE_ARTICLES.find(
     (a) => a.slug === resolvedParams.slug || a.id === resolvedParams.slug
@@ -31,19 +33,17 @@ export default function CultureDetailPage({ params }: CultureDetailPageProps) {
   const relatedArticles = CULTURE_ARTICLES.filter((a) => a.id !== article.id).slice(0, 3);
 
   const handleShare = () => {
-    if (typeof window !== 'undefined') {
-      if (navigator.share) {
-        navigator.share({
-          title: language === 'bn' ? article.titleBn : article.titleEn,
-          text: language === 'bn' ? article.subtitleBn : article.subtitleEn,
-          url: window.location.href,
-        }).catch(() => {});
-      } else if (navigator.clipboard) {
-        navigator.clipboard.writeText(window.location.href);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
-      }
-    }
+    openShare({
+      titleBn: article.titleBn,
+      titleEn: article.titleEn,
+      descriptionBn: article.subtitleBn,
+      descriptionEn: article.subtitleEn,
+      categoryBn: `ঐতিহ্য ও ইতিহাস • ${article.category}`,
+      categoryEn: `Heritage & History • ${article.category}`,
+      tagBn: article.category,
+      tagEn: article.category,
+      image: article.coverImage,
+    });
   };
 
   return (

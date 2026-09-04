@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useUIStore } from '@/stores/ui-store';
+import { useShare } from '@/hooks/use-share';
 import { BHOG_ITEMS } from '@/data/bhog-menu';
 import {
   ArrowLeft,
@@ -47,22 +48,22 @@ export default function BhogDetailPage({ params }: BhogDetailPageProps) {
   const prevItem = itemIndex > 0 ? BHOG_ITEMS[itemIndex - 1] : BHOG_ITEMS[BHOG_ITEMS.length - 1];
   const nextItem = itemIndex < BHOG_ITEMS.length - 1 ? BHOG_ITEMS[itemIndex + 1] : BHOG_ITEMS[0];
 
+  const { openShare } = useShare();
+
   const handleShare = () => {
-    if (typeof window !== 'undefined') {
-      if (navigator.share) {
-        navigator
-          .share({
-            title: language === 'bn' ? item.nameBn : item.nameEn,
-            text: language === 'bn' ? item.taglineBn : item.taglineEn,
-            url: window.location.href,
-          })
-          .catch(() => {});
-      } else if (navigator.clipboard) {
-        navigator.clipboard.writeText(window.location.href);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
-      }
-    }
+    openShare({
+      titleBn: item.nameBn,
+      titleEn: item.nameEn,
+      descriptionBn: item.taglineBn,
+      descriptionEn: item.taglineEn,
+      categoryBn: `পবিত্র দেবভোগ • ${item.pujaDayAssocBn}`,
+      categoryEn: `Sacred Offering • ${item.pujaDayAssocEn}`,
+      tagBn: 'মহাপ্রসাদ ও ভোগরীতি',
+      tagEn: 'SACRED BHOG LORE',
+      image: item.image,
+      customQuoteBn: item.significanceBn,
+      customQuoteEn: item.significanceEn,
+    });
   };
 
   const handleToggleAudio = () => {

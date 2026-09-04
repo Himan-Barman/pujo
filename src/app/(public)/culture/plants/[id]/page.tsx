@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useUIStore } from '@/stores/ui-store';
+import { useShare } from '@/hooks/use-share';
 import { NABAPATRIKA_PLANTS_DATA } from '@/data/nabapatrika-plants';
 import { ArrowLeft, Leaf, Sparkles, BookOpen, Share2, Check, ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 import { SectionHeading } from '@/components/shared/section-heading';
@@ -19,6 +20,7 @@ export default function PlantDetailPage({ params }: PlantDetailPageProps) {
   const resolvedParams = use(params);
   const language = useUIStore((state) => state.language);
   const [copied, setCopied] = useState(false);
+  const { openShare } = useShare();
 
   const plantIndex = NABAPATRIKA_PLANTS_DATA.findIndex((p) => p.id === resolvedParams.id);
   const plant = NABAPATRIKA_PLANTS_DATA[plantIndex];
@@ -31,19 +33,19 @@ export default function PlantDetailPage({ params }: PlantDetailPageProps) {
   const nextPlant = plantIndex < NABAPATRIKA_PLANTS_DATA.length - 1 ? NABAPATRIKA_PLANTS_DATA[plantIndex + 1] : NABAPATRIKA_PLANTS_DATA[0];
 
   const handleShare = () => {
-    if (typeof window !== 'undefined') {
-      if (navigator.share) {
-        navigator.share({
-          title: language === 'bn' ? plant.nameBn : plant.nameEn,
-          text: language === 'bn' ? plant.significanceBn : plant.significanceEn,
-          url: window.location.href,
-        }).catch(() => {});
-      } else if (navigator.clipboard) {
-        navigator.clipboard.writeText(window.location.href);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
-      }
-    }
+    openShare({
+      titleBn: plant.nameBn,
+      titleEn: plant.nameEn,
+      descriptionBn: plant.significanceBn,
+      descriptionEn: plant.significanceEn,
+      categoryBn: `নবপত্রিকার পবিত্র উদ্ভিদ • রূপ ${plant.number}/৯`,
+      categoryEn: `Sacred Nabapatrika Flora • ${plant.number}/9`,
+      tagBn: `দেবী রূপ: ${plant.deityBn}`,
+      tagEn: `Deity Form: ${plant.deityEn}`,
+      image: plant.image,
+      customQuoteBn: plant.mantraBn,
+      customQuoteEn: plant.mantraEn,
+    });
   };
 
   return (

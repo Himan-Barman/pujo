@@ -9,6 +9,7 @@ import { PujaModeOverlay } from '@/components/layout/puja-mode-overlay';
 import { GlobalPhotoBackground } from '@/components/layout/global-photo-background';
 import { SmoothScrollProvider } from '@/components/layout/smooth-scroll-provider';
 import { FloatingAIChat } from '@/components/layout/floating-ai-button';
+import { GlobalShareModal } from '@/components/shared/share-modal';
 import { SITE_CONFIG } from '@/config/site';
 
 export const viewport: Viewport = {
@@ -63,14 +64,20 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.name,
     images: [
       {
-        url: SITE_CONFIG.ogImage,
+        url: '/api/og',
         width: 1200,
         height: 630,
-        alt: 'Devi Durga Pratima Daaker Saaj',
+        alt: 'Agomoni — যেখানে জীবন্ত হয়ে ওঠেন মা দুর্গা',
       },
     ],
     locale: 'bn_BD',
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `${SITE_CONFIG.nameBn} — ${SITE_CONFIG.taglineBn}`,
+    description: SITE_CONFIG.descriptionBn,
+    images: ['/api/og'],
   },
   icons: {
     icon: [
@@ -113,6 +120,9 @@ export default function RootLayout({
 
           {/* Mobile Navigation Drawer */}
           <MobileNavigation />
+
+          {/* Universal Premium Agomoni Share Modal */}
+          <GlobalShareModal />
 
           {/* Main Content Area with Fixed Header Offset */}
           <main className="relative z-10 flex-1 w-full max-w-[100vw] overflow-x-hidden pt-[52px] sm:pt-16 pb-24 lg:pb-16">{children}</main>
