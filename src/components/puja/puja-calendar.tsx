@@ -83,16 +83,16 @@ export const PujaCalendar: React.FC = () => {
         <PujaDaySelector />
       </div>
 
-      {/* Mobile Panjika Switcher (Positioned cleanly above the master box on mobile) */}
-      <div className="flex sm:hidden items-center justify-center -mt-6 mb-2">
-        <div className="inline-flex items-center p-1 rounded-full bg-[#120B09]/95 border border-[#E7C878]/35 shadow-lg gap-1">
+      {/* Mobile Panjika Switcher (Positioned cleanly above the master box on mobile, width & height matching other filters) */}
+      <div className="flex sm:hidden items-center justify-center -mt-6 mb-2 w-full px-1">
+        <div className="inline-flex items-center p-1 rounded-full bg-[#120B09]/95 border border-[#E7C878]/35 shadow-lg gap-1.5 w-full max-w-sm">
           <button
             type="button"
             onClick={() => setSelectedPanjika('benimadhab')}
             className={cn(
-              'px-4 py-1.5 rounded-full text-xs font-bold font-serif transition-all cursor-pointer text-center',
+              'flex-1 px-4 py-2.5 rounded-full text-xs font-bold font-serif transition-all duration-200 cursor-pointer text-center active:scale-95 whitespace-nowrap',
               selectedPanjika === 'benimadhab'
-                ? 'bg-gradient-to-r from-[#A61B1B] to-[#741313] text-[#FFFDF8] border border-[#E7C878]/40 shadow-xs scale-[1.02]'
+                ? 'bg-gradient-to-r from-[#A61B1B] to-[#741313] text-[#FFFDF8] border border-[#E7C878]/40 shadow-md scale-[1.02]'
                 : 'text-[#FFF8EA]/70 hover:text-[#FFF8EA] hover:bg-[#FFFDF8]/5'
             )}
           >
@@ -103,9 +103,9 @@ export const PujaCalendar: React.FC = () => {
             type="button"
             onClick={() => setSelectedPanjika('guptapress')}
             className={cn(
-              'px-4 py-1.5 rounded-full text-xs font-bold font-serif transition-all cursor-pointer text-center',
+              'flex-1 px-4 py-2.5 rounded-full text-xs font-bold font-serif transition-all duration-200 cursor-pointer text-center active:scale-95 whitespace-nowrap',
               selectedPanjika === 'guptapress'
-                ? 'bg-gradient-to-r from-[#A61B1B] to-[#741313] text-[#FFFDF8] border border-[#E7C878]/40 shadow-xs scale-[1.02]'
+                ? 'bg-gradient-to-r from-[#A61B1B] to-[#741313] text-[#FFFDF8] border border-[#E7C878]/40 shadow-md scale-[1.02]'
                 : 'text-[#FFF8EA]/70 hover:text-[#FFF8EA] hover:bg-[#FFFDF8]/5'
             )}
           >
