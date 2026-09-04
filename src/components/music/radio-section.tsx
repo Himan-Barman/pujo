@@ -288,7 +288,7 @@ export const RadioSection: React.FC = () => {
                   className="apple-btn-primary px-5 py-2.5 text-xs flex items-center gap-1.5 cursor-pointer shadow-md active:scale-95"
                 >
                   <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
-                  <span>{language === 'bn' ? 'সব গান চালান' : 'Play Day'}</span>
+                  <span>{language === 'bn' ? 'সব চালান' : 'Play All'}</span>
                 </button>
 
                 <button
@@ -329,14 +329,14 @@ export const RadioSection: React.FC = () => {
                       key={track.id}
                       onClick={() => playTrack(track, filteredTracks)}
                       className={cn(
-                        'p-3.5 sm:p-4 rounded-[22px] flex items-center justify-between gap-4 transition-all duration-200 border cursor-pointer group select-none active:scale-[0.99]',
+                        'p-3 sm:p-3.5 rounded-[22px] flex items-center justify-between gap-3 sm:gap-4 transition-all duration-200 border cursor-pointer group select-none active:scale-[0.99]',
                         isCurrent
                           ? 'bg-[#FFFDF8]/[0.12] backdrop-blur-md border-[#E7C878]/45 shadow-sm'
                           : 'bg-[#1A1210]/45 hover:bg-[#FFFDF8]/[0.08] border-[#FFFDF8]/6 hover:border-[#FFFDF8]/15'
                       )}
                     >
-                      {/* Left: Play button and Track Info */}
-                      <div className="flex items-center gap-3.5 min-w-0">
+                      {/* Left: Play button and 2-Row Track Info */}
+                      <div className="flex items-center gap-3 sm:gap-3.5 min-w-0 flex-1">
                         <button
                           type="button"
                           onClick={(e) => {
@@ -344,7 +344,7 @@ export const RadioSection: React.FC = () => {
                             playTrack(track, filteredTracks);
                           }}
                           className={cn(
-                            'w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0 transition-all cursor-pointer shadow-xs active:scale-90',
+                            'w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center flex-shrink-0 transition-all cursor-pointer shadow-xs active:scale-90',
                             isCurrent && isPlaying
                               ? 'bg-[#A61B1B] text-[#FFFDF8] scale-105 shadow-md'
                               : 'bg-[#FFFDF8]/10 backdrop-blur-md text-[#E7C878] border border-[#FFFDF8]/15 group-hover:bg-[#A61B1B] group-hover:text-[#FFFDF8]'
@@ -358,30 +358,26 @@ export const RadioSection: React.FC = () => {
                           )}
                         </button>
 
-                        <div className="min-w-0">
+                        <div className="min-w-0 flex-1">
+                          {/* Row 1: Music Name */}
                           <h4
                             className={cn(
-                              'text-sm sm:text-base font-bold truncate font-serif',
-                              isCurrent ? 'text-[#E7C878]' : 'text-[#FFF8EA]'
+                              'text-sm sm:text-base font-bold truncate font-serif leading-snug transition-colors',
+                              isCurrent ? 'text-[#E7C878]' : 'text-[#FFF8EA] group-hover:text-[#FFFDF8]'
                             )}
                           >
                             {language === 'bn' ? track.titleBn : track.titleEn}
                           </h4>
-                          <p className="text-xs text-[#FFF8EA]/75 truncate mt-0.5 font-medium">
+                          {/* Row 2: Music Details / Artist */}
+                          <p className="text-xs text-[#FFF8EA]/65 truncate mt-0.5 font-sans font-medium group-hover:text-[#FFF8EA]/85 transition-colors">
                             {language === 'bn' ? track.artistBn : track.artistEn}
-                          </p>
-                          <p className="text-[11px] text-[#FFF8EA]/50 truncate mt-0.5">
-                            {language === 'bn' ? track.descriptionBn : track.descriptionEn}
                           </p>
                         </div>
                       </div>
 
-                      {/* Right: Mood Tag and Duration */}
-                      <div className="flex items-center gap-3 flex-shrink-0">
-                        <span className="hidden sm:inline-flex px-2.5 py-0.5 rounded-full bg-[#1A1210]/60 border border-[#E7C878]/25 text-[10px] text-[#E7C878] font-semibold">
-                          {language === 'bn' ? track.moodBn : track.moodEn}
-                        </span>
-                        <span className="text-xs font-mono text-[#FFF8EA]/70 font-bold">
+                      {/* Right: Time Only */}
+                      <div className="flex items-center flex-shrink-0 pl-1 sm:pl-2">
+                        <span className="text-xs sm:text-sm font-mono text-[#E7C878] font-bold group-hover:text-[#FFF8EA] transition-colors">
                           {track.duration}
                         </span>
                       </div>
