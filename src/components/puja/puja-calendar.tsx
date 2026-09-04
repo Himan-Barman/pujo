@@ -367,82 +367,87 @@ export const PujaCalendar: React.FC = () => {
         </div>
       </div>
 
-      {/* 3. Deep Tithi Details Tabs (Mahatmya, Bidhi, Samagri, Mantra) */}
-      <div className="agomoni-card p-6 sm:p-8 lg:p-10 space-y-8 shadow-2xl border border-[#E7C878]/25 bg-gradient-to-b from-[#1C120F] to-[#120B09]">
-        {/* Tab Navigation Header (Centered & Stacked) */}
-        <div className="text-center space-y-5 pb-6 border-b border-[#FFFDF8]/10 max-w-4xl mx-auto">
-          <div className="space-y-1.5">
-            <h3 className="text-2xl sm:text-3xl font-extrabold font-serif text-[#FFF8EA]">
-              {language === 'bn'
-                ? `${mainTitleBn}-এর প্রামাণ্য শাস্ত্রীয় দর্শন ও বিধি`
-                : `Comprehensive Scriptural Lore & Ritual Guide`}
-            </h3>
-            <p className="text-xs sm:text-sm text-[#E7C878]/80 font-sans">
-              {language === 'bn'
-                ? 'তিথি মাহাত্ম্য, বৈদিক পূজাক্রম, সামগ্রী ও ধ্যানমন্ত্র'
-                : 'Puranic legends, step-by-step Vedic bidhi, samagri, and hymns'}
-            </p>
-          </div>
-
-          {/* Horizontal Capsule Tabs (Full Horizontal Row Below Heading) */}
-          <div className="inline-flex items-center p-1.5 rounded-full bg-[#120B09] backdrop-blur-xl border border-[#FFFDF8]/15 text-xs shadow-inner flex-wrap justify-center gap-1.5 sm:gap-2">
-            <button
-              type="button"
-              onClick={() => setActiveTab('lore')}
-              className={cn(
-                'px-4 sm:px-5 py-2.5 rounded-full font-bold flex items-center gap-2 transition-all duration-200 cursor-pointer active:scale-95 text-xs sm:text-sm',
-                activeTab === 'lore'
-                  ? 'bg-gradient-to-r from-[#A61B1B] to-[#741313] text-[#FFFDF8] shadow-md border border-[#E7C878]/40 scale-[1.02]'
-                  : 'text-[#FFF8EA]/70 hover:text-[#FFF8EA] hover:bg-[#FFFDF8]/8'
-              )}
-            >
-              <BookOpen className="w-4 h-4 text-[#E7C878]" />
-              <span>{language === 'bn' ? 'তিথি মাহাত্ম্য' : 'Puranic Lore'}</span>
-            </button>
-
-            <button
-              type="button"
-              onClick={() => setActiveTab('bidhi')}
-              className={cn(
-                'px-4 sm:px-5 py-2.5 rounded-full font-bold flex items-center gap-2 transition-all duration-200 cursor-pointer active:scale-95 text-xs sm:text-sm',
-                activeTab === 'bidhi'
-                  ? 'bg-gradient-to-r from-[#A61B1B] to-[#741313] text-[#FFFDF8] shadow-md border border-[#E7C878]/40 scale-[1.02]'
-                  : 'text-[#FFF8EA]/70 hover:text-[#FFF8EA] hover:bg-[#FFFDF8]/8'
-              )}
-            >
-              <CheckCircle2 className="w-4 h-4 text-[#E7C878]" />
-              <span>{language === 'bn' ? 'পূজাবিধির ধাপসমূহ' : 'Puja Bidhi Steps'}</span>
-            </button>
-
-            <button
-              type="button"
-              onClick={() => setActiveTab('samagri')}
-              className={cn(
-                'px-4 sm:px-5 py-2.5 rounded-full font-bold flex items-center gap-2 transition-all duration-200 cursor-pointer active:scale-95 text-xs sm:text-sm',
-                activeTab === 'samagri'
-                  ? 'bg-gradient-to-r from-[#A61B1B] to-[#741313] text-[#FFFDF8] shadow-md border border-[#E7C878]/40 scale-[1.02]'
-                  : 'text-[#FFF8EA]/70 hover:text-[#FFF8EA] hover:bg-[#FFFDF8]/8'
-              )}
-            >
-              <Package className="w-4 h-4 text-[#E7C878]" />
-              <span>{language === 'bn' ? 'পূজার উপচার' : 'Samagri List'}</span>
-            </button>
-
-            <button
-              type="button"
-              onClick={() => setActiveTab('mantra')}
-              className={cn(
-                'px-4 sm:px-5 py-2.5 rounded-full font-bold flex items-center gap-2 transition-all duration-200 cursor-pointer active:scale-95 text-xs sm:text-sm',
-                activeTab === 'mantra'
-                  ? 'bg-gradient-to-r from-[#A61B1B] to-[#741313] text-[#FFFDF8] shadow-md border border-[#E7C878]/40 scale-[1.02]'
-                  : 'text-[#FFF8EA]/70 hover:text-[#FFF8EA] hover:bg-[#FFFDF8]/8'
-              )}
-            >
-              <Scroll className="w-4 h-4 text-[#E7C878]" />
-              <span>{language === 'bn' ? 'ধ্যান ও প্রণাম' : 'Dhyan Shloka'}</span>
-            </button>
-          </div>
+      {/* 3. Deep Tithi Details Header & Filter Tabs (Positioned Outside Card) */}
+      <div className="space-y-6 pt-2">
+        {/* Section Heading Outside Box */}
+        <div className="text-center space-y-2 max-w-4xl mx-auto px-2">
+          <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-serif text-[#FFF8EA] drop-shadow-sm">
+            {language === 'bn'
+              ? `${mainTitleBn}-এর প্রামাণ্য শাস্ত্রীয় দর্শন ও বিধি`
+              : `Comprehensive Scriptural Lore & Ritual Guide`}
+          </h3>
+          <p className="text-xs sm:text-sm md:text-base text-[#E7C878]/90 font-sans font-medium">
+            {language === 'bn'
+              ? 'তিথি মাহাত্ম্য, বৈদিক পূজাক্রম, সামগ্রী ও ধ্যানমন্ত্র'
+              : 'Puranic legends, step-by-step Vedic bidhi, samagri, and hymns'}
+          </p>
         </div>
+
+        {/* Horizontal Capsule Tabs (Clean scrollable pills matching other filters) */}
+        <div className="w-full overflow-x-auto no-scrollbar py-2 px-1 flex items-center justify-start lg:justify-center gap-2.5 sm:gap-3.5 scroll-smooth select-none">
+          <button
+            type="button"
+            onClick={() => setActiveTab('lore')}
+            className={cn(
+              'relative flex-shrink-0 transition-all duration-200 text-center flex items-center justify-center gap-2 cursor-pointer select-none active:scale-[0.97]',
+              'px-4 sm:px-5 py-2.5 sm:py-3 rounded-full border text-xs sm:text-sm font-bold font-serif whitespace-nowrap',
+              activeTab === 'lore'
+                ? 'bg-gradient-to-r from-[#A61B1B] to-[#741313] border-2 border-[#E7C878] text-[#FFFDF8] shadow-[0_4px_22px_rgba(201,154,61,0.35)] scale-[1.02] z-10'
+                : 'bg-[#1A1210]/80 backdrop-blur-xl border border-[#FFFDF8]/12 text-[#FFF8EA]/80 hover:text-[#FFF8EA] hover:border-[#E7C878]/50 hover:bg-[#FFFDF8]/[0.08]'
+            )}
+          >
+            <BookOpen className="w-4 h-4 text-[#E7C878] flex-shrink-0" />
+            <span>{language === 'bn' ? 'তিথি মাহাত্ম্য' : 'Puranic Lore'}</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setActiveTab('bidhi')}
+            className={cn(
+              'relative flex-shrink-0 transition-all duration-200 text-center flex items-center justify-center gap-2 cursor-pointer select-none active:scale-[0.97]',
+              'px-4 sm:px-5 py-2.5 sm:py-3 rounded-full border text-xs sm:text-sm font-bold font-serif whitespace-nowrap',
+              activeTab === 'bidhi'
+                ? 'bg-gradient-to-r from-[#A61B1B] to-[#741313] border-2 border-[#E7C878] text-[#FFFDF8] shadow-[0_4px_22px_rgba(201,154,61,0.35)] scale-[1.02] z-10'
+                : 'bg-[#1A1210]/80 backdrop-blur-xl border border-[#FFFDF8]/12 text-[#FFF8EA]/80 hover:text-[#FFF8EA] hover:border-[#E7C878]/50 hover:bg-[#FFFDF8]/[0.08]'
+            )}
+          >
+            <CheckCircle2 className="w-4 h-4 text-[#E7C878] flex-shrink-0" />
+            <span>{language === 'bn' ? 'পূজাবিধির ধাপসমূহ' : 'Puja Bidhi Steps'}</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setActiveTab('samagri')}
+            className={cn(
+              'relative flex-shrink-0 transition-all duration-200 text-center flex items-center justify-center gap-2 cursor-pointer select-none active:scale-[0.97]',
+              'px-4 sm:px-5 py-2.5 sm:py-3 rounded-full border text-xs sm:text-sm font-bold font-serif whitespace-nowrap',
+              activeTab === 'samagri'
+                ? 'bg-gradient-to-r from-[#A61B1B] to-[#741313] border-2 border-[#E7C878] text-[#FFFDF8] shadow-[0_4px_22px_rgba(201,154,61,0.35)] scale-[1.02] z-10'
+                : 'bg-[#1A1210]/80 backdrop-blur-xl border border-[#FFFDF8]/12 text-[#FFF8EA]/80 hover:text-[#FFF8EA] hover:border-[#E7C878]/50 hover:bg-[#FFFDF8]/[0.08]'
+            )}
+          >
+            <Package className="w-4 h-4 text-[#E7C878] flex-shrink-0" />
+            <span>{language === 'bn' ? 'পূজার উপচার' : 'Samagri List'}</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setActiveTab('mantra')}
+            className={cn(
+              'relative flex-shrink-0 transition-all duration-200 text-center flex items-center justify-center gap-2 cursor-pointer select-none active:scale-[0.97]',
+              'px-4 sm:px-5 py-2.5 sm:py-3 rounded-full border text-xs sm:text-sm font-bold font-serif whitespace-nowrap',
+              activeTab === 'mantra'
+                ? 'bg-gradient-to-r from-[#A61B1B] to-[#741313] border-2 border-[#E7C878] text-[#FFFDF8] shadow-[0_4px_22px_rgba(201,154,61,0.35)] scale-[1.02] z-10'
+                : 'bg-[#1A1210]/80 backdrop-blur-xl border border-[#FFFDF8]/12 text-[#FFF8EA]/80 hover:text-[#FFF8EA] hover:border-[#E7C878]/50 hover:bg-[#FFFDF8]/[0.08]'
+            )}
+          >
+            <Scroll className="w-4 h-4 text-[#E7C878] flex-shrink-0" />
+            <span>{language === 'bn' ? 'ধ্যান ও প্রণাম' : 'Dhyan Shloka'}</span>
+          </button>
+        </div>
+
+        {/* Content Box with Active Tab Content */}
+        <div className="agomoni-card p-6 sm:p-8 lg:p-10 space-y-8 shadow-2xl border border-[#E7C878]/25 bg-gradient-to-b from-[#1C120F] to-[#120B09]">
 
         {/* Tab 1: Tithi Mahatmya (পৌরাণিক কাহিনী) */}
         {activeTab === 'lore' && (
@@ -572,6 +577,7 @@ export const PujaCalendar: React.FC = () => {
             </div>
           </div>
         )}
+        </div>
       </div>
 
       {/* 4. Detailed Ritual Cards Grid with Center-Aligned Heading */}
