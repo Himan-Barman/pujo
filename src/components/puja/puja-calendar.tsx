@@ -291,13 +291,13 @@ export const PujaCalendar: React.FC = () => {
           </div>
 
           {/* Right Column: Key Timing Highlights Box (Reflects Active Selected Panjika) */}
-          <div className="lg:col-span-5 p-6 sm:p-7 rounded-[26px] bg-[#120B09]/95 backdrop-blur-md border-2 border-[#E7C878]/35 flex flex-col justify-between space-y-4 shadow-xl">
+          <div className="lg:col-span-5 p-4 sm:p-7 rounded-[26px] bg-[#120B09]/95 backdrop-blur-md border-2 border-[#E7C878]/35 flex flex-col justify-between space-y-4 shadow-xl">
             <div className="text-xs font-bold text-[#E7C878] uppercase tracking-wider flex items-center justify-between pb-3 border-b border-[#FFFDF8]/12">
               <div className="flex items-center gap-2">
                 <Clock className="w-4 h-4 text-[#E7C878]" />
                 <span>{language === 'bn' ? 'প্রধান শুভ মুহূর্ত ও নির্ঘণ্ট' : 'Key Puja Nirghanta & Timings'}</span>
               </div>
-              <span className="text-[11px] text-[#E7C878] font-bold font-mono px-2 py-0.5 rounded-full bg-[#FFFDF8]/[0.08] border border-[#E7C878]/30">
+              <span className="text-[11px] text-[#E7C878] font-bold font-mono px-2.5 py-0.5 rounded-full bg-[#FFFDF8]/[0.08] border border-[#E7C878]/30">
                 {selectedPanjika === 'benimadhab'
                   ? (language === 'bn' ? 'বেণীমাধব শীল' : 'Benimadhab Seal')
                   : (language === 'bn' ? 'গুপ্তপ্রেস' : 'Gupta Press')}
@@ -309,7 +309,7 @@ export const PujaCalendar: React.FC = () => {
                 <div
                   key={idx}
                   className={cn(
-                    'p-4 rounded-[20px] border flex items-center justify-between gap-3 transition-all',
+                    'p-3.5 sm:p-4 rounded-[20px] border flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-3 transition-all',
                     highlight.importance === 'primary'
                       ? 'bg-gradient-to-r from-[#A61B1B]/40 to-[#741313]/30 border-[#E7C878]/40 shadow-xs'
                       : highlight.importance === 'special'
@@ -317,11 +317,11 @@ export const PujaCalendar: React.FC = () => {
                       : 'bg-[#FFFDF8]/[0.04] border-[#FFFDF8]/10'
                   )}
                 >
-                  <div className="space-y-0.5">
-                    <div className="text-sm sm:text-base font-bold text-[#FFF8EA] font-serif">
+                  <div className="flex items-center justify-between sm:block sm:space-y-0.5 gap-2">
+                    <div className="text-sm sm:text-base font-bold text-[#FFF8EA] font-serif leading-tight">
                       {language === 'bn' ? highlight.titleBn : highlight.titleEn}
                     </div>
-                    <span className="text-[11px] text-[#E7C878]/80 font-sans block">
+                    <span className="text-[10px] sm:text-[11px] text-[#E7C878] font-sans whitespace-nowrap px-2 py-0.5 rounded-full bg-[#120B09]/80 border border-[#E7C878]/30 sm:bg-transparent sm:border-none sm:p-0 sm:block sm:text-[#E7C878]/80">
                       {highlight.importance === 'primary'
                         ? language === 'bn' ? 'সর্বোচ্চ পুণ্য লগ্ন' : 'Primary Auspicious Hour'
                         : highlight.importance === 'special'
@@ -329,8 +329,10 @@ export const PujaCalendar: React.FC = () => {
                         : language === 'bn' ? 'বিহিত পূজা' : 'Prescribed Puja'}
                     </span>
                   </div>
-                  <div className="text-xs sm:text-sm font-bold text-[#E7C878] whitespace-nowrap font-mono px-3.5 py-1.5 rounded-full bg-[#120B09] border border-[#E7C878]/35 shadow-xs">
-                    {language === 'bn' ? highlight.timeBn : highlight.timeEn}
+
+                  <div className="text-xs sm:text-sm font-bold text-[#E7C878] font-mono px-3.5 py-1.5 rounded-full bg-[#120B09] border border-[#E7C878]/35 shadow-xs flex items-center justify-center sm:justify-start gap-1.5 flex-shrink-0 text-center sm:text-left whitespace-nowrap">
+                    <Clock className="w-3 h-3 text-[#E7C878]/80 sm:hidden" />
+                    <span>{language === 'bn' ? highlight.timeBn : highlight.timeEn}</span>
                   </div>
                 </div>
               ))}
