@@ -262,12 +262,12 @@ export const RadioSection: React.FC = () => {
           {/* ═══════════════════════════════════════════════════════════════ */}
           <div className="lg:col-span-8 space-y-4">
 
-            {/* Day Header Glass Card */}
-            <div className="agomoni-card p-5 sm:p-6 shadow-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              <div className="flex items-center gap-3.5">
-                <div className="w-12 h-12 rounded-[18px] bg-gradient-to-br from-[#A61B1B] to-[#C99A3D] p-0.5 shadow-md flex items-center justify-center flex-shrink-0">
-                  <div className="w-full h-full rounded-[16px] bg-[#1A1210]/80 backdrop-blur-md flex items-center justify-center text-[#E7C878]">
-                    {renderDayIcon(activeTab.iconType, 'w-6 h-6')}
+            {/* Day Header Section (Box removed on mobile, floating cleanly on canvas) */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3.5 sm:gap-4 p-1 sm:p-5 md:p-6 sm:agomoni-card sm:shadow-xl">
+              <div className="flex items-center gap-3 sm:gap-3.5">
+                <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-[16px] sm:rounded-[18px] bg-gradient-to-br from-[#A61B1B] to-[#C99A3D] p-0.5 shadow-md flex items-center justify-center flex-shrink-0">
+                  <div className="w-full h-full rounded-[14px] sm:rounded-[16px] bg-[#1A1210]/90 backdrop-blur-md flex items-center justify-center text-[#E7C878]">
+                    {renderDayIcon(activeTab.iconType, 'w-5 h-5 sm:w-6 sm:h-6')}
                   </div>
                 </div>
                 <div>
@@ -280,12 +280,12 @@ export const RadioSection: React.FC = () => {
                 </div>
               </div>
 
-              {/* Action Buttons: Play All + Shankha / Bell sound triggers */}
-              <div className="flex items-center gap-2">
+              {/* Action Buttons: Floating Capsules */}
+              <div className="flex items-center gap-2 flex-wrap sm:flex-nowrap">
                 <button
                   type="button"
                   onClick={handlePlayFirstInList}
-                  className="apple-btn-primary px-5 py-2.5 text-xs flex items-center gap-1.5 cursor-pointer shadow-md active:scale-95"
+                  className="apple-btn-primary px-5 py-2.5 text-xs flex items-center gap-1.5 cursor-pointer shadow-md active:scale-95 flex-shrink-0"
                 >
                   <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
                   <span>{language === 'bn' ? 'সব চালান' : 'Play All'}</span>
@@ -294,7 +294,7 @@ export const RadioSection: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => audioSynth.playShankha(3.5)}
-                  className="px-3.5 py-2 rounded-full bg-[#1A1210]/70 hover:bg-[#2A2420] border border-[#FFFDF8]/12 text-[#E7C878] text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer active:scale-95 shadow-xs"
+                  className="px-3.5 py-2 rounded-full bg-[#1A1210]/80 hover:bg-[#2A2420] border border-[#FFFDF8]/15 text-[#E7C878] text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer active:scale-95 shadow-md"
                   title="Shankha"
                 >
                   <Wind className="w-3.5 h-3.5" />
@@ -304,7 +304,7 @@ export const RadioSection: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => audioSynth.playTempleBell()}
-                  className="px-3.5 py-2 rounded-full bg-[#1A1210]/70 hover:bg-[#2A2420] border border-[#FFFDF8]/12 text-[#E7C878] text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer active:scale-95 shadow-xs"
+                  className="px-3.5 py-2 rounded-full bg-[#1A1210]/80 hover:bg-[#2A2420] border border-[#FFFDF8]/15 text-[#E7C878] text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer active:scale-95 shadow-md"
                   title="Temple Bell"
                 >
                   <Bell className="w-3.5 h-3.5" />
