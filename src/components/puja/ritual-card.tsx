@@ -82,14 +82,9 @@ export const RitualCard: React.FC<RitualCardProps> = ({ ritual, className }) => 
       {/* 6. Required Items (উপকরণ) - Structured Premium Grid */}
       {ritual.itemsNeededBn && ritual.itemsNeededBn.length > 0 && (
         <div className="p-3.5 sm:p-5 rounded-[18px] sm:rounded-[22px] bg-[#FFFDF8]/[0.04] border border-[#FFFDF8]/10 space-y-2.5 sm:space-y-3 shadow-xs">
-          <div className="flex items-center justify-between gap-2 pb-2 border-b border-[#FFFDF8]/8">
-            <div className="flex items-center gap-1.5 text-xs font-bold text-[#E7C878] uppercase tracking-wider">
-              <Layers className="w-3.5 h-3.5 text-[#E7C878]" />
-              <span>{language === 'bn' ? 'প্রয়োজনীয় পূজার উপচার ও উপকরণ' : 'Items Required'}</span>
-            </div>
-            <span className="text-[9.5px] sm:text-[10px] font-mono font-bold text-[#E7C878] px-2.5 py-0.5 rounded-full bg-[#120B09] border border-[#E7C878]/30 shadow-xs">
-              {language === 'bn' ? `${ritual.itemsNeededBn.length}টি উপকরণ` : `${ritual.itemsNeededBn.length} items`}
-            </span>
+          <div className="flex items-center gap-1.5 pb-2 border-b border-[#FFFDF8]/8 text-xs font-bold text-[#E7C878] uppercase tracking-wider">
+            <Layers className="w-3.5 h-3.5 text-[#E7C878]" />
+            <span>{language === 'bn' ? 'প্রয়োজনীয় পূজার উপচার ও উপকরণ' : 'Items Required'}</span>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-2.5">
