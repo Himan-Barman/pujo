@@ -193,8 +193,8 @@ export const RadioSection: React.FC = () => {
               </span>
             </div>
 
-            {/* Vertical Day Navigation (Horizontal scroll on mobile) with generous padding */}
-            <div className="flex lg:flex-col gap-2 overflow-x-auto lg:overflow-visible no-scrollbar p-3 sm:p-3.5 rounded-[30px] bg-[#1A1210]/60 backdrop-blur-xl border border-[#FFFDF8]/10 shadow-lg">
+            {/* Day Navigation (Horizontal sleek pill chips on mobile, Vertical cards on desktop) */}
+            <div className="flex lg:flex-col gap-2 overflow-x-auto lg:overflow-visible no-scrollbar p-2 sm:p-2.5 lg:p-3.5 rounded-2xl lg:rounded-[30px] bg-[#1A1210]/60 backdrop-blur-xl border border-[#FFFDF8]/10 shadow-lg">
               {DAY_TABS.map((tab) => {
                 const isActive = selectedDay === tab.id;
                 return (
@@ -203,16 +203,18 @@ export const RadioSection: React.FC = () => {
                     type="button"
                     onClick={() => setSelectedDay(tab.id)}
                     className={cn(
-                      'w-full text-left p-3 sm:p-3.5 rounded-[20px] transition-all duration-200 flex items-center justify-between gap-3 cursor-pointer select-none active:scale-[0.98] flex-shrink-0 lg:flex-shrink',
+                      'text-left transition-all duration-200 flex items-center justify-between gap-2.5 cursor-pointer select-none active:scale-[0.98] flex-shrink-0 lg:flex-shrink',
+                      'px-3.5 py-2 rounded-full lg:p-3.5 lg:rounded-[20px]',
                       isActive
                         ? 'bg-[#A61B1B] text-[#FFFDF8] shadow-md border border-[#E7C878]/30'
-                        : 'hover:bg-[#FFFDF8]/8 text-[#FFF8EA]/80 hover:text-[#FFF8EA]'
+                        : 'hover:bg-[#FFFDF8]/8 text-[#FFF8EA]/80 hover:text-[#FFF8EA] border border-transparent'
                     )}
                   >
-                    <div className="flex items-center gap-3 min-w-0">
+                    <div className="flex items-center gap-2.5 lg:gap-3 min-w-0">
+                      {/* Icon: Hidden on mobile, visible on desktop */}
                       <div
                         className={cn(
-                          'w-8 h-8 rounded-[12px] flex items-center justify-center flex-shrink-0 border',
+                          'hidden lg:flex w-8 h-8 rounded-[12px] items-center justify-center flex-shrink-0 border',
                           isActive
                             ? 'bg-[#FFFDF8]/20 border-[#FFFDF8]/30 text-[#FFF8EA]'
                             : 'bg-[#FFFDF8]/8 border-[#FFFDF8]/10 text-[#E7C878]'
@@ -220,13 +222,16 @@ export const RadioSection: React.FC = () => {
                       >
                         {renderDayIcon(tab.iconType, 'w-4 h-4')}
                       </div>
+
                       <div className="min-w-0">
-                        <h4 className="text-sm font-bold font-serif leading-tight truncate">
+                        {/* Heading */}
+                        <h4 className="text-xs sm:text-sm font-bold font-serif leading-tight whitespace-nowrap lg:whitespace-normal truncate">
                           {language === 'bn' ? tab.titleBn : tab.titleEn}
                         </h4>
+                        {/* Sub Heading: Hidden on mobile, visible on desktop */}
                         <p
                           className={cn(
-                            'text-[10px] truncate mt-0.5',
+                            'hidden lg:block text-[10px] truncate mt-0.5',
                             isActive ? 'text-[#FFFDF8]/80' : 'text-[#FFF8EA]/50'
                           )}
                         >
@@ -235,6 +240,7 @@ export const RadioSection: React.FC = () => {
                       </div>
                     </div>
 
+                    {/* Count Badge */}
                     <div className="flex items-center gap-1.5 flex-shrink-0">
                       <span
                         className={cn(
@@ -247,7 +253,7 @@ export const RadioSection: React.FC = () => {
                       <ChevronRight
                         className={cn(
                           'w-4 h-4 transition-transform hidden lg:block',
-                          isActive ? 'text-[#FFF8EA] translate-x-0.5' : 'text-[#FFF8EA]/30'
+                          isActive ? 'text-[#FFFDF8] translate-x-0.5' : 'text-[#FFF8EA]/30'
                         )}
                       />
                     </div>
@@ -260,32 +266,23 @@ export const RadioSection: React.FC = () => {
           {/* ═══════════════════════════════════════════════════════════════ */}
           {/* RIGHT CONTENT: Selected Day Songs & Audio Controls              */}
           {/* ═══════════════════════════════════════════════════════════════ */}
-          <div className="lg:col-span-8 space-y-4">
+          <div className="lg:col-span-8 space-y-3 sm:space-y-4">
 
-            {/* Day Header Section (Box removed on mobile, floating cleanly on canvas) */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3.5 sm:gap-4 p-1 sm:p-5 md:p-6 sm:agomoni-card sm:shadow-xl">
-              <div className="flex items-center gap-3 sm:gap-3.5">
-                <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-[16px] sm:rounded-[18px] bg-gradient-to-br from-[#A61B1B] to-[#C99A3D] p-0.5 shadow-md flex items-center justify-center flex-shrink-0">
-                  <div className="w-full h-full rounded-[14px] sm:rounded-[16px] bg-[#1A1210]/90 backdrop-blur-md flex items-center justify-center text-[#E7C878]">
-                    {renderDayIcon(activeTab.iconType, 'w-5 h-5 sm:w-6 sm:h-6')}
-                  </div>
-                </div>
-                <div>
-                  <h3 className="text-xl sm:text-2xl font-bold font-serif text-[#FFF8EA]">
-                    {language === 'bn' ? activeTab.titleBn : activeTab.titleEn}
-                  </h3>
-                  <p className="text-xs text-[#E7C878] mt-0.5">
-                    {language === 'bn' ? activeTab.subtitleBn : activeTab.subtitleEn}
-                  </p>
-                </div>
+            {/* Action Controls Bar */}
+            <div className="flex items-center justify-between gap-2 px-1">
+              <div className="hidden sm:flex items-center gap-2 text-xs font-serif font-bold text-[#E7C878]">
+                <span>{language === 'bn' ? activeTab.titleBn : activeTab.titleEn}</span>
+                <span className="text-[#FFF8EA]/30">•</span>
+                <span className="text-[11px] text-[#FFF8EA]/60 font-sans font-normal">
+                  {filteredTracks.length} {language === 'bn' ? 'টি গান' : 'tracks'}
+                </span>
               </div>
 
-              {/* Action Buttons: Floating Capsules */}
-              <div className="flex items-center gap-2 flex-wrap sm:flex-nowrap">
+              <div className="flex items-center gap-2 w-full sm:w-auto justify-start sm:justify-end flex-wrap sm:flex-nowrap">
                 <button
                   type="button"
                   onClick={handlePlayFirstInList}
-                  className="apple-btn-primary px-5 py-2.5 text-xs flex items-center gap-1.5 cursor-pointer shadow-md active:scale-95 flex-shrink-0"
+                  className="apple-btn-primary px-5 py-2 text-xs flex items-center gap-1.5 cursor-pointer shadow-md active:scale-95 flex-shrink-0"
                 >
                   <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
                   <span>{language === 'bn' ? 'সব চালান' : 'Play All'}</span>
