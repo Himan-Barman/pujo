@@ -282,7 +282,7 @@ export const MobileNavigation: React.FC = () => {
           isPujaMode && 'border-[#C99A3D]/40 bg-[#171A1B]/95'
         )}
       >
-        <div className="max-w-md mx-auto grid grid-cols-5 items-center justify-around gap-1">
+        <div className="max-w-md mx-auto grid grid-cols-5 items-center justify-around gap-1 relative">
           {/* Primary Nav Items: Home, Calendar, Radio, Anjali */}
           {PRIMARY_BOTTOM_NAV.map((item) => {
             const Icon = item.icon;
@@ -296,19 +296,20 @@ export const MobileNavigation: React.FC = () => {
                 key={item.id}
                 href={item.href}
                 className={cn(
-                  'relative flex flex-col items-center justify-center py-1.5 px-1 rounded-2xl transition-all duration-200 select-none cursor-pointer active:scale-90',
+                  'relative flex flex-col items-center justify-center py-1.5 px-1 rounded-full transition-all duration-200 select-none cursor-pointer active:scale-95',
                   isActive ? 'text-[#FFFDF8]' : 'text-[#FFF8EA]/60 hover:text-[#FFF8EA]'
                 )}
               >
-                {/* Active Glowing Pill Background */}
+                {/* Active Capsule Shape Highlighter with Ultra-Smooth Spring Transition */}
                 {isActive && (
                   <motion.div
-                    layoutId="mobile-bottom-active-pill"
-                    className="absolute inset-0 bg-gradient-to-b from-[#A61B1B] to-[#741313] rounded-2xl shadow-sm -z-10 border border-[#E7C878]/40"
+                    layoutId="mobile-bottom-capsule"
+                    className="absolute inset-x-1 inset-y-0.5 rounded-full bg-gradient-to-r from-[#A61B1B] via-[#941717] to-[#741313] shadow-[0_2px_14px_rgba(166,27,27,0.55)] -z-10 border border-[#E7C878]/55"
                     transition={{
                       type: 'spring',
-                      stiffness: 420,
-                      damping: 32,
+                      stiffness: 360,
+                      damping: 28,
+                      mass: 0.7,
                     }}
                   />
                 )}
@@ -339,7 +340,7 @@ export const MobileNavigation: React.FC = () => {
             type="button"
             onClick={() => setIsMoreDrawerOpen(true)}
             className={cn(
-              'relative flex flex-col items-center justify-center py-1.5 px-1 rounded-2xl transition-all duration-200 select-none cursor-pointer active:scale-90',
+              'relative flex flex-col items-center justify-center py-1.5 px-1 rounded-full transition-all duration-200 select-none cursor-pointer active:scale-95',
               isMoreActive || isMoreDrawerOpen
                 ? 'text-[#FFFDF8]'
                 : 'text-[#FFF8EA]/60 hover:text-[#FFF8EA]'
@@ -347,15 +348,16 @@ export const MobileNavigation: React.FC = () => {
             aria-label="More Puja features and experiences"
             aria-expanded={isMoreDrawerOpen}
           >
-            {/* Active Pill when on Culture, Bhog, Gallery, Bijoya or Drawer Open */}
+            {/* Active Capsule Shape Highlighter with Ultra-Smooth Spring Transition */}
             {(isMoreActive || isMoreDrawerOpen) && (
               <motion.div
-                layoutId="mobile-bottom-active-pill"
-                className="absolute inset-0 bg-gradient-to-b from-[#A61B1B] to-[#741313] rounded-2xl shadow-sm -z-10 border border-[#E7C878]/40"
+                layoutId="mobile-bottom-capsule"
+                className="absolute inset-x-1 inset-y-0.5 rounded-full bg-gradient-to-r from-[#A61B1B] via-[#941717] to-[#741313] shadow-[0_2px_14px_rgba(166,27,27,0.55)] -z-10 border border-[#E7C878]/55"
                 transition={{
                   type: 'spring',
-                  stiffness: 420,
-                  damping: 32,
+                  stiffness: 360,
+                  damping: 28,
+                  mass: 0.7,
                 }}
               />
             )}
