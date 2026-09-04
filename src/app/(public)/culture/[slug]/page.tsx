@@ -48,23 +48,33 @@ export default function CultureDetailPage({ params }: CultureDetailPageProps) {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-12">
-      {/* Top Header & Navigation Breadcrumb Bar */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      {/* Top Header & Navigation Breadcrumb Bar (Mobile: Icon-only Left & Right | Desktop: Full Buttons) */}
+      <div className="flex items-center justify-between gap-3 w-full">
+        {/* Left: Back Button */}
         <Link
           href="/culture"
-          className="apple-btn-secondary px-5 py-2.5 text-xs flex items-center gap-2 cursor-pointer shadow-xs active:scale-95 w-fit"
+          aria-label={language === 'bn' ? 'সকল ঐতিহ্য নিবন্ধে ফিরে যান' : 'Back to Heritage Archives'}
+          className="w-10 h-10 sm:w-auto sm:px-5 sm:py-2.5 rounded-full bg-[#1A1210]/80 backdrop-blur-xl border border-[#FFFDF8]/15 text-[#E7C878] hover:text-[#FFF8EA] hover:border-[#E7C878]/50 text-xs font-bold flex items-center justify-center gap-2 cursor-pointer shadow-md active:scale-95 transition-all"
         >
-          <ArrowLeft className="w-4 h-4" />
-          <span>{language === 'bn' ? 'সকল ঐতিহ্য নিবন্ধে ফিরে যান' : 'Back to Heritage Archives'}</span>
+          <ArrowLeft className="w-4 h-4 text-[#E7C878] flex-shrink-0" />
+          <span className="hidden sm:inline">
+            {language === 'bn' ? 'সকল ঐতিহ্য নিবন্ধে ফিরে যান' : 'Back to Heritage Archives'}
+          </span>
         </Link>
 
+        {/* Right: Share Button */}
         <button
           type="button"
           onClick={handleShare}
-          className="apple-btn-secondary px-5 py-2.5 text-xs flex items-center gap-2 cursor-pointer shadow-xs active:scale-95 w-fit"
+          aria-label={language === 'bn' ? 'নিবন্ধ শেয়ার করুন' : 'Share Article'}
+          className="w-10 h-10 sm:w-auto sm:px-5 sm:py-2.5 rounded-full bg-[#1A1210]/80 backdrop-blur-xl border border-[#FFFDF8]/15 text-[#E7C878] hover:text-[#FFF8EA] hover:border-[#E7C878]/50 text-xs font-bold flex items-center justify-center gap-2 cursor-pointer shadow-md active:scale-95 transition-all"
         >
-          {copied ? <Check className="w-3.5 h-3.5 text-green-400" /> : <Share2 className="w-3.5 h-3.5" />}
-          <span>
+          {copied ? (
+            <Check className="w-4 h-4 text-green-400 flex-shrink-0" />
+          ) : (
+            <Share2 className="w-4 h-4 text-[#E7C878] flex-shrink-0" />
+          )}
+          <span className="hidden sm:inline">
             {copied
               ? language === 'bn'
                 ? 'লিঙ্ক কপি হয়েছে!'
