@@ -23,15 +23,15 @@ interface MantraExplorerProps {
   mantras: MantraItem[];
 }
 
-const CATEGORY_TAGS: Record<string, { bn: string; en: string }> = {
-  'durga-pranam': { bn: 'নিত্য প্রণাম', en: 'Daily Pranam' },
-  'ashtami-pushpanjali-3step': { bn: 'অষ্টমী পুষ্পাঞ্জলি', en: 'Maha Pushpanjali' },
+const SHORT_TITLES: Record<string, { bn: string; en: string }> = {
+  'durga-pranam': { bn: 'প্রণাম মন্ত্র', en: 'Pranam Mantra' },
+  'ashtami-pushpanjali-3step': { bn: 'অষ্টমী পুষ্পাঞ্জলি', en: 'Pushpanjali' },
   'sandhi-stotram': { bn: 'সন্ধিপূজা স্তোত্র', en: 'Sandhi Stotram' },
-  'mahisasura-mardini-stotram': { bn: 'চণ্ডী স্তোত্র', en: 'Chandi Stotra' },
+  'mahisasura-mardini-stotram': { bn: 'মহিষাসুরমর্দিনী', en: 'Mahishasuramardini' },
   'argala-stotram': { bn: 'অর্গলা স্তোত্র', en: 'Argala Stotram' },
   'durga-dhyan-mantra': { bn: 'ধ্যান মন্ত্র', en: 'Dhyan Mantra' },
-  'aparajita-stotram': { bn: 'অপরাজিতা রক্ষা', en: 'Aparajita Raksha' },
-  'bijoya-shanti-path': { bn: 'বিজয়া শান্তিপাঠ', en: 'Shanti Path' },
+  'aparajita-stotram': { bn: 'অপরাজিতা রক্ষা', en: 'Aparajita Stotra' },
+  'bijoya-shanti-path': { bn: 'শান্তিপাঠ', en: 'Shanti Path' },
 };
 
 export const MantraExplorer: React.FC<MantraExplorerProps> = ({ mantras }) => {
@@ -94,12 +94,12 @@ export const MantraExplorer: React.FC<MantraExplorerProps> = ({ mantras }) => {
 
   return (
     <div className="space-y-10">
-      {/* 1. Horizontal Mantra Selector Bar with Rounded Corner Frame & Smooth Controls */}
+      {/* 1. Horizontal Mantra Selector Bar with Rounded Frame & Preserved Edge Blur */}
       <div className="relative w-full rounded-[28px] sm:rounded-[32px] p-1.5 sm:p-2 bg-[#120B09]/60 backdrop-blur-xl border border-[#FFFDF8]/10 shadow-xl overflow-hidden group/nav select-none">
         {/* Scroll Track with Progressive Edge Mask */}
         <div
           ref={scrollRef}
-          className="w-full overflow-x-auto no-scrollbar py-2.5 px-4 sm:px-8 flex items-center justify-start gap-3 sm:gap-3.5 scroll-smooth relative z-0"
+          className="w-full overflow-x-auto no-scrollbar py-2.5 px-6 sm:px-12 flex items-center justify-start gap-2.5 sm:gap-3.5 scroll-smooth relative z-0"
           style={{
             maskImage:
               'linear-gradient(to right, transparent 0%, rgba(0,0,0,0.3) 1.5%, rgba(0,0,0,0.8) 4%, black 8%, black 92%, rgba(0,0,0,0.8) 96%, rgba(0,0,0,0.3) 98.5%, transparent 100%)',
@@ -109,7 +109,10 @@ export const MantraExplorer: React.FC<MantraExplorerProps> = ({ mantras }) => {
         >
           {mantras.map((item) => {
             const isSelected = selectedMantraId === item.id;
-            const tag = CATEGORY_TAGS[item.id] || { bn: 'স্তোত্র', en: 'Stotra' };
+            const shortLabel = SHORT_TITLES[item.id] || {
+              bn: item.titleBn,
+              en: item.titleEn,
+            };
 
             return (
               <button
@@ -117,49 +120,18 @@ export const MantraExplorer: React.FC<MantraExplorerProps> = ({ mantras }) => {
                 type="button"
                 onClick={(e) => handleSelectMantra(item.id, e)}
                 className={cn(
-                  'relative flex-shrink-0 px-4 py-3 sm:px-5 sm:py-3.5 rounded-[22px] border transition-all duration-300 text-left flex flex-col justify-between min-w-[155px] sm:min-w-[185px] cursor-pointer active:scale-[0.97]',
+                  'relative flex-shrink-0 transition-all duration-200 text-center flex items-center justify-center gap-2 cursor-pointer select-none active:scale-[0.97]',
+                  'px-4 sm:px-5 py-2.5 sm:py-3 rounded-full border text-xs sm:text-sm font-bold font-serif whitespace-nowrap',
                   isSelected
-                    ? 'bg-gradient-to-b from-[#A61B1B] to-[#6E1111] border-2 border-[#E7C878] text-[#FFFDF8] shadow-[0_4px_24px_rgba(201,154,61,0.35)] scale-[1.03]'
-                    : 'bg-[#1A1210]/85 backdrop-blur-xl border border-[#FFFDF8]/12 text-[#FFF8EA] hover:border-[#E7C878]/50 hover:bg-[#FFFDF8]/[0.08]'
+                    ? 'bg-gradient-to-r from-[#A61B1B] to-[#741313] border-2 border-[#E7C878] text-[#FFFDF8] shadow-[0_4px_22px_rgba(201,154,61,0.35)] scale-[1.02] z-10'
+                    : 'bg-[#1A1210]/80 backdrop-blur-xl border border-[#FFFDF8]/12 text-[#FFF8EA]/80 hover:text-[#FFF8EA] hover:border-[#E7C878]/50 hover:bg-[#FFFDF8]/[0.08]'
                 )}
               >
-                {/* Top Tag & Active Icon */}
-                <div className="flex items-center justify-between gap-1.5 mb-1.5">
-                  <span
-                    className={cn(
-                      'text-[10px] sm:text-[11px] font-bold font-mono px-2.5 py-0.5 rounded-full whitespace-nowrap',
-                      isSelected
-                        ? 'bg-[#120B09]/80 text-[#E7C878] border border-[#E7C878]/40 shadow-xs'
-                        : 'bg-[#FFFDF8]/[0.06] text-[#FFF8EA]/70'
-                    )}
-                  >
-                    {language === 'bn' ? tag.bn : tag.en}
-                  </span>
+                {isSelected && (
+                  <Sparkles className="w-3.5 h-3.5 text-[#E7C878] animate-pulse flex-shrink-0" />
+                )}
 
-                  {isSelected && (
-                    <Sparkles className="w-3.5 h-3.5 text-[#E7C878] animate-pulse" />
-                  )}
-                </div>
-
-                {/* Mantra Title */}
-                <span
-                  className={cn(
-                    'text-sm sm:text-base font-bold font-serif leading-snug tracking-normal block truncate',
-                    isSelected ? 'text-[#FFFDF8]' : 'text-[#E7C878] group-hover:text-[#FFF8EA]'
-                  )}
-                >
-                  {language === 'bn' ? item.titleBn : item.titleEn}
-                </span>
-
-                {/* Subtitle / Deity */}
-                <span
-                  className={cn(
-                    'text-[10px] sm:text-[11px] mt-1 line-clamp-1 font-sans font-medium',
-                    isSelected ? 'text-[#FFFDF8]/90' : 'text-[#FFF8EA]/50'
-                  )}
-                >
-                  {language === 'bn' ? item.deityBn : item.deityEn}
-                </span>
+                <span>{language === 'bn' ? shortLabel.bn : shortLabel.en}</span>
               </button>
             );
           })}
