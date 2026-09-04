@@ -3,15 +3,24 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { useUIStore } from '@/stores/ui-store';
 import { BengaliPattern } from '@/components/shared/bengali-pattern';
 import { MAIN_NAV_ITEMS } from '@/config/navigation';
+import { cn } from '@/lib/utils';
 
 export const SiteFooter: React.FC = () => {
+  const pathname = usePathname();
+  const isHomePage = pathname === '/';
   const language = useUIStore((state) => state.language);
 
   return (
-    <footer className="relative bg-[#1A1210]/60 backdrop-blur-2xl text-[#FFF8EA] pt-12 pb-24 sm:pt-16 sm:pb-24 overflow-hidden border-t border-[#FFFDF8]/10">
+    <footer
+      className={cn(
+        'relative bg-[#1A1210]/60 backdrop-blur-2xl text-[#FFF8EA] pt-12 pb-24 sm:pt-16 sm:pb-24 overflow-hidden border-t border-[#FFFDF8]/10',
+        !isHomePage && 'hidden sm:block'
+      )}
+    >
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
           {/* Authentic Clean Agomoni Logo Emblem (Bilingual) */}
