@@ -115,7 +115,7 @@ export default function RootLayout({
           <MobileNavigation />
 
           {/* Main Content Area with Fixed Header Offset */}
-          <main className="relative z-10 flex-1 w-full max-w-[100vw] overflow-x-hidden pt-[52px] sm:pt-16 pb-20">{children}</main>
+          <main className="relative z-10 flex-1 w-full max-w-[100vw] overflow-x-hidden pt-[52px] sm:pt-16 pb-24 lg:pb-16">{children}</main>
 
           {/* Global Persistent Bottom Audio Player */}
           <PersistentAudioPlayer />

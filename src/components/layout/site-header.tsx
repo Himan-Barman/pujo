@@ -9,14 +9,12 @@ import { useUIStore } from '@/stores/ui-store';
 import { PRIMARY_NAV_ITEMS, MORE_NAV_ITEMS } from '@/config/navigation';
 import { LanguageToggle } from '@/components/shared/language-toggle';
 import { PujaModeToggle } from '@/components/shared/puja-mode-toggle';
-import { Menu, X, ChevronDown, BookOpen, Utensils, Image as ImageIcon, Heart, Bot } from 'lucide-react';
+import { ChevronDown, BookOpen, Utensils, Image as ImageIcon, Heart, Bot } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export const SiteHeader: React.FC = () => {
   const pathname = usePathname();
   const language = useUIStore((state) => state.language);
-  const isMobileMenuOpen = useUIStore((state) => state.isMobileMenuOpen);
-  const setMobileMenuOpen = useUIStore((state) => state.setMobileMenuOpen);
   const isPujaMode = useUIStore((state) => state.isPujaMode);
 
   const [isMoreOpen, setIsMoreOpen] = useState(false);
@@ -70,7 +68,7 @@ export const SiteHeader: React.FC = () => {
           href="/"
           className="flex items-center h-[52px] sm:h-16 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C99A3D] transition-transform duration-200 active:scale-[0.97]"
         >
-          {/* Entire Nav Height Clean Sacred Emblem */}
+          {/* Sacred Emblem Logo */}
           <div className="h-[52px] sm:h-16 w-32 sm:w-48 md:w-56 relative flex-shrink-0">
             <Image
               src={language === 'bn' ? '/images/logo/agomoni-logo-bn.jpg' : '/images/logo/agomoni-logo-en.jpg'}
@@ -258,42 +256,10 @@ export const SiteHeader: React.FC = () => {
           </div>
         </nav>
 
-        {/* Action Controls: Puja Mode (desktop), Language Selector (desktop), Mobile Hamburger */}
+        {/* Action Controls: Puja Mode (Icon-Only) & Language Selector (With Popup Dialog) */}
         <div className="flex items-center gap-2 sm:gap-3">
-          <PujaModeToggle className="hidden sm:inline-flex" />
-          <LanguageToggle className="hidden lg:inline-flex" />
-
-          {/* Mobile menu button with smooth morphing icon animation */}
-          <button
-            type="button"
-            onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden relative w-9 h-9 sm:w-10 sm:h-10 rounded-[14px] sm:rounded-[16px] bg-[#FFFDF8]/8 backdrop-blur-md border border-[#FFFDF8]/10 text-[#FFF8EA] hover:text-[#E7C878] focus:outline-none shadow-xs active:scale-95 transition-all flex items-center justify-center cursor-pointer"
-            aria-label="Toggle navigation menu"
-          >
-            <AnimatePresence mode="wait" initial={false}>
-              {isMobileMenuOpen ? (
-                <motion.div
-                  key="close-icon"
-                  initial={{ rotate: -90, opacity: 0, scale: 0.8 }}
-                  animate={{ rotate: 0, opacity: 1, scale: 1 }}
-                  exit={{ rotate: 90, opacity: 0, scale: 0.8 }}
-                  transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-                >
-                  <X className="w-5 h-5 text-[#E7C878]" />
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="menu-icon"
-                  initial={{ rotate: 90, opacity: 0, scale: 0.8 }}
-                  animate={{ rotate: 0, opacity: 1, scale: 1 }}
-                  exit={{ rotate: -90, opacity: 0, scale: 0.8 }}
-                  transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-                >
-                  <Menu className="w-5 h-5 text-[#FFF8EA]" />
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </button>
+          <PujaModeToggle />
+          <LanguageToggle />
         </div>
       </div>
     </header>

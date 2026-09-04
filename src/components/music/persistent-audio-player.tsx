@@ -120,7 +120,7 @@ export const PersistentAudioPlayer: React.FC = () => {
         exit={{ y: 80, opacity: 0 }}
         transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
         aria-label="Agomoni Interactive Audio Player"
-        className="fixed bottom-0 left-0 right-0 z-50 bg-[#1A1210]/95 backdrop-blur-3xl border-t border-[#E7C878]/30 text-[#FFF8EA] shadow-[0_-12px_45px_rgba(0,0,0,0.6)] select-none"
+        className="fixed bottom-[56px] sm:bottom-[58px] lg:bottom-0 left-0 right-0 z-30 bg-[#1A1210]/98 backdrop-blur-3xl border-t border-[#E7C878]/30 text-[#FFF8EA] shadow-[0_-12px_45px_rgba(0,0,0,0.6)] select-none"
       >
         {/* ═══════════════════════════════════════════════════════════════ */}
         {/* INTERACTIVE SEEK / SCRUBBER BAR (Click Anywhere to Play There)  */}

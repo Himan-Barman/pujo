@@ -214,7 +214,9 @@ export const FloatingAIChat: React.FC = () => {
     ]);
   };
 
-  const bottomClass = currentTrack ? 'bottom-24 sm:bottom-28' : 'bottom-6 sm:bottom-8';
+  const bottomClass = currentTrack
+    ? 'bottom-[130px] sm:bottom-[138px] lg:bottom-28'
+    : 'bottom-20 sm:bottom-22 lg:bottom-8';
   const quickPrompts = language === 'bn' ? QUICK_PROMPTS_BN : QUICK_PROMPTS_EN;
 
   return (
