@@ -1,8 +1,11 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { usePujaDay } from '@/hooks/use-puja-day';
 import { useUIStore } from '@/stores/ui-store';
+import { PUJA_DAYS } from '@/data/puja-days';
+import { PujaDayId } from '@/types/puja';
 import { RITUALS_DATA } from '@/data/rituals';
 import { PujaDaySelector } from './puja-day-selector';
 import { RitualCard } from './ritual-card';
@@ -22,6 +25,17 @@ import {
 import { cn } from '@/lib/utils';
 
 export const PujaCalendar: React.FC = () => {
+  const searchParams = useSearchParams();
+  const dayParam = searchParams.get('day');
+  const setSelectedPujaDay = useUIStore((state) => state.setSelectedPujaDay);
+
+  // Sync with URL query parameter on load or change
+  useEffect(() => {
+    if (dayParam && PUJA_DAYS.some((d) => d.id === dayParam)) {
+      setSelectedPujaDay(dayParam as PujaDayId);
+    }
+  }, [dayParam, setSelectedPujaDay]);
+
   const { currentDay, selectedDayId } = usePujaDay();
   const language = useUIStore((state) => state.language);
   const selectedPanjika = useUIStore((state) => state.selectedPanjika);

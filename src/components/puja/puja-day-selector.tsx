@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useUIStore } from '@/stores/ui-store';
 import { PUJA_DAYS } from '@/data/puja-days';
 import { PujaDayId } from '@/types/puja';
@@ -25,11 +25,27 @@ export const PujaDaySelector: React.FC<PujaDaySelectorProps> = ({ className }) =
   const selectedPujaDay = useUIStore((state) => state.selectedPujaDay);
   const setSelectedPujaDay = useUIStore((state) => state.setSelectedPujaDay);
   const language = useUIStore((state) => state.language);
+  const activeBtnRef = useRef<HTMLButtonElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  // Auto-scroll the selected day pill into center view smoothly
+  useEffect(() => {
+    if (activeBtnRef.current && scrollContainerRef.current) {
+      activeBtnRef.current.scrollIntoView({
+        behavior: 'smooth',
+        inline: 'center',
+        block: 'nearest',
+      });
+    }
+  }, [selectedPujaDay]);
 
   return (
     <div className={cn('w-full select-none', className)}>
       {/* Horizontal Day Selector with Clean Tithi Only */}
-      <div className="w-full overflow-x-auto no-scrollbar py-2 px-1 flex items-center justify-start lg:justify-center gap-2.5 sm:gap-3.5">
+      <div
+        ref={scrollContainerRef}
+        className="w-full overflow-x-auto no-scrollbar py-2 px-1 flex items-center justify-start lg:justify-center gap-2.5 sm:gap-3.5 scroll-smooth"
+      >
         {PUJA_DAYS.map((day) => {
           const isSelected = selectedPujaDay === day.id;
           const label = DAY_LABELS[day.id] || {
@@ -44,6 +60,7 @@ export const PujaDaySelector: React.FC<PujaDaySelectorProps> = ({ className }) =
           return (
             <button
               key={day.id}
+              ref={isSelected ? activeBtnRef : null}
               type="button"
               onClick={() => setSelectedPujaDay(day.id as PujaDayId)}
               className={cn(
@@ -97,3 +114,4 @@ export const PujaDaySelector: React.FC<PujaDaySelectorProps> = ({ className }) =
     </div>
   );
 };
+
