@@ -221,13 +221,13 @@ export const SiteHeader: React.FC = () => {
                           href={item.href}
                           onClick={() => setIsMoreOpen(false)}
                           className={cn(
-                            'p-3 rounded-[22px] flex items-center gap-3.5 transition-all duration-150 text-left group active:scale-[0.98]',
+                            'px-3.5 py-2.5 rounded-full flex items-center gap-3.5 transition-all duration-150 text-left group active:scale-[0.98]',
                             isActive
                               ? 'bg-gradient-to-r from-[#A61B1B]/40 to-[#741313]/30 border border-[#E7C878]/45 text-[#FFFDF8] shadow-xs'
                               : 'hover:bg-[#FFFDF8]/[0.08] hover:border-[#E7C878]/30 border border-transparent text-[#FFF8EA]'
                           )}
                         >
-                          <div className="w-10 h-10 rounded-[16px] bg-[#1C120F] border border-[#E7C878]/25 flex items-center justify-center flex-shrink-0 group-hover:scale-105 group-hover:border-[#E7C878]/50 transition-all shadow-xs">
+                          <div className="w-10 h-10 rounded-full bg-[#1C120F] border border-[#E7C878]/25 flex items-center justify-center flex-shrink-0 group-hover:scale-105 group-hover:border-[#E7C878]/50 transition-all shadow-xs">
                             {getMoreIcon(item.iconName)}
                           </div>
 

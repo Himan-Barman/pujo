@@ -182,7 +182,7 @@ export const MobileNavigation: React.FC = () => {
               {/* Header */}
               <div className="flex items-center justify-between pb-3.5 border-b border-[#FFFDF8]/12 mb-4">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-9 h-9 rounded-2xl bg-[#A61B1B]/30 border border-[#E7C878]/30 flex items-center justify-center">
+                  <div className="w-9 h-9 rounded-full bg-[#A61B1B]/30 border border-[#E7C878]/30 flex items-center justify-center">
                     <LayoutGrid className="w-4 h-4 text-[#E7C878]" />
                   </div>
                   <div>
@@ -205,7 +205,7 @@ export const MobileNavigation: React.FC = () => {
                 </button>
               </div>
 
-              {/* 4 Feature Option Cards (Culture, Bhog, Gallery, Bijoya) */}
+              {/* 4 Feature Option Bars (Culture, Bhog, Gallery, Bijoya) with matching Capsule Radius */}
               <div className="grid grid-cols-1 gap-2.5">
                 {MORE_EXPERIENCES.map((item) => {
                   const Icon = item.icon;
@@ -217,16 +217,16 @@ export const MobileNavigation: React.FC = () => {
                       href={item.href}
                       onClick={() => setIsMoreDrawerOpen(false)}
                       className={cn(
-                        'p-3.5 rounded-2xl flex items-center justify-between gap-3.5 transition-all duration-200 border group active:scale-[0.98]',
+                        'px-3.5 py-3 rounded-full flex items-center justify-between gap-3.5 transition-all duration-200 border group active:scale-[0.98]',
                         isActive
-                          ? 'bg-gradient-to-r from-[#A61B1B]/40 to-[#741313]/30 border-[#E7C878] text-[#FFFDF8] shadow-md'
+                          ? 'bg-gradient-to-r from-[#A61B1B]/50 via-[#8C1616]/40 to-[#741313]/35 border-[#E7C878] text-[#FFFDF8] shadow-md'
                           : 'bg-[#1C120F] border-[#FFFDF8]/10 hover:border-[#E7C878]/40 hover:bg-[#241713] text-[#FFF8EA]'
                       )}
                     >
-                      <div className="flex items-center gap-3.5 min-w-0 flex-1">
+                      <div className="flex items-center gap-3.5 min-w-0 flex-1 pl-0.5">
                         <div
                           className={cn(
-                            'w-11 h-11 rounded-2xl bg-[#140D0B] border border-[#FFFDF8]/15 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform shadow-xs',
+                            'w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#140D0B] border border-[#FFFDF8]/15 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform shadow-xs',
                             isActive && 'border-[#E7C878]/60 bg-[#A61B1B]/20'
                           )}
                         >
@@ -250,7 +250,9 @@ export const MobileNavigation: React.FC = () => {
                         </div>
                       </div>
 
-                      <ChevronRight className="w-4 h-4 text-[#FFF8EA]/40 group-hover:text-[#E7C878] group-hover:translate-x-0.5 transition-all flex-shrink-0" />
+                      <div className="pr-1.5 flex items-center justify-center">
+                        <ChevronRight className="w-4 h-4 text-[#FFF8EA]/40 group-hover:text-[#E7C878] group-hover:translate-x-0.5 transition-all flex-shrink-0" />
+                      </div>
                     </Link>
                   );
                 })}
