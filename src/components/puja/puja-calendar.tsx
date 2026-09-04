@@ -202,22 +202,18 @@ export const PujaCalendar: React.FC = () => {
             </div>
 
             {/* Astronomical Tithi Window Box (Reflects Active Selected Panjika) */}
-            <div className="p-5 sm:p-6 rounded-[24px] bg-[#FFFDF8]/[0.04] border border-[#E7C878]/25 space-y-4 shadow-xs">
-              <div className="flex items-center justify-between gap-2 pb-2 border-b border-[#FFFDF8]/10">
-                <div className="flex items-center gap-2 text-xs font-bold text-[#E7C878] uppercase tracking-wider">
-                  <Clock className="w-4 h-4 text-[#E7C878]" />
-                  <span>
-                    {language === 'bn'
-                      ? `${selectedPanjika === 'benimadhab' ? 'বেণীমাধব শীল' : 'গুপ্তপ্রেস'} পঞ্জিকানুযায়ী তিথি সময়সীমা`
-                      : `${selectedPanjika === 'benimadhab' ? 'Benimadhab Seal' : 'Gupta Press'} Tithi Window`}
-                  </span>
-                </div>
-                <span className="text-[11px] text-[#FFF8EA]/60 font-mono">
-                  {language === 'bn' ? currentDay.tithiBn : currentDay.tithiEn}
+            <div className="p-4 sm:p-6 rounded-[24px] bg-[#FFFDF8]/[0.04] border border-[#E7C878]/25 space-y-3.5 sm:space-y-4 shadow-xs">
+              {/* Clean Header: Removed redundant tithi text for uncrowded mobile display */}
+              <div className="flex items-center gap-2 pb-2.5 border-b border-[#FFFDF8]/10 text-xs sm:text-sm font-bold text-[#E7C878] uppercase tracking-wider font-serif">
+                <Clock className="w-4 h-4 text-[#E7C878] flex-shrink-0" />
+                <span>
+                  {language === 'bn'
+                    ? `${selectedPanjika === 'benimadhab' ? 'বেণীমাধব শীল' : 'গুপ্তপ্রেস'} পঞ্জিকানুযায়ী তিথি সময়সীমা`
+                    : `${selectedPanjika === 'benimadhab' ? 'Benimadhab Seal' : 'Gupta Press'} Tithi Window`}
                 </span>
               </div>
 
-              {/* Start & End Dual Cards */}
+              {/* Start & End Dual Cards (Kept as is) */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="p-3.5 rounded-[16px] bg-[#120B09] border border-[#E7C878]/25 flex items-center justify-between gap-2">
                   <div className="space-y-0.5">
@@ -244,14 +240,16 @@ export const PujaCalendar: React.FC = () => {
                 </div>
               </div>
 
-              {/* Auspicious Yog Time */}
+              {/* Auspicious Yog Time (Properly structured for mobile & desktop) */}
               {currentSchedule.amritaYogaBn && (
-                <div className="pt-2 border-t border-[#FFFDF8]/8 flex items-center gap-2 text-xs">
-                  <Sparkles className="w-3.5 h-3.5 text-[#E7C878] flex-shrink-0" />
-                  <span className="text-[#D4AA50] font-bold">
-                    {language === 'bn' ? 'অমৃতযোগ / শুভ লগ্ন:' : 'Amrita Yoga / Auspicious Window:'}
-                  </span>
-                  <span className="text-[#FFF8EA]/90 font-mono">
+                <div className="pt-2.5 border-t border-[#FFFDF8]/10 flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 text-xs leading-relaxed">
+                  <div className="inline-flex items-center gap-1.5 flex-shrink-0">
+                    <Sparkles className="w-3.5 h-3.5 text-[#E7C878] flex-shrink-0" />
+                    <span className="text-[#E7C878] font-bold font-serif whitespace-nowrap">
+                      {language === 'bn' ? 'অমৃতযোগ / শুভলগ্ন:' : 'Amrita Yoga / Auspicious Window:'}
+                    </span>
+                  </div>
+                  <span className="text-[#FFF8EA]/90 font-sans font-medium pl-5 sm:pl-0">
                     {language === 'bn' ? currentSchedule.amritaYogaBn : currentSchedule.amritaYogaEn}
                   </span>
                 </div>
