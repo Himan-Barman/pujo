@@ -194,22 +194,23 @@ export const MantraExplorer: React.FC<MantraExplorerProps> = ({ mantras }) => {
       <div className="agomoni-card p-4 sm:p-8 lg:p-10 relative overflow-hidden border-2 border-[#E7C878]/35 shadow-2xl bg-gradient-to-b from-[#1C120F] to-[#120B09] space-y-6 sm:space-y-8">
         {/* Top Header & Actions Bar */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 sm:pb-6 border-b border-[#FFFDF8]/10">
-          {/* Title & Deity Meta */}
-          <div className="space-y-1.5">
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 px-3 py-0.5 sm:px-3.5 sm:py-1 rounded-full bg-[#120B09] border border-[#E7C878]/40 text-[#E7C878] text-[11px] sm:text-xs font-bold shadow-xs">
+          {/* Title & Deity Meta (Structured hierarchy) */}
+          <div className="space-y-2">
+            <div>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 sm:px-3.5 sm:py-1 rounded-full bg-[#120B09] border border-[#E7C878]/40 text-[#E7C878] text-[11px] sm:text-xs font-bold shadow-xs">
                 <Sparkles className="w-3.5 h-3.5 text-[#E7C878]" />
                 <span>{language === 'bn' ? selectedMantra.deityBn : selectedMantra.deityEn}</span>
               </span>
-
-              <span className="px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-[#A61B1B]/80 border border-[#E7C878]/40 text-[11px] sm:text-xs font-bold text-[#FFFDF8] shadow-xs">
-                {language === 'bn' ? selectedMantra.purposeBn : selectedMantra.purposeEn}
-              </span>
             </div>
 
-            <h2 className="text-xl sm:text-3xl lg:text-4xl font-extrabold font-serif text-[#FFF8EA] leading-tight pt-1">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-serif text-[#FFF8EA] leading-tight drop-shadow-sm">
               {language === 'bn' ? selectedMantra.titleBn : selectedMantra.titleEn}
             </h2>
+
+            {/* Purpose / Significance Subtitle */}
+            <p className="text-xs sm:text-sm text-[#E9D8C6]/90 font-sans font-medium leading-relaxed max-w-2xl pt-0.5">
+              {language === 'bn' ? selectedMantra.purposeBn : selectedMantra.purposeEn}
+            </p>
           </div>
 
           {/* Right Action Tools: Script Switcher, Audio Chanting & Copy */}
