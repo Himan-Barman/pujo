@@ -383,67 +383,138 @@ export const PujaCalendar: React.FC = () => {
           </p>
         </div>
 
-        {/* Horizontal Capsule Tabs (Clean scrollable pills matching other filters) */}
-        <div className="w-full overflow-x-auto no-scrollbar py-2 px-1 flex items-center justify-start lg:justify-center gap-2.5 sm:gap-3.5 scroll-smooth select-none">
-          <button
-            type="button"
-            onClick={() => setActiveTab('lore')}
-            className={cn(
-              'relative flex-shrink-0 transition-all duration-200 text-center flex items-center justify-center gap-2 cursor-pointer select-none active:scale-[0.97]',
-              'px-4 sm:px-5 py-2.5 sm:py-3 rounded-full border text-xs sm:text-sm font-bold font-serif whitespace-nowrap',
-              activeTab === 'lore'
-                ? 'bg-gradient-to-r from-[#A61B1B] to-[#741313] border-2 border-[#E7C878] text-[#FFFDF8] shadow-[0_4px_22px_rgba(201,154,61,0.35)] scale-[1.02] z-10'
-                : 'bg-[#1A1210]/80 backdrop-blur-xl border border-[#FFFDF8]/12 text-[#FFF8EA]/80 hover:text-[#FFF8EA] hover:border-[#E7C878]/50 hover:bg-[#FFFDF8]/[0.08]'
-            )}
+        {/* Horizontal Capsule Tabs (Unified Capsule Container & Edge Blur) */}
+        <div className="relative w-full rounded-full p-1 sm:p-1.5 bg-[#120B09]/60 backdrop-blur-xl border border-[#FFFDF8]/10 shadow-xl overflow-hidden group/nav select-none">
+          {/* Scroll Track with Progressive Edge Mask */}
+          <div
+            className="w-full overflow-x-auto no-scrollbar py-1 px-4 sm:px-10 flex items-center justify-start lg:justify-center gap-2 sm:gap-3 scroll-smooth relative z-0"
+            style={{
+              maskImage:
+                'linear-gradient(to right, transparent 0%, rgba(0,0,0,0.3) 1.5%, rgba(0,0,0,0.8) 4%, black 8%, black 92%, rgba(0,0,0,0.8) 96%, rgba(0,0,0,0.3) 98.5%, transparent 100%)',
+              WebkitMaskImage:
+                'linear-gradient(to right, transparent 0%, rgba(0,0,0,0.3) 1.5%, rgba(0,0,0,0.8) 4%, black 8%, black 92%, rgba(0,0,0,0.8) 96%, rgba(0,0,0,0.3) 98.5%, transparent 100%)',
+            }}
           >
-            <BookOpen className="w-4 h-4 text-[#E7C878] flex-shrink-0" />
-            <span>{language === 'bn' ? 'তিথি মাহাত্ম্য' : 'Puranic Lore'}</span>
-          </button>
+            <button
+              type="button"
+              onClick={(e) => {
+                setActiveTab('lore');
+                e.currentTarget.scrollIntoView({
+                  behavior: 'smooth',
+                  inline: 'center',
+                  block: 'nearest',
+                });
+              }}
+              className={cn(
+                'relative flex-shrink-0 transition-all duration-200 text-center flex items-center justify-center gap-1.5 cursor-pointer select-none active:scale-[0.97]',
+                'px-3.5 sm:px-5 py-1.5 sm:py-2.5 rounded-full border text-xs sm:text-sm font-bold font-serif whitespace-nowrap',
+                activeTab === 'lore'
+                  ? 'bg-gradient-to-r from-[#A61B1B] to-[#741313] border-2 border-[#E7C878] text-[#FFFDF8] shadow-[0_4px_22px_rgba(201,154,61,0.35)] scale-[1.02] z-10'
+                  : 'bg-[#1A1210]/80 backdrop-blur-xl border border-[#FFFDF8]/12 text-[#FFF8EA]/80 hover:text-[#FFF8EA] hover:border-[#E7C878]/50 hover:bg-[#FFFDF8]/[0.08]'
+              )}
+            >
+              <BookOpen className="w-3.5 h-3.5 text-[#E7C878] flex-shrink-0" />
+              <span>{language === 'bn' ? 'তিথি মাহাত্ম্য' : 'Puranic Lore'}</span>
+            </button>
 
-          <button
-            type="button"
-            onClick={() => setActiveTab('bidhi')}
-            className={cn(
-              'relative flex-shrink-0 transition-all duration-200 text-center flex items-center justify-center gap-2 cursor-pointer select-none active:scale-[0.97]',
-              'px-4 sm:px-5 py-2.5 sm:py-3 rounded-full border text-xs sm:text-sm font-bold font-serif whitespace-nowrap',
-              activeTab === 'bidhi'
-                ? 'bg-gradient-to-r from-[#A61B1B] to-[#741313] border-2 border-[#E7C878] text-[#FFFDF8] shadow-[0_4px_22px_rgba(201,154,61,0.35)] scale-[1.02] z-10'
-                : 'bg-[#1A1210]/80 backdrop-blur-xl border border-[#FFFDF8]/12 text-[#FFF8EA]/80 hover:text-[#FFF8EA] hover:border-[#E7C878]/50 hover:bg-[#FFFDF8]/[0.08]'
-            )}
-          >
-            <CheckCircle2 className="w-4 h-4 text-[#E7C878] flex-shrink-0" />
-            <span>{language === 'bn' ? 'পূজাবিধির ধাপসমূহ' : 'Puja Bidhi Steps'}</span>
-          </button>
+            <button
+              type="button"
+              onClick={(e) => {
+                setActiveTab('bidhi');
+                e.currentTarget.scrollIntoView({
+                  behavior: 'smooth',
+                  inline: 'center',
+                  block: 'nearest',
+                });
+              }}
+              className={cn(
+                'relative flex-shrink-0 transition-all duration-200 text-center flex items-center justify-center gap-1.5 cursor-pointer select-none active:scale-[0.97]',
+                'px-3.5 sm:px-5 py-1.5 sm:py-2.5 rounded-full border text-xs sm:text-sm font-bold font-serif whitespace-nowrap',
+                activeTab === 'bidhi'
+                  ? 'bg-gradient-to-r from-[#A61B1B] to-[#741313] border-2 border-[#E7C878] text-[#FFFDF8] shadow-[0_4px_22px_rgba(201,154,61,0.35)] scale-[1.02] z-10'
+                  : 'bg-[#1A1210]/80 backdrop-blur-xl border border-[#FFFDF8]/12 text-[#FFF8EA]/80 hover:text-[#FFF8EA] hover:border-[#E7C878]/50 hover:bg-[#FFFDF8]/[0.08]'
+              )}
+            >
+              <CheckCircle2 className="w-3.5 h-3.5 text-[#E7C878] flex-shrink-0" />
+              <span>{language === 'bn' ? 'পূজাবিধির ধাপ' : 'Puja Bidhi'}</span>
+            </button>
 
-          <button
-            type="button"
-            onClick={() => setActiveTab('samagri')}
-            className={cn(
-              'relative flex-shrink-0 transition-all duration-200 text-center flex items-center justify-center gap-2 cursor-pointer select-none active:scale-[0.97]',
-              'px-4 sm:px-5 py-2.5 sm:py-3 rounded-full border text-xs sm:text-sm font-bold font-serif whitespace-nowrap',
-              activeTab === 'samagri'
-                ? 'bg-gradient-to-r from-[#A61B1B] to-[#741313] border-2 border-[#E7C878] text-[#FFFDF8] shadow-[0_4px_22px_rgba(201,154,61,0.35)] scale-[1.02] z-10'
-                : 'bg-[#1A1210]/80 backdrop-blur-xl border border-[#FFFDF8]/12 text-[#FFF8EA]/80 hover:text-[#FFF8EA] hover:border-[#E7C878]/50 hover:bg-[#FFFDF8]/[0.08]'
-            )}
-          >
-            <Package className="w-4 h-4 text-[#E7C878] flex-shrink-0" />
-            <span>{language === 'bn' ? 'পূজার উপচার' : 'Samagri List'}</span>
-          </button>
+            <button
+              type="button"
+              onClick={(e) => {
+                setActiveTab('samagri');
+                e.currentTarget.scrollIntoView({
+                  behavior: 'smooth',
+                  inline: 'center',
+                  block: 'nearest',
+                });
+              }}
+              className={cn(
+                'relative flex-shrink-0 transition-all duration-200 text-center flex items-center justify-center gap-1.5 cursor-pointer select-none active:scale-[0.97]',
+                'px-3.5 sm:px-5 py-1.5 sm:py-2.5 rounded-full border text-xs sm:text-sm font-bold font-serif whitespace-nowrap',
+                activeTab === 'samagri'
+                  ? 'bg-gradient-to-r from-[#A61B1B] to-[#741313] border-2 border-[#E7C878] text-[#FFFDF8] shadow-[0_4px_22px_rgba(201,154,61,0.35)] scale-[1.02] z-10'
+                  : 'bg-[#1A1210]/80 backdrop-blur-xl border border-[#FFFDF8]/12 text-[#FFF8EA]/80 hover:text-[#FFF8EA] hover:border-[#E7C878]/50 hover:bg-[#FFFDF8]/[0.08]'
+              )}
+            >
+              <Package className="w-3.5 h-3.5 text-[#E7C878] flex-shrink-0" />
+              <span>{language === 'bn' ? 'পূজার উপচার' : 'Samagri List'}</span>
+            </button>
 
-          <button
-            type="button"
-            onClick={() => setActiveTab('mantra')}
-            className={cn(
-              'relative flex-shrink-0 transition-all duration-200 text-center flex items-center justify-center gap-2 cursor-pointer select-none active:scale-[0.97]',
-              'px-4 sm:px-5 py-2.5 sm:py-3 rounded-full border text-xs sm:text-sm font-bold font-serif whitespace-nowrap',
-              activeTab === 'mantra'
-                ? 'bg-gradient-to-r from-[#A61B1B] to-[#741313] border-2 border-[#E7C878] text-[#FFFDF8] shadow-[0_4px_22px_rgba(201,154,61,0.35)] scale-[1.02] z-10'
-                : 'bg-[#1A1210]/80 backdrop-blur-xl border border-[#FFFDF8]/12 text-[#FFF8EA]/80 hover:text-[#FFF8EA] hover:border-[#E7C878]/50 hover:bg-[#FFFDF8]/[0.08]'
-            )}
-          >
-            <Scroll className="w-4 h-4 text-[#E7C878] flex-shrink-0" />
-            <span>{language === 'bn' ? 'ধ্যান ও প্রণাম' : 'Dhyan Shloka'}</span>
-          </button>
+            <button
+              type="button"
+              onClick={(e) => {
+                setActiveTab('mantra');
+                e.currentTarget.scrollIntoView({
+                  behavior: 'smooth',
+                  inline: 'center',
+                  block: 'nearest',
+                });
+              }}
+              className={cn(
+                'relative flex-shrink-0 transition-all duration-200 text-center flex items-center justify-center gap-1.5 cursor-pointer select-none active:scale-[0.97]',
+                'px-3.5 sm:px-5 py-1.5 sm:py-2.5 rounded-full border text-xs sm:text-sm font-bold font-serif whitespace-nowrap',
+                activeTab === 'mantra'
+                  ? 'bg-gradient-to-r from-[#A61B1B] to-[#741313] border-2 border-[#E7C878] text-[#FFFDF8] shadow-[0_4px_22px_rgba(201,154,61,0.35)] scale-[1.02] z-10'
+                  : 'bg-[#1A1210]/80 backdrop-blur-xl border border-[#FFFDF8]/12 text-[#FFF8EA]/80 hover:text-[#FFF8EA] hover:border-[#E7C878]/50 hover:bg-[#FFFDF8]/[0.08]'
+              )}
+            >
+              <Scroll className="w-3.5 h-3.5 text-[#E7C878] flex-shrink-0" />
+              <span>{language === 'bn' ? 'ধ্যান ও প্রণাম' : 'Dhyan Shloka'}</span>
+            </button>
+          </div>
+
+          {/* Left Edge Progressive Blur Overlay */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute left-0 top-0 bottom-0 w-8 sm:w-28 z-20 rounded-l-full"
+            style={{
+              background:
+                'linear-gradient(to right, rgba(18, 11, 9, 0.98) 0%, rgba(18, 11, 9, 0.85) 30%, rgba(18, 11, 9, 0.45) 70%, transparent 100%)',
+              backdropFilter: 'blur(10px)',
+              WebkitBackdropFilter: 'blur(10px)',
+              maskImage:
+                'linear-gradient(to right, black 0%, rgba(0,0,0,0.85) 45%, transparent 100%)',
+              WebkitMaskImage:
+                'linear-gradient(to right, black 0%, rgba(0,0,0,0.85) 45%, transparent 100%)',
+            }}
+          />
+
+          {/* Right Edge Progressive Blur Overlay */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 sm:w-28 z-20 rounded-r-full"
+            style={{
+              background:
+                'linear-gradient(to left, rgba(18, 11, 9, 0.98) 0%, rgba(18, 11, 9, 0.85) 30%, rgba(18, 11, 9, 0.45) 70%, transparent 100%)',
+              backdropFilter: 'blur(10px)',
+              WebkitBackdropFilter: 'blur(10px)',
+              maskImage:
+                'linear-gradient(to left, black 0%, rgba(0,0,0,0.85) 45%, transparent 100%)',
+              WebkitMaskImage:
+                'linear-gradient(to left, black 0%, rgba(0,0,0,0.85) 45%, transparent 100%)',
+            }}
+          />
         </div>
 
         {/* Content Box with Active Tab Content */}
