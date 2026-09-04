@@ -117,9 +117,9 @@ export const PujaCalendar: React.FC = () => {
       {/* 2. Master Panjika Astronomical Almanac Card (Luxurious & Symmetrical) */}
       <div className="agomoni-card p-4 sm:p-8 lg:p-10 relative overflow-hidden border-2 border-[#E7C878]/35 shadow-2xl bg-gradient-to-b from-[#1C120F] to-[#120B09]">
         {/* Decorative Top Accent Bar with Dual Panjika Switcher */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3.5 sm:gap-4 pb-4 sm:pb-5 border-b border-[#FFFDF8]/10">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-4 pb-3 sm:pb-5 border-b border-[#FFFDF8]/10">
           <div className="flex flex-wrap items-center gap-2">
-            <div className="inline-flex flex-wrap items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-[#120B09] border border-[#E7C878]/40 text-[#E7C878] text-[11px] sm:text-xs font-bold shadow-xs">
+            <div className="inline-flex flex-wrap items-center gap-1.5 sm:gap-2 p-0 sm:px-4 sm:py-2 bg-transparent sm:bg-[#120B09] border-0 sm:border sm:border-[#E7C878]/40 text-[#E7C878] text-xs font-bold sm:shadow-xs sm:rounded-full">
               <CalendarIcon className="w-3.5 h-3.5 text-[#E7C878] flex-shrink-0" />
               <span>
                 {language === 'bn'
@@ -128,7 +128,7 @@ export const PujaCalendar: React.FC = () => {
               </span>
               {currentDay.bengaliDateBn && (
                 <>
-                  <span className="opacity-35">•</span>
+                  <span className="opacity-35 text-[#FFF8EA]">•</span>
                   <span className="text-[#FFF8EA]">
                     {(language === 'bn' ? currentDay.bengaliDateBn : currentDay.bengaliDateEn || '')
                       .replace(/ বঙ্গাব্দ/g, '')
@@ -136,7 +136,7 @@ export const PujaCalendar: React.FC = () => {
                   </span>
                 </>
               )}
-              <span className="opacity-35">•</span>
+              <span className="opacity-35 text-[#FFF8EA]">•</span>
               <span className="text-[#FFF8EA]">
                 {language === 'bn' ? currentDay.tithiBn : currentDay.tithiEn}
               </span>
