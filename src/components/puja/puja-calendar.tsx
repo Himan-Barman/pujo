@@ -297,11 +297,6 @@ export const PujaCalendar: React.FC = () => {
                 <Clock className="w-4 h-4 text-[#E7C878]" />
                 <span>{language === 'bn' ? 'প্রধান শুভ মুহূর্ত ও নির্ঘণ্ট' : 'Key Puja Nirghanta & Timings'}</span>
               </div>
-              <span className="text-[11px] text-[#E7C878] font-bold font-mono px-2.5 py-0.5 rounded-full bg-[#FFFDF8]/[0.08] border border-[#E7C878]/30">
-                {selectedPanjika === 'benimadhab'
-                  ? (language === 'bn' ? 'বেণীমাধব শীল' : 'Benimadhab Seal')
-                  : (language === 'bn' ? 'গুপ্তপ্রেস' : 'Gupta Press')}
-              </span>
             </div>
 
             <div className="space-y-3 flex-1 flex flex-col justify-center">
@@ -309,29 +304,20 @@ export const PujaCalendar: React.FC = () => {
                 <div
                   key={idx}
                   className={cn(
-                    'p-3.5 sm:p-4 rounded-[20px] border flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-3 transition-all',
+                    'p-3.5 sm:p-4 rounded-[20px] border flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 sm:gap-3 transition-all',
                     highlight.importance === 'primary'
-                      ? 'bg-gradient-to-r from-[#A61B1B]/40 to-[#741313]/30 border-[#E7C878]/40 shadow-xs'
+                      ? 'bg-gradient-to-r from-[#A61B1B]/35 to-[#741313]/25 border-[#E7C878]/35 shadow-xs'
                       : highlight.importance === 'special'
-                      ? 'bg-[#E7C878]/10 border-[#E7C878]/30'
+                      ? 'bg-[#E7C878]/10 border-[#E7C878]/25'
                       : 'bg-[#FFFDF8]/[0.04] border-[#FFFDF8]/10'
                   )}
                 >
-                  <div className="flex items-center justify-between sm:block sm:space-y-0.5 gap-2">
-                    <div className="text-sm sm:text-base font-bold text-[#FFF8EA] font-serif leading-tight">
-                      {language === 'bn' ? highlight.titleBn : highlight.titleEn}
-                    </div>
-                    <span className="text-[10px] sm:text-[11px] text-[#E7C878] font-sans whitespace-nowrap px-2 py-0.5 rounded-full bg-[#120B09]/80 border border-[#E7C878]/30 sm:bg-transparent sm:border-none sm:p-0 sm:block sm:text-[#E7C878]/80">
-                      {highlight.importance === 'primary'
-                        ? language === 'bn' ? 'সর্বোচ্চ পুণ্য লগ্ন' : 'Primary Auspicious Hour'
-                        : highlight.importance === 'special'
-                        ? language === 'bn' ? 'বিশেষ সময়সীমা' : 'Special Ritual Window'
-                        : language === 'bn' ? 'বিহিত পূজা' : 'Prescribed Puja'}
-                    </span>
+                  <div className="text-sm sm:text-base font-bold text-[#FFF8EA] font-serif leading-snug">
+                    {language === 'bn' ? highlight.titleBn : highlight.titleEn}
                   </div>
 
-                  <div className="text-xs sm:text-sm font-bold text-[#E7C878] font-mono px-3.5 py-1.5 rounded-full bg-[#120B09] border border-[#E7C878]/35 shadow-xs flex items-center justify-center sm:justify-start gap-1.5 flex-shrink-0 text-center sm:text-left whitespace-nowrap">
-                    <Clock className="w-3 h-3 text-[#E7C878]/80 sm:hidden" />
+                  <div className="text-xs sm:text-sm font-bold text-[#E7C878] font-mono flex items-center gap-1.5 whitespace-nowrap">
+                    <Clock className="w-3.5 h-3.5 text-[#E7C878]/70 flex-shrink-0" />
                     <span>{language === 'bn' ? highlight.timeBn : highlight.timeEn}</span>
                   </div>
                 </div>
