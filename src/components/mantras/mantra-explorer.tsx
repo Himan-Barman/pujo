@@ -284,9 +284,9 @@ export const MantraExplorer: React.FC<MantraExplorerProps> = ({ mantras }) => {
         </div>
 
         {/* 3. Hero Shloka Verse Container (Luminous & Centered) */}
-        <div className="p-7 sm:p-10 rounded-[28px] bg-[#120B09] border-2 border-[#E7C878]/35 text-center space-y-4 shadow-2xl relative overflow-hidden">
-          <div className="flex items-center justify-center gap-1.5 text-xs text-[#E7C878] font-bold uppercase tracking-widest font-mono">
-            <Scroll className="w-4 h-4 text-[#E7C878]" />
+        <div className="p-5 sm:p-10 rounded-[24px] sm:rounded-[28px] bg-[#120B09] border-2 border-[#E7C878]/35 text-center space-y-3 sm:space-y-4 shadow-2xl relative overflow-hidden">
+          <div className="flex items-center justify-center gap-1.5 text-[11px] sm:text-xs text-[#E7C878] font-bold uppercase tracking-widest font-mono">
+            <Scroll className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#E7C878]" />
             <span>
               {activeScript === 'bengali'
                 ? 'পবিত্র শাস্ত্রীয় শ্লোক'
@@ -296,7 +296,7 @@ export const MantraExplorer: React.FC<MantraExplorerProps> = ({ mantras }) => {
             </span>
           </div>
 
-          <p className="text-xl sm:text-2xl lg:text-3xl text-[#E7C878] font-mono font-bold leading-relaxed whitespace-pre-line tracking-wide drop-shadow-md">
+          <p className="text-sm sm:text-2xl lg:text-3xl text-[#E7C878] font-mono font-bold leading-relaxed whitespace-pre-line tracking-wide drop-shadow-md">
             {activeScript === 'bengali' && selectedMantra.bengaliScript}
             {activeScript === 'sanskrit' && selectedMantra.sanskritDevanagari}
             {activeScript === 'transliteration' && selectedMantra.transliteration}
