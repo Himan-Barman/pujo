@@ -177,13 +177,18 @@ export const RadioSection: React.FC = () => {
     }
   };
 
+  const handleSelectDay = (id: TimeCategory | 'all', e: React.MouseEvent<HTMLButtonElement>) => {
+    setSelectedDay(id);
+    e.currentTarget.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  };
+
   return (
     <div className="w-full">
       <ScrollReveal delay={0.05} distance={35}>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
 
           {/* ═══════════════════════════════════════════════════════════════ */}
-          {/* LEFT SIDEBAR: Days & Phases of Durga Puja (Icons only)          */}
+          {/* LEFT SIDEBAR: Days & Phases of Durga Puja (Filter Bar)          */}
           {/* ═══════════════════════════════════════════════════════════════ */}
           <div className="lg:col-span-4 space-y-3">
             <div className="px-3 py-1 flex items-center justify-between text-xs font-bold text-[#E7C878] uppercase tracking-wider">
@@ -193,73 +198,116 @@ export const RadioSection: React.FC = () => {
               </span>
             </div>
 
-            {/* Day Navigation (Horizontal sleek pill chips on mobile, Vertical cards on desktop) */}
-            <div className="flex lg:flex-col gap-2 overflow-x-auto lg:overflow-visible no-scrollbar p-2 sm:p-2.5 lg:p-3.5 rounded-2xl lg:rounded-[30px] bg-[#1A1210]/60 backdrop-blur-xl border border-[#FFFDF8]/10 shadow-lg">
-              {DAY_TABS.map((tab) => {
-                const isActive = selectedDay === tab.id;
-                return (
-                  <button
-                    key={tab.id}
-                    type="button"
-                    onClick={() => setSelectedDay(tab.id)}
-                    className={cn(
-                      'text-left transition-all duration-200 flex items-center justify-between gap-2.5 cursor-pointer select-none active:scale-[0.98] flex-shrink-0 lg:flex-shrink',
-                      'px-3.5 py-2 rounded-full lg:p-3.5 lg:rounded-[20px]',
-                      isActive
-                        ? 'bg-[#A61B1B] text-[#FFFDF8] shadow-md border border-[#E7C878]/30'
-                        : 'hover:bg-[#FFFDF8]/8 text-[#FFF8EA]/80 hover:text-[#FFF8EA] border border-transparent'
-                    )}
-                  >
-                    <div className="flex items-center gap-2.5 lg:gap-3 min-w-0">
-                      {/* Icon: Hidden on mobile, visible on desktop */}
-                      <div
-                        className={cn(
-                          'hidden lg:flex w-8 h-8 rounded-[12px] items-center justify-center flex-shrink-0 border',
-                          isActive
-                            ? 'bg-[#FFFDF8]/20 border-[#FFFDF8]/30 text-[#FFF8EA]'
-                            : 'bg-[#FFFDF8]/8 border-[#FFFDF8]/10 text-[#E7C878]'
-                        )}
-                      >
-                        {renderDayIcon(tab.iconType, 'w-4 h-4')}
-                      </div>
+            {/* Day Navigation (Exact Anjali Filter Bar Capsule on Mobile, Vertical Cards on Desktop) */}
+            <div className="relative w-full rounded-full lg:rounded-[30px] p-1 sm:p-1.5 lg:p-3.5 bg-[#120B09]/60 backdrop-blur-xl border border-[#FFFDF8]/10 shadow-xl overflow-hidden group/nav select-none">
+              {/* Scroll Track with Progressive Edge Mask on Mobile */}
+              <div
+                className="w-full overflow-x-auto lg:overflow-visible no-scrollbar py-1 lg:py-0 px-4 sm:px-10 lg:px-0 flex lg:flex-col items-center lg:items-stretch justify-start gap-2 sm:gap-2.5 scroll-smooth relative z-0 [mask-image:linear-gradient(to_right,transparent_0%,rgba(0,0,0,0.3)_1.5%,rgba(0,0,0,0.8)_4%,black_8%,black_92%,rgba(0,0,0,0.8)_96%,rgba(0,0,0,0.3)_98.5%,transparent_100%)] lg:[mask-image:none] [-webkit-mask-image:linear-gradient(to_right,transparent_0%,rgba(0,0,0,0.3)_1.5%,rgba(0,0,0,0.8)_4%,black_8%,black_92%,rgba(0,0,0,0.8)_96%,rgba(0,0,0,0.3)_98.5%,transparent_100%)] lg:[-webkit-mask-image:none]"
+              >
+                {DAY_TABS.map((tab) => {
+                  const isActive = selectedDay === tab.id;
+                  return (
+                    <button
+                      key={tab.id}
+                      type="button"
+                      onClick={(e) => handleSelectDay(tab.id, e)}
+                      className={cn(
+                        'relative flex-shrink-0 lg:flex-shrink transition-all duration-200 cursor-pointer select-none active:scale-[0.97] lg:active:scale-[0.98]',
+                        // Mobile: exact Anjali compact capsule pill | Desktop: full vertical sidebar card
+                        'flex items-center justify-center lg:justify-between gap-1.5 lg:gap-2.5 px-3.5 sm:px-5 py-1.5 sm:py-2.5 lg:p-3.5 rounded-full lg:rounded-[20px] border text-xs sm:text-sm font-bold font-serif whitespace-nowrap lg:whitespace-normal',
+                        isActive
+                          ? 'bg-gradient-to-r from-[#A61B1B] to-[#741313] border-2 border-[#E7C878] text-[#FFFDF8] shadow-[0_4px_22px_rgba(201,154,61,0.35)] scale-[1.02] lg:scale-100 z-10 lg:z-auto'
+                          : 'bg-[#1A1210]/80 lg:bg-transparent backdrop-blur-xl lg:backdrop-blur-none border-[#FFFDF8]/12 lg:border-transparent text-[#FFF8EA]/80 hover:text-[#FFF8EA] hover:border-[#E7C878]/50 hover:bg-[#FFFDF8]/[0.08]'
+                      )}
+                    >
+                      {/* Mobile Active Sparkles */}
+                      {isActive && (
+                        <Sparkles className="w-3.5 h-3.5 text-[#E7C878] animate-pulse flex-shrink-0 lg:hidden" />
+                      )}
 
-                      <div className="min-w-0">
-                        {/* Heading */}
-                        <h4 className="text-xs sm:text-sm font-bold font-serif leading-tight whitespace-nowrap lg:whitespace-normal truncate">
-                          {language === 'bn' ? tab.titleBn : tab.titleEn}
-                        </h4>
-                        {/* Sub Heading: Hidden on mobile, visible on desktop */}
-                        <p
+                      <div className="flex items-center gap-2.5 lg:gap-3 min-w-0">
+                        {/* Icon: Hidden on mobile, visible on desktop */}
+                        <div
                           className={cn(
-                            'hidden lg:block text-[10px] truncate mt-0.5',
-                            isActive ? 'text-[#FFFDF8]/80' : 'text-[#FFF8EA]/50'
+                            'hidden lg:flex w-8 h-8 rounded-[12px] items-center justify-center flex-shrink-0 border',
+                            isActive
+                              ? 'bg-[#FFFDF8]/20 border-[#FFFDF8]/30 text-[#FFF8EA]'
+                              : 'bg-[#FFFDF8]/8 border-[#FFFDF8]/10 text-[#E7C878]'
                           )}
                         >
-                          {language === 'bn' ? tab.subtitleBn : tab.subtitleEn}
-                        </p>
-                      </div>
-                    </div>
+                          {renderDayIcon(tab.iconType, 'w-4 h-4')}
+                        </div>
 
-                    {/* Count Badge */}
-                    <div className="flex items-center gap-1.5 flex-shrink-0">
-                      <span
-                        className={cn(
-                          'px-2 py-0.5 rounded-full text-[10px] font-mono font-bold',
-                          isActive ? 'bg-[#FFFDF8]/20 text-[#FFF8EA]' : 'bg-[#FFFDF8]/8 text-[#E7C878]'
-                        )}
-                      >
-                        {tab.count}
-                      </span>
-                      <ChevronRight
-                        className={cn(
-                          'w-4 h-4 transition-transform hidden lg:block',
-                          isActive ? 'text-[#FFFDF8] translate-x-0.5' : 'text-[#FFF8EA]/30'
-                        )}
-                      />
-                    </div>
-                  </button>
-                );
-              })}
+                        <div className="min-w-0 text-left">
+                          {/* Heading */}
+                          <h4 className="text-xs sm:text-sm font-bold font-serif leading-tight truncate">
+                            {language === 'bn' ? tab.titleBn : tab.titleEn}
+                          </h4>
+                          {/* Sub Heading: Hidden on mobile, visible on desktop */}
+                          <p
+                            className={cn(
+                              'hidden lg:block text-[10px] truncate mt-0.5',
+                              isActive ? 'text-[#FFFDF8]/80' : 'text-[#FFF8EA]/50'
+                            )}
+                          >
+                            {language === 'bn' ? tab.subtitleBn : tab.subtitleEn}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Count Badge & Chevron: Hidden on mobile, visible on desktop */}
+                      <div className="hidden lg:flex items-center gap-1.5 flex-shrink-0">
+                        <span
+                          className={cn(
+                            'px-2 py-0.5 rounded-full text-[10px] font-mono font-bold',
+                            isActive ? 'bg-[#FFFDF8]/20 text-[#FFF8EA]' : 'bg-[#FFFDF8]/8 text-[#E7C878]'
+                          )}
+                        >
+                          {tab.count}
+                        </span>
+                        <ChevronRight
+                          className={cn(
+                            'w-4 h-4 transition-transform',
+                            isActive ? 'text-[#FFFDF8] translate-x-0.5' : 'text-[#FFF8EA]/30'
+                          )}
+                        />
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Left Edge Progressive Blur Overlay (Mobile only) */}
+              <div
+                aria-hidden="true"
+                className="lg:hidden pointer-events-none absolute left-0 top-0 bottom-0 w-8 sm:w-28 z-20 rounded-l-full"
+                style={{
+                  background:
+                    'linear-gradient(to right, rgba(18, 11, 9, 0.98) 0%, rgba(18, 11, 9, 0.85) 30%, rgba(18, 11, 9, 0.45) 70%, transparent 100%)',
+                  backdropFilter: 'blur(10px)',
+                  WebkitBackdropFilter: 'blur(10px)',
+                  maskImage:
+                    'linear-gradient(to right, black 0%, rgba(0,0,0,0.85) 45%, transparent 100%)',
+                  WebkitMaskImage:
+                    'linear-gradient(to right, black 0%, rgba(0,0,0,0.85) 45%, transparent 100%)',
+                }}
+              />
+
+              {/* Right Edge Progressive Blur Overlay (Mobile only) */}
+              <div
+                aria-hidden="true"
+                className="lg:hidden pointer-events-none absolute right-0 top-0 bottom-0 w-8 sm:w-28 z-20 rounded-r-full"
+                style={{
+                  background:
+                    'linear-gradient(to left, rgba(18, 11, 9, 0.98) 0%, rgba(18, 11, 9, 0.85) 30%, rgba(18, 11, 9, 0.45) 70%, transparent 100%)',
+                  backdropFilter: 'blur(10px)',
+                  WebkitBackdropFilter: 'blur(10px)',
+                  maskImage:
+                    'linear-gradient(to left, black 0%, rgba(0,0,0,0.85) 45%, transparent 100%)',
+                  WebkitMaskImage:
+                    'linear-gradient(to left, black 0%, rgba(0,0,0,0.85) 45%, transparent 100%)',
+                }}
+              />
             </div>
           </div>
 
