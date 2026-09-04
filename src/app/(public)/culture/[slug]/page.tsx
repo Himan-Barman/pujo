@@ -206,7 +206,7 @@ export default function CultureDetailPage({ params }: CultureDetailPageProps) {
           subtitleEn="Discover more profound legends and historical dimensions of Bengal's greatest festival."
         />
 
-        <StaggerContainer staggerDelay={0.08} className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+        <StaggerContainer staggerDelay={0.08} className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-6 items-stretch">
           {relatedArticles.map((rel) => (
             <StaggerItem key={rel.id} className="h-full">
               <CultureCard article={rel} />

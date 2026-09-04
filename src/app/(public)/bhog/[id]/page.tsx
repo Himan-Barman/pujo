@@ -337,7 +337,7 @@ export default function BhogDetailPage({ params }: BhogDetailPageProps) {
         </Link>
       </div>
 
-      {/* 6. Explore Other Bhog Offerings Photo Grid (3 items in a row) */}
+      {/* 6. Explore Other Bhog Offerings Photo Grid (Horizontal bars on mobile, 3 items in a row on desktop) */}
       <div className="space-y-8 pt-4">
         <SectionHeading
           tagBn="অষ্টবিধ শারদ মহাপ্রসাদ"
@@ -348,50 +348,71 @@ export default function BhogDetailPage({ params }: BhogDetailPageProps) {
           subtitleEn="Tap any dish to open its dedicated recipe chapter and ritual breakdown."
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-6 items-stretch">
           {BHOG_ITEMS.map((b) => (
             <Link
               key={b.id}
               href={`/bhog/${b.id}`}
               className={cn(
-                'agomoni-card overflow-hidden transition-all duration-300 flex flex-col justify-between h-full group cursor-pointer active:scale-[0.98] text-left p-0 shadow-md',
+                'agomoni-card overflow-hidden transition-all duration-300 flex flex-row sm:flex-col justify-between h-auto sm:h-full group cursor-pointer active:scale-[0.98] text-left p-2.5 sm:p-0 shadow-md gap-3 sm:gap-0 rounded-[20px] sm:rounded-[28px]',
                 b.id === item.id
-                  ? 'border-2 border-[#E7C878] shadow-xl scale-[1.02] ring-2 ring-[#E7C878]/30'
+                  ? 'border-2 border-[#E7C878] shadow-xl scale-[1.01] sm:scale-[1.02] ring-2 ring-[#E7C878]/30 bg-[#FFFDF8]/[0.08]'
                   : 'border border-[#FFFDF8]/12 hover:border-[#E7C878]/60 hover:bg-[#FFFDF8]/[0.12]'
               )}
             >
-              <div className="relative w-full h-44 overflow-hidden bg-[#1A1210]">
+              {/* Thumbnail on Mobile, Full Banner on Desktop */}
+              <div className="relative w-20 h-20 sm:w-full sm:h-44 rounded-xl sm:rounded-none overflow-hidden bg-[#1A1210] flex-shrink-0 self-center sm:self-auto">
                 <Image
                   src={b.image}
                   alt={b.nameEn}
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  sizes="(max-width: 640px) 80px, (max-width: 768px) 50vw, 33vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1A1210] via-[#1A1210]/20 to-transparent" />
-                <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#1A1210]/90 border border-[#E7C878]/35 text-[11px] text-[#E7C878] font-bold">
+                <div className="hidden sm:block absolute inset-0 bg-gradient-to-t from-[#1A1210] via-[#1A1210]/20 to-transparent" />
+                <div className="hidden sm:block absolute top-3 left-3 px-3 py-1 rounded-full bg-[#1A1210]/90 border border-[#E7C878]/35 text-[11px] text-[#E7C878] font-bold">
                   {language === 'bn' ? b.pujaDayAssocBn : b.pujaDayAssocEn}
                 </div>
               </div>
 
-              <div className="p-5 flex flex-col flex-1 justify-between space-y-3">
+              <div className="p-0 sm:p-5 flex flex-col flex-1 justify-center sm:justify-between sm:space-y-3 min-w-0">
                 <div>
+                  {/* Mobile Tithi Tag */}
+                  <div className="flex sm:hidden items-center gap-2 mb-1 flex-wrap">
+                    <span className="px-2 py-0.5 rounded-full bg-[#1A1210] border border-[#E7C878]/30 text-[9.5px] font-bold text-[#E7C878]">
+                      {language === 'bn' ? b.pujaDayAssocBn : b.pujaDayAssocEn}
+                    </span>
+                    <span className="text-[10px] text-[#D4AA50] font-semibold truncate italic">
+                      {language === 'bn' ? b.taglineBn : b.taglineEn}
+                    </span>
+                  </div>
+
                   <h4 className={cn(
-                    'text-lg font-bold font-serif transition-colors',
+                    'text-sm sm:text-lg font-bold font-serif transition-colors truncate',
                     b.id === item.id ? 'text-[#E7C878]' : 'text-[#FFF8EA] group-hover:text-[#E7C878]'
                   )}>
                     {language === 'bn' ? b.nameBn : b.nameEn}
                   </h4>
-                  <p className="text-xs text-[#D4AA50] font-semibold block mt-1 line-clamp-1 italic">
+
+                  <p className="hidden sm:block text-xs text-[#D4AA50] font-semibold mt-1 line-clamp-1 italic">
                     {language === 'bn' ? b.taglineBn : b.taglineEn}
                   </p>
-                  <p className="text-xs text-[#FFF8EA]/70 mt-1.5 line-clamp-2">
+                  <p className="text-[11px] sm:text-xs text-[#FFF8EA]/70 mt-0.5 sm:mt-1.5 truncate sm:whitespace-normal sm:line-clamp-2">
                     {language === 'bn' ? b.significanceBn : b.significanceEn}
                   </p>
                 </div>
 
-                <div className="pt-2.5 border-t border-[#FFFDF8]/8 flex items-center justify-between text-xs text-[#E7C878] font-bold">
+                {/* Desktop Action */}
+                <div className="hidden sm:flex pt-2.5 border-t border-[#FFFDF8]/8 items-center justify-between text-xs text-[#E7C878] font-bold">
                   <span>{language === 'bn' ? 'সম্পূর্ণ রেসিপি দেখুন' : 'View Full Recipe'}</span>
                   <span>→</span>
+                </div>
+              </div>
+
+              {/* Mobile Right Arrow */}
+              <div className="flex sm:hidden items-center justify-center pr-1 text-[#E7C878] flex-shrink-0 self-center">
+                <div className="w-7 h-7 rounded-full bg-[#FFFDF8]/8 border border-[#FFFDF8]/12 flex items-center justify-center group-hover:bg-[#A61B1B] group-hover:text-[#FFFDF8] transition-colors">
+                  <ArrowRight className="w-3.5 h-3.5" />
                 </div>
               </div>
             </Link>
