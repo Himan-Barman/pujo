@@ -76,7 +76,7 @@ export const CultureInteractiveHighlights: React.FC<CultureInteractiveHighlights
               )}
             >
               <Leaf className="w-3.5 h-3.5 text-[#6EE7B7]" />
-              <span>{language === 'bn' ? 'নবপত্রিকা (৯ উদ্ভিদ)' : 'Nabapatrika (9)'}</span>
+              <span>{language === 'bn' ? 'নবপত্রিকা' : 'Nabapatrika'}</span>
             </button>
             <button
               type="button"
@@ -89,7 +89,7 @@ export const CultureInteractiveHighlights: React.FC<CultureInteractiveHighlights
               )}
             >
               <Shield className="w-3.5 h-3.5 text-[#E7C878]" />
-              <span>{language === 'bn' ? 'মহাশস্ত্র (১০ অস্ত্র)' : '10 Weapons'}</span>
+              <span>{language === 'bn' ? '১০ মহাশস্ত্র' : '10 Weapons'}</span>
             </button>
           </div>
         )}
