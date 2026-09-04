@@ -94,12 +94,12 @@ export const MantraExplorer: React.FC<MantraExplorerProps> = ({ mantras }) => {
 
   return (
     <div className="space-y-10">
-      {/* 1. Horizontal Mantra Selector Bar with Rounded Frame & Preserved Edge Blur */}
-      <div className="relative w-full rounded-[28px] sm:rounded-[32px] p-1.5 sm:p-2 bg-[#120B09]/60 backdrop-blur-xl border border-[#FFFDF8]/10 shadow-xl overflow-hidden group/nav select-none">
+      {/* 1. Horizontal Mantra Selector Bar with Rounded Full Frame & Preserved Edge Blur */}
+      <div className="relative w-full rounded-full p-1 sm:p-1.5 bg-[#120B09]/60 backdrop-blur-xl border border-[#FFFDF8]/10 shadow-xl overflow-hidden group/nav select-none">
         {/* Scroll Track with Progressive Edge Mask */}
         <div
           ref={scrollRef}
-          className="w-full overflow-x-auto no-scrollbar py-2.5 px-6 sm:px-12 flex items-center justify-start gap-2.5 sm:gap-3.5 scroll-smooth relative z-0"
+          className="w-full overflow-x-auto no-scrollbar py-1 px-4 sm:px-10 flex items-center justify-start gap-2 sm:gap-3 scroll-smooth relative z-0"
           style={{
             maskImage:
               'linear-gradient(to right, transparent 0%, rgba(0,0,0,0.3) 1.5%, rgba(0,0,0,0.8) 4%, black 8%, black 92%, rgba(0,0,0,0.8) 96%, rgba(0,0,0,0.3) 98.5%, transparent 100%)',
@@ -120,8 +120,8 @@ export const MantraExplorer: React.FC<MantraExplorerProps> = ({ mantras }) => {
                 type="button"
                 onClick={(e) => handleSelectMantra(item.id, e)}
                 className={cn(
-                  'relative flex-shrink-0 transition-all duration-200 text-center flex items-center justify-center gap-2 cursor-pointer select-none active:scale-[0.97]',
-                  'px-4 sm:px-5 py-2.5 sm:py-3 rounded-full border text-xs sm:text-sm font-bold font-serif whitespace-nowrap',
+                  'relative flex-shrink-0 transition-all duration-200 text-center flex items-center justify-center gap-1.5 cursor-pointer select-none active:scale-[0.97]',
+                  'px-3.5 sm:px-5 py-1.5 sm:py-2.5 rounded-full border text-xs sm:text-sm font-bold font-serif whitespace-nowrap',
                   isSelected
                     ? 'bg-gradient-to-r from-[#A61B1B] to-[#741313] border-2 border-[#E7C878] text-[#FFFDF8] shadow-[0_4px_22px_rgba(201,154,61,0.35)] scale-[1.02] z-10'
                     : 'bg-[#1A1210]/80 backdrop-blur-xl border border-[#FFFDF8]/12 text-[#FFF8EA]/80 hover:text-[#FFF8EA] hover:border-[#E7C878]/50 hover:bg-[#FFFDF8]/[0.08]'
@@ -140,7 +140,7 @@ export const MantraExplorer: React.FC<MantraExplorerProps> = ({ mantras }) => {
         {/* Left Edge Progressive Blur Overlay */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute left-0 top-0 bottom-0 w-8 sm:w-28 z-20 rounded-l-[28px] sm:rounded-l-[32px]"
+          className="pointer-events-none absolute left-0 top-0 bottom-0 w-8 sm:w-28 z-20 rounded-l-full"
           style={{
             background:
               'linear-gradient(to right, rgba(18, 11, 9, 0.98) 0%, rgba(18, 11, 9, 0.85) 30%, rgba(18, 11, 9, 0.45) 70%, transparent 100%)',
@@ -156,7 +156,7 @@ export const MantraExplorer: React.FC<MantraExplorerProps> = ({ mantras }) => {
         {/* Right Edge Progressive Blur Overlay */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 sm:w-28 z-20 rounded-r-[28px] sm:rounded-r-[32px]"
+          className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 sm:w-28 z-20 rounded-r-full"
           style={{
             background:
               'linear-gradient(to left, rgba(18, 11, 9, 0.98) 0%, rgba(18, 11, 9, 0.85) 30%, rgba(18, 11, 9, 0.45) 70%, transparent 100%)',
