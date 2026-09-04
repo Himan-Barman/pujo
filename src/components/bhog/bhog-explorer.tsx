@@ -330,68 +330,84 @@ export const BhogExplorer: React.FC = () => {
           />
         </div>
 
-        {/* 3. Course Cards Grid with Dedicated Photo for Every Recipe */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 items-stretch">
+        {/* 3. Course Cards: Sleek horizontal bars on mobile, full visual cards on desktop */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-6 items-stretch">
           {filteredItems.map((item) => (
             <Link
               key={item.id}
               href={`/bhog/${item.id}`}
-              className="agomoni-card overflow-hidden transition-all duration-300 flex flex-col justify-between h-full group hover:border-[#E7C878]/50 hover:bg-[#FFFDF8]/[0.12] cursor-pointer active:scale-[0.98] text-left p-0 shadow-lg"
+              className="agomoni-card overflow-hidden transition-all duration-300 flex flex-row sm:flex-col justify-between h-auto sm:h-full group hover:border-[#E7C878]/50 hover:bg-[#FFFDF8]/[0.12] cursor-pointer active:scale-[0.98] text-left p-2.5 sm:p-0 shadow-lg gap-3 sm:gap-0 rounded-[20px] sm:rounded-[28px]"
             >
-              <div className="flex flex-col flex-1">
-                {/* Photo Banner with Zoom on Hover */}
-                <div className="relative w-full h-44 sm:h-56 overflow-hidden bg-[#1A1210] flex-shrink-0">
-                  <Image
-                    src={item.image}
-                    alt={item.nameEn}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-700"
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#241B18]/80 via-transparent to-transparent" />
+              {/* Left Thumbnail on Mobile, Full Top Banner on Desktop */}
+              <div className="relative w-20 h-20 sm:w-full sm:h-56 rounded-xl sm:rounded-none overflow-hidden bg-[#1A1210] flex-shrink-0 self-center sm:self-auto">
+                <Image
+                  src={item.image}
+                  alt={item.nameEn}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  sizes="(max-width: 640px) 80px, (max-width: 768px) 50vw, 33vw"
+                />
+                <div className="hidden sm:block absolute inset-0 bg-gradient-to-t from-[#241B18]/80 via-transparent to-transparent" />
 
-                  {/* Top Left: Tithi Badge */}
-                  <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#1A1210]/90 border border-[#E7C878]/35 text-[11px] text-[#E7C878] font-bold shadow-xs backdrop-blur-md">
-                    {language === 'bn' ? item.pujaDayAssocBn : item.pujaDayAssocEn}
-                  </div>
-
-                  {/* Top Right: Cooking Time Badge */}
-                  <div className="absolute top-3 right-3 px-3 py-1 rounded-full bg-[#241B18]/90 border border-[#FFFDF8]/10 text-[11px] text-[#FFF8EA] font-semibold flex items-center gap-1.5 backdrop-blur-md shadow-xs">
-                    <Clock className="w-3 h-3 text-[#C99A3D]" />
-                    <span>{item.cookingTime}</span>
-                  </div>
+                {/* Top Left: Tithi Badge (Desktop) */}
+                <div className="hidden sm:block absolute top-3 left-3 px-3 py-1 rounded-full bg-[#1A1210]/90 border border-[#E7C878]/35 text-[11px] text-[#E7C878] font-bold shadow-xs backdrop-blur-md">
+                  {language === 'bn' ? item.pujaDayAssocBn : item.pujaDayAssocEn}
                 </div>
 
-                {/* Article / Recipe Content Body */}
-                <div className="p-6 sm:p-7 flex flex-col flex-1 justify-between">
-                  <div>
-                    {/* Category Pill Tag */}
-                    <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-[#241B18] text-[10px] uppercase font-bold text-[#E7C878] tracking-wider mb-2.5 shadow-xs w-fit">
-                      <Sparkles className="w-3 h-3 text-[#C99A3D]" />
-                      <span>{item.category}</span>
-                    </div>
+                {/* Top Right: Cooking Time Badge (Desktop) */}
+                <div className="hidden sm:flex absolute top-3 right-3 px-3 py-1 rounded-full bg-[#241B18]/90 border border-[#FFFDF8]/10 text-[11px] text-[#FFF8EA] font-semibold items-center gap-1.5 backdrop-blur-md shadow-xs">
+                  <Clock className="w-3 h-3 text-[#C99A3D]" />
+                  <span>{item.cookingTime}</span>
+                </div>
+              </div>
 
-                    {/* Title */}
-                    <h3 className="text-xl sm:text-2xl font-bold font-serif text-[#E7C878] group-hover:text-[#FFF8EA] transition-colors mb-2 leading-tight min-h-[3.2rem] flex items-start">
-                      {language === 'bn' ? item.nameBn : item.nameEn}
-                    </h3>
+              {/* Recipe Content Body */}
+              <div className="flex flex-col flex-1 justify-center sm:justify-between p-0 sm:p-6 md:p-7 min-w-0">
+                <div>
+                  {/* Mobile Meta Row */}
+                  <div className="flex sm:hidden items-center gap-2 mb-1 flex-wrap">
+                    <span className="px-2 py-0.5 rounded-full bg-[#241B18] text-[9.5px] uppercase font-bold text-[#E7C878] border border-[#E7C878]/30">
+                      {language === 'bn' ? item.pujaDayAssocBn : item.pujaDayAssocEn}
+                    </span>
+                    <span className="text-[10px] text-[#FFF8EA]/60 flex items-center gap-1 font-mono">
+                      <Clock className="w-2.5 h-2.5 text-[#E7C878]" />
+                      <span>{item.cookingTime}</span>
+                    </span>
+                  </div>
 
-                    {/* Tagline */}
-                    <p className="text-xs sm:text-sm text-[#E7C878]/90 font-medium leading-relaxed italic">
-                      {language === 'bn' ? item.taglineBn : item.taglineEn}
-                    </p>
+                  {/* Desktop Category Pill Tag */}
+                  <div className="hidden sm:inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-[#241B18] text-[10px] uppercase font-bold text-[#E7C878] tracking-wider mb-2.5 shadow-xs w-fit">
+                    <Sparkles className="w-3 h-3 text-[#C99A3D]" />
+                    <span>{item.category}</span>
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-sm sm:text-xl md:text-2xl font-bold font-serif text-[#E7C878] group-hover:text-[#FFF8EA] transition-colors leading-snug truncate sm:whitespace-normal sm:min-h-[3.2rem] flex items-center sm:items-start">
+                    {language === 'bn' ? item.nameBn : item.nameEn}
+                  </h3>
+
+                  {/* Tagline */}
+                  <p className="text-[11px] sm:text-xs md:text-sm text-[#E7C878]/90 font-medium leading-relaxed italic truncate sm:whitespace-normal sm:line-clamp-2 mt-0.5 sm:mt-0">
+                    {language === 'bn' ? item.taglineBn : item.taglineEn}
+                  </p>
+                </div>
+
+                {/* Desktop Apple-style Capsule Footer Action Link */}
+                <div className="hidden sm:block pt-4 sm:pt-6 mt-auto">
+                  <div className="w-full py-2.5 rounded-full bg-[#FFFDF8]/10 backdrop-blur-md group-hover:bg-[#A61B1B] border border-[#A61B1B] text-xs font-bold text-[#E7C878] group-hover:text-[#FFFDF8] flex items-center justify-center gap-2 transition-all shadow-xs">
+                    <BookOpen className="w-3.5 h-3.5" />
+                    <span>
+                      {language === 'bn' ? 'সম্পূর্ণ রন্ধন প্রণালী পাঠ করুন' : 'View Full Recipe & Method'}
+                    </span>
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>
               </div>
 
-              {/* Apple-style Capsule Footer Action Link */}
-              <div className="px-6 sm:px-7 pb-6 pt-2 mt-auto">
-                <div className="w-full py-2.5 rounded-full bg-[#FFFDF8]/10 backdrop-blur-md group-hover:bg-[#A61B1B] border border-[#A61B1B] text-xs font-bold text-[#E7C878] group-hover:text-[#FFFDF8] flex items-center justify-center gap-2 transition-all shadow-xs">
-                  <BookOpen className="w-3.5 h-3.5" />
-                  <span>
-                    {language === 'bn' ? 'সম্পূর্ণ রন্ধন প্রণালী পাঠ করুন' : 'View Full Recipe & Method'}
-                  </span>
-                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+              {/* Mobile Right Arrow Action Icon */}
+              <div className="flex sm:hidden items-center justify-center pr-1 text-[#E7C878] flex-shrink-0 self-center">
+                <div className="w-7 h-7 rounded-full bg-[#FFFDF8]/8 border border-[#FFFDF8]/12 flex items-center justify-center group-hover:bg-[#A61B1B] group-hover:text-[#FFFDF8] transition-colors">
+                  <ArrowRight className="w-3.5 h-3.5" />
                 </div>
               </div>
             </Link>

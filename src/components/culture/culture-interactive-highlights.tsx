@@ -97,55 +97,66 @@ export const CultureInteractiveHighlights: React.FC<CultureInteractiveHighlights
 
       {/* Grid Content with Floating Cards and Smooth Staggering */}
       {currentTab === 'nabapatrika' ? (
-        <StaggerContainer staggerDelay={0.07} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
+        <StaggerContainer staggerDelay={0.07} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-6">
           {displayedPlants.map((item) => (
             <StaggerItem key={item.id} className="h-full">
               <Link
                 href={`/culture/plants/${item.id}`}
-                className="agomoni-card overflow-hidden transition-all duration-300 flex flex-col justify-between h-full group hover:border-[#6EE7B7]/80 hover:bg-[#FFFDF8]/[0.12] cursor-pointer active:scale-[0.98] text-left p-0 shadow-xl hover:-translate-y-2.5 hover:shadow-[0_20px_45px_rgba(0,0,0,0.7),0_0_25px_rgba(110,231,183,0.2)]"
+                className="agomoni-card overflow-hidden transition-all duration-300 flex flex-row sm:flex-col justify-between h-auto sm:h-full group hover:border-[#6EE7B7]/80 hover:bg-[#FFFDF8]/[0.12] cursor-pointer active:scale-[0.98] text-left p-2.5 sm:p-0 shadow-lg gap-3 sm:gap-0 rounded-[20px] sm:rounded-[28px] hover:-translate-y-1 sm:hover:-translate-y-2.5 hover:shadow-[0_20px_45px_rgba(0,0,0,0.7),0_0_25px_rgba(110,231,183,0.2)]"
               >
                 {/* Photo Banner with Zoom on Hover */}
-                <div className="relative w-full h-44 sm:h-52 overflow-hidden bg-[#1A1210]">
+                <div className="relative w-20 h-20 sm:w-full sm:h-52 rounded-xl sm:rounded-none overflow-hidden bg-[#1A1210] flex-shrink-0 self-center sm:self-auto">
                   <Image
                     src={item.image}
                     alt={item.nameEn}
                     fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    sizes="(max-width: 640px) 80px, (max-width: 1024px) 50vw, 33vw"
                     className="object-cover group-hover:scale-105 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#1A1210] via-[#1A1210]/25 to-transparent" />
+                  <div className="hidden sm:block absolute inset-0 bg-gradient-to-t from-[#1A1210] via-[#1A1210]/25 to-transparent" />
 
-                  {/* Badges on Top of Photo */}
-                  <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#1A1210]/85 border border-[#6EE7B7]/30 text-[11px] text-[#6EE7B7] font-bold shadow-xs backdrop-blur-md flex items-center gap-1.5">
+                  {/* Badges on Top of Photo (Desktop) */}
+                  <div className="hidden sm:flex absolute top-3 left-3 px-3 py-1 rounded-full bg-[#1A1210]/85 border border-[#6EE7B7]/30 text-[11px] text-[#6EE7B7] font-bold shadow-xs backdrop-blur-md items-center gap-1.5">
                     <Leaf className="w-3 h-3 text-[#6EE7B7]" />
                     <span>{item.number}/৯</span>
                   </div>
 
-                  <div className="absolute top-3 right-3 px-3 py-1 rounded-full bg-[#1A1210]/85 border border-[#FFFDF8]/15 text-[10px] text-[#E7C878] font-mono italic backdrop-blur-md shadow-xs">
+                  <div className="hidden sm:block absolute top-3 right-3 px-3 py-1 rounded-full bg-[#1A1210]/85 border border-[#FFFDF8]/15 text-[10px] text-[#E7C878] font-mono italic backdrop-blur-md shadow-xs">
                     {item.botanical}
                   </div>
                 </div>
 
                 {/* Card Body */}
-                <div className="p-5 flex flex-col flex-1 justify-between space-y-3">
+                <div className="p-0 sm:p-5 flex flex-col flex-1 justify-center sm:justify-between sm:space-y-3 min-w-0">
                   <div>
-                    <div className="flex items-center justify-between gap-2 mb-1.5">
-                      <h4 className="text-lg font-bold text-[#FFF8EA] group-hover:text-[#6EE7B7] font-serif transition-colors">
+                    {/* Mobile Badges Row */}
+                    <div className="flex sm:hidden items-center gap-2 mb-1 flex-wrap">
+                      <span className="px-2 py-0.5 rounded-full bg-[#1A1210] border border-[#6EE7B7]/30 text-[9.5px] text-[#6EE7B7] font-bold flex items-center gap-1">
+                        <Leaf className="w-2.5 h-2.5 text-[#6EE7B7]" />
+                        <span>{item.number}/৯</span>
+                      </span>
+                      <span className="text-[10px] text-[#E7C878] font-mono italic truncate max-w-[150px]">
+                        {item.botanical}
+                      </span>
+                    </div>
+
+                    <div className="flex items-center justify-between gap-2 mb-0.5 sm:mb-1.5">
+                      <h4 className="text-sm sm:text-lg font-bold text-[#FFF8EA] group-hover:text-[#6EE7B7] font-serif transition-colors truncate">
                         {language === 'bn' ? item.nameBn : item.nameEn}
                       </h4>
                     </div>
 
-                    <span className="text-xs text-[#E7C878] font-bold block mb-2">
+                    <span className="text-xs text-[#E7C878] font-bold block mb-1 sm:mb-2 truncate">
                       {language === 'bn' ? `অধিষ্ঠাত্রী: ${item.deityBn}` : `Presiding: ${item.deityEn}`}
                     </span>
 
-                    <p className="text-xs text-[#FFF8EA]/80 leading-relaxed font-sans line-clamp-2">
+                    <p className="text-[11px] sm:text-xs text-[#FFF8EA]/80 leading-relaxed font-sans truncate sm:whitespace-normal sm:line-clamp-2">
                       {language === 'bn' ? item.significanceBn : item.significanceEn}
                     </p>
                   </div>
 
-                  {/* Footer Action */}
-                  <div className="pt-3 border-t border-[#FFFDF8]/8 flex items-center justify-between text-xs text-[#6EE7B7] font-bold">
+                  {/* Desktop Footer Action */}
+                  <div className="hidden sm:flex pt-3 border-t border-[#FFFDF8]/8 items-center justify-between text-xs text-[#6EE7B7] font-bold">
                     <span className="truncate text-[11px] text-[#E7C878] font-serif italic max-w-[150px]">
                       {language === 'bn' ? item.mantraBn : item.mantraEn}
                     </span>
@@ -155,61 +166,79 @@ export const CultureInteractiveHighlights: React.FC<CultureInteractiveHighlights
                     </span>
                   </div>
                 </div>
+
+                {/* Mobile Right Arrow */}
+                <div className="flex sm:hidden items-center justify-center pr-1 text-[#6EE7B7] flex-shrink-0 self-center">
+                  <div className="w-7 h-7 rounded-full bg-[#FFFDF8]/8 border border-[#FFFDF8]/12 flex items-center justify-center group-hover:bg-[#6EE7B7] group-hover:text-[#120B09] transition-colors">
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </div>
+                </div>
               </Link>
             </StaggerItem>
           ))}
         </StaggerContainer>
       ) : (
         /* 10 Weapons with Floating Hover and High-Res Weapon Photo */
-        <StaggerContainer staggerDelay={0.07} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
+        <StaggerContainer staggerDelay={0.07} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-6">
           {displayedWeapons.map((item) => (
             <StaggerItem key={item.id} className="h-full">
               <Link
                 href={`/culture/weapons/${item.id}`}
-                className="agomoni-card overflow-hidden transition-all duration-300 flex flex-col justify-between h-full group hover:border-[#E7C878]/80 hover:bg-[#FFFDF8]/[0.12] cursor-pointer active:scale-[0.98] text-left p-0 shadow-xl hover:-translate-y-2.5 hover:shadow-[0_20px_45px_rgba(0,0,0,0.7),0_0_25px_rgba(231,200,120,0.25)]"
+                className="agomoni-card overflow-hidden transition-all duration-300 flex flex-row sm:flex-col justify-between h-auto sm:h-full group hover:border-[#E7C878]/80 hover:bg-[#FFFDF8]/[0.12] cursor-pointer active:scale-[0.98] text-left p-2.5 sm:p-0 shadow-lg gap-3 sm:gap-0 rounded-[20px] sm:rounded-[28px] hover:-translate-y-1 sm:hover:-translate-y-2.5 hover:shadow-[0_20px_45px_rgba(0,0,0,0.7),0_0_25px_rgba(231,200,120,0.25)]"
               >
                 {/* Photo Banner with Zoom on Hover */}
-                <div className="relative w-full h-44 sm:h-52 overflow-hidden bg-[#1A1210]">
+                <div className="relative w-20 h-20 sm:w-full sm:h-52 rounded-xl sm:rounded-none overflow-hidden bg-[#1A1210] flex-shrink-0 self-center sm:self-auto">
                   <Image
                     src={item.image}
                     alt={item.nameEn}
                     fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    sizes="(max-width: 640px) 80px, (max-width: 1024px) 50vw, 33vw"
                     className="object-cover group-hover:scale-105 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#1A1210] via-[#1A1210]/20 to-transparent" />
+                  <div className="hidden sm:block absolute inset-0 bg-gradient-to-t from-[#1A1210] via-[#1A1210]/20 to-transparent" />
 
-                  {/* Sequence Badge */}
-                  <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#1A1210]/90 border border-[#E7C878]/35 text-[11px] text-[#E7C878] font-bold shadow-xs backdrop-blur-md flex items-center gap-1.5">
+                  {/* Sequence Badge (Desktop) */}
+                  <div className="hidden sm:flex absolute top-3 left-3 px-3 py-1 rounded-full bg-[#1A1210]/90 border border-[#E7C878]/35 text-[11px] text-[#E7C878] font-bold shadow-xs backdrop-blur-md items-center gap-1.5">
                     <Shield className="w-3.5 h-3.5 text-[#E7C878]" />
                     <span>{item.number}/১০</span>
                   </div>
 
-                  <div className="absolute top-3 right-3 px-3 py-1 rounded-full bg-[#1A1210]/85 border border-[#FFFDF8]/15 text-[10px] text-[#D4AA50] font-bold backdrop-blur-md shadow-xs truncate max-w-[160px]">
+                  <div className="hidden sm:block absolute top-3 right-3 px-3 py-1 rounded-full bg-[#1A1210]/85 border border-[#FFFDF8]/15 text-[10px] text-[#D4AA50] font-bold backdrop-blur-md shadow-xs truncate max-w-[160px]">
                     {language === 'bn' ? item.donorBn : item.donorEn}
                   </div>
                 </div>
 
                 {/* Card Body */}
-                <div className="p-5 flex flex-col flex-1 justify-between space-y-3">
+                <div className="p-0 sm:p-5 flex flex-col flex-1 justify-center sm:justify-between sm:space-y-3 min-w-0">
                   <div>
-                    <div className="flex items-center justify-between gap-2 mb-1.5">
-                      <h4 className="text-lg font-bold text-[#FFF8EA] group-hover:text-[#E7C878] font-serif transition-colors">
+                    {/* Mobile Badges Row */}
+                    <div className="flex sm:hidden items-center gap-2 mb-1 flex-wrap">
+                      <span className="px-2 py-0.5 rounded-full bg-[#1A1210] border border-[#E7C878]/35 text-[9.5px] text-[#E7C878] font-bold flex items-center gap-1">
+                        <Shield className="w-2.5 h-2.5 text-[#E7C878]" />
+                        <span>{item.number}/১০</span>
+                      </span>
+                      <span className="text-[10px] text-[#D4AA50] font-bold truncate max-w-[150px]">
+                        {language === 'bn' ? item.donorBn : item.donorEn}
+                      </span>
+                    </div>
+
+                    <div className="flex items-center justify-between gap-2 mb-0.5 sm:mb-1.5">
+                      <h4 className="text-sm sm:text-lg font-bold text-[#FFF8EA] group-hover:text-[#E7C878] font-serif transition-colors truncate">
                         {language === 'bn' ? item.nameBn : item.nameEn}
                       </h4>
                     </div>
 
-                    <span className="text-xs text-[#D4AA50] font-bold block mb-2">
+                    <span className="text-xs text-[#D4AA50] font-bold block mb-1 sm:mb-2 truncate">
                       {language === 'bn' ? `উৎস: ${item.donorBn}` : `Source: ${item.donorEn}`}
                     </span>
 
-                    <p className="text-xs text-[#FFF8EA]/80 leading-relaxed font-sans line-clamp-2">
+                    <p className="text-[11px] sm:text-xs text-[#FFF8EA]/80 leading-relaxed font-sans truncate sm:whitespace-normal sm:line-clamp-2">
                       {language === 'bn' ? item.significanceBn : item.significanceEn}
                     </p>
                   </div>
 
-                  {/* Footer Action */}
-                  <div className="pt-3 border-t border-[#FFFDF8]/8 flex items-center justify-between text-xs text-[#E7C878] font-bold">
+                  {/* Desktop Footer Action */}
+                  <div className="hidden sm:flex pt-3 border-t border-[#FFFDF8]/8 items-center justify-between text-xs text-[#E7C878] font-bold">
                     <span className="truncate text-[11px] text-[#6EE7B7] font-sans">
                       {language === 'bn' ? item.focusBn : item.focusEn}
                     </span>
@@ -217,6 +246,13 @@ export const CultureInteractiveHighlights: React.FC<CultureInteractiveHighlights
                       <span>{language === 'bn' ? 'পৌরাণিক কাহিনী' : 'Full Lore'}</span>
                       <ArrowRight className="w-3 h-3" />
                     </span>
+                  </div>
+                </div>
+
+                {/* Mobile Right Arrow */}
+                <div className="flex sm:hidden items-center justify-center pr-1 text-[#E7C878] flex-shrink-0 self-center">
+                  <div className="w-7 h-7 rounded-full bg-[#FFFDF8]/8 border border-[#FFFDF8]/12 flex items-center justify-center group-hover:bg-[#A61B1B] group-hover:text-[#FFFDF8] transition-colors">
+                    <ArrowRight className="w-3.5 h-3.5" />
                   </div>
                 </div>
               </Link>
