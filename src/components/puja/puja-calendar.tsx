@@ -88,8 +88,8 @@ export const PujaCalendar: React.FC = () => {
         {/* Decorative Top Accent Bar with Dual Panjika Switcher */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3.5 sm:gap-4 pb-4 sm:pb-5 border-b border-[#FFFDF8]/10">
           <div className="flex flex-wrap items-center gap-2">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-[#120B09] border border-[#E7C878]/40 text-[#E7C878] text-[11px] sm:text-xs font-bold shadow-xs">
-              <CalendarIcon className="w-3.5 h-3.5 text-[#E7C878]" />
+            <div className="inline-flex flex-wrap items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-[#120B09] border border-[#E7C878]/40 text-[#E7C878] text-[11px] sm:text-xs font-bold shadow-xs">
+              <CalendarIcon className="w-3.5 h-3.5 text-[#E7C878] flex-shrink-0" />
               <span>
                 {language === 'bn'
                   ? (currentDay.dateBn || currentDay.date)
@@ -99,15 +99,17 @@ export const PujaCalendar: React.FC = () => {
                 <>
                   <span className="opacity-35">•</span>
                   <span className="text-[#FFF8EA]">
-                    {language === 'bn' ? currentDay.bengaliDateBn : currentDay.bengaliDateEn}
+                    {(language === 'bn' ? currentDay.bengaliDateBn : currentDay.bengaliDateEn || '')
+                      .replace(/ বঙ্গাব্দ/g, '')
+                      .replace(/ Bangabda/g, '')}
                   </span>
                 </>
               )}
+              <span className="opacity-35">•</span>
+              <span className="text-[#FFF8EA]">
+                {language === 'bn' ? currentDay.tithiBn : currentDay.tithiEn}
+              </span>
             </div>
-
-            <span className="px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-[#A61B1B]/85 border border-[#E7C878]/40 text-[11px] sm:text-xs font-bold text-[#FFFDF8] shadow-xs">
-              {language === 'bn' ? currentDay.tithiBn : currentDay.tithiEn}
-            </span>
           </div>
 
           {/* Interactive Panjika Selection Capsule (Benimadhab Shil vs Gupta Press) */}
