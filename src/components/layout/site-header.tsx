@@ -62,11 +62,11 @@ export const SiteHeader: React.FC = () => {
           : 'bg-[#140D0B]/90 border-[#FFFDF8]/10 text-[#FFF8EA]'
       )}
     >
-      <div className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 h-[52px] sm:h-16 flex items-center justify-between gap-3 sm:gap-4">
+      <div className="max-w-7xl mx-auto pl-2 pr-3 sm:px-6 lg:px-8 h-[52px] sm:h-16 flex items-center justify-between gap-2 sm:gap-4">
         {/* Brand / Logo with authentic Agomoni Calligraphic Emblem spanning full navbar height */}
         <Link
           href="/"
-          className="flex items-center h-[52px] sm:h-16 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C99A3D] transition-transform duration-200 active:scale-[0.97]"
+          className="flex items-center h-[52px] sm:h-16 -ml-0.5 sm:ml-0 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C99A3D] transition-transform duration-200 active:scale-[0.97]"
         >
           {/* Sacred Emblem Logo */}
           <div className="h-[52px] sm:h-16 w-32 sm:w-48 md:w-56 relative flex-shrink-0">
@@ -76,7 +76,7 @@ export const SiteHeader: React.FC = () => {
               fill
               priority
               sizes="(max-width: 640px) 130px, 220px"
-              className="object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+              className="object-contain object-left transition-transform duration-300 group-hover:scale-[1.02]"
             />
           </div>
         </Link>
