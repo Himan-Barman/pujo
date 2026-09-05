@@ -94,40 +94,113 @@
 
 /* macOS-inspired Smooth Physics & Standardized 32px Corner System */
 .agomoni-card {
-  background: rgba(255, 253, 248, 0.08);
+  position: relative;
+  background: rgba(255, 253, 248, 0.07);
   -webkit-backdrop-filter: blur(24px) saturate(1.4);
   backdrop-filter: blur(24px) saturate(1.4);
   border: 1px solid rgba(231, 200, 120, 0.22);
   border-radius: 32px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 253, 248, 0.12);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 
+    0 16px 40px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 253, 248, 0.14);
+  transition: 
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.35s ease,
+    background 0.35s ease,
+    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+/* Subtle Shimmer Sheen Beam on Card Hover */
+.agomoni-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -130%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(231, 200, 120, 0.06),
+    rgba(255, 253, 248, 0.14),
+    rgba(231, 200, 120, 0.06),
+    transparent
+  );
+  transform: skewX(-20deg);
+  pointer-events: none;
+  transition: left 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 2;
+}
+
+.agomoni-card:hover::before {
+  left: 140%;
 }
 
 .agomoni-card:hover {
-  background: rgba(255, 253, 248, 0.11);
-  border-color: rgba(231, 200, 120, 0.38);
-  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 253, 248, 0.16);
+  background: rgba(255, 253, 248, 0.12);
+  border-color: rgba(231, 200, 120, 0.55);
+  transform: translateY(-5px);
+  box-shadow: 
+    0 24px 65px rgba(0, 0, 0, 0.55),
+    0 0 35px rgba(201, 154, 61, 0.2),
+    0 0 15px rgba(166, 27, 27, 0.12),
+    inset 0 1px 0 rgba(255, 253, 248, 0.25);
+}
+
+.agomoni-card:active {
+  transform: translateY(-1px) scale(0.99);
+  transition-duration: 0.15s;
 }
 
 .agomoni-card-featured {
-  background: rgba(201, 154, 61, 0.14);
+  position: relative;
+  background: rgba(201, 154, 61, 0.12);
   -webkit-backdrop-filter: blur(24px) saturate(1.4);
   backdrop-filter: blur(24px) saturate(1.4);
   border: 1px solid rgba(231, 200, 120, 0.4);
   border-radius: 32px;
-  box-shadow: 0 20px 60px rgba(201, 154, 61, 0.2), inset 0 1px 0 rgba(255, 253, 248, 0.15);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.35),
+    0 0 25px rgba(201, 154, 61, 0.15),
+    inset 0 1px 0 rgba(255, 253, 248, 0.18);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.agomoni-card-featured:hover {
+  background: rgba(201, 154, 61, 0.18);
+  border-color: rgba(231, 200, 120, 0.75);
+  transform: translateY(-5px);
+  box-shadow: 
+    0 28px 75px rgba(0, 0, 0, 0.6),
+    0 0 45px rgba(201, 154, 61, 0.35),
+    0 0 20px rgba(166, 27, 27, 0.2),
+    inset 0 1px 0 rgba(255, 253, 248, 0.3);
 }
 
 .agomoni-card-dark {
-  background: rgba(26, 18, 16, 0.65);
+  position: relative;
+  background: rgba(26, 18, 16, 0.75);
   -webkit-backdrop-filter: blur(24px) saturate(1.4);
   backdrop-filter: blur(24px) saturate(1.4);
   border: 1px solid rgba(231, 200, 120, 0.2);
-  color: #FFF8EA;
   border-radius: 32px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 253, 248, 0.1);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 253, 248, 0.1);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.agomoni-card-dark:hover {
+  background: rgba(36, 26, 23, 0.9);
+  border-color: rgba(231, 200, 120, 0.5);
+  transform: translateY(-5px);
+  box-shadow: 
+    0 26px 70px rgba(0, 0, 0, 0.65),
+    0 0 30px rgba(201, 154, 61, 0.18),
+    inset 0 1px 0 rgba(255, 253, 248, 0.2);
 }
 
 /* High-Performance Mobile GPU Acceleration */
@@ -144,7 +217,7 @@
 
 /* macOS-style Inputs & Form Elements */
 .apple-input {
-  background: rgba(255, 253, 248, 0.1);
+  background: rgba(255, 253, 248, 0.08);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 253, 248, 0.15);
@@ -152,67 +225,175 @@
   color: #FFF8EA;
   padding: 0.75rem 1.125rem;
   font-size: 0.875rem;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: 
+    border-color 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+.apple-input:hover {
+  background: rgba(255, 253, 248, 0.12);
+  border-color: rgba(231, 200, 120, 0.35);
 }
 .apple-input:focus {
   outline: none;
-  border-color: rgba(231, 200, 120, 0.5);
-  box-shadow: 0 0 0 3px rgba(231, 200, 120, 0.15);
+  background: rgba(255, 253, 248, 0.14);
+  border-color: rgba(231, 200, 120, 0.65);
+  box-shadow: 
+    0 0 0 3px rgba(231, 200, 120, 0.2),
+    0 0 20px rgba(201, 154, 61, 0.15);
 }
 .apple-input::placeholder {
-  color: rgba(255, 248, 234, 0.4);
+  color: rgba(255, 248, 234, 0.45);
 }
 
 /* macOS-style Capsule Buttons */
 .apple-btn-primary {
+  position: relative;
   border-radius: 9999px;
-  background-color: #A61B1B;
+  background: linear-gradient(135deg, #A61B1B 0%, #8E1515 100%);
   color: #FFFDF8;
   font-weight: 600;
-  box-shadow: 0 4px 18px rgba(166, 27, 27, 0.35);
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid rgba(231, 200, 120, 0.35);
+  box-shadow: 
+    0 4px 18px rgba(166, 27, 27, 0.35),
+    inset 0 1px 0 rgba(255, 253, 248, 0.2);
+  transition: 
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    background 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
 }
+
 .apple-btn-primary:hover {
-  background-color: #741313;
-  box-shadow: 0 6px 24px rgba(166, 27, 27, 0.45);
+  background: linear-gradient(135deg, #B71E1E 0%, #741313 100%);
+  border-color: rgba(231, 200, 120, 0.7);
+  transform: translateY(-2px);
+  box-shadow: 
+    0 8px 28px rgba(166, 27, 27, 0.55),
+    0 0 18px rgba(231, 200, 120, 0.35),
+    inset 0 1px 0 rgba(255, 253, 248, 0.3);
 }
+
 .apple-btn-primary:active {
-  transform: scale(0.97);
+  transform: translateY(0) scale(0.96);
+  box-shadow: 0 2px 10px rgba(166, 27, 27, 0.4);
 }
 
 .apple-btn-dark {
+  position: relative;
   border-radius: 9999px;
-  background: rgba(36, 27, 24, 0.7);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 253, 248, 0.1);
+  background: rgba(36, 27, 24, 0.75);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(231, 200, 120, 0.18);
   color: #FFF8EA;
   font-weight: 600;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
 .apple-btn-dark:hover {
-  background: rgba(36, 27, 24, 0.85);
+  background: rgba(46, 34, 30, 0.95);
+  border-color: rgba(231, 200, 120, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.4),
+    0 0 18px rgba(201, 154, 61, 0.2);
 }
+
 .apple-btn-dark:active {
-  transform: scale(0.97);
+  transform: translateY(0) scale(0.96);
 }
 
 .apple-btn-secondary {
+  position: relative;
   border-radius: 9999px;
-  background: rgba(255, 253, 248, 0.1);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 253, 248, 0.15);
+  background: rgba(255, 253, 248, 0.08);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 253, 248, 0.16);
   color: #FFF8EA;
   font-weight: 600;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 
+    0 4px 14px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 253, 248, 0.1);
+  transition: 
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    background 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
 .apple-btn-secondary:hover {
-  background: rgba(255, 253, 248, 0.18);
-  border-color: rgba(231, 200, 120, 0.3);
+  background: rgba(255, 253, 248, 0.16);
+  border-color: rgba(231, 200, 120, 0.5);
+  color: #FFFDF8;
+  transform: translateY(-2px);
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.35),
+    0 0 20px rgba(201, 154, 61, 0.25),
+    inset 0 1px 0 rgba(255, 253, 248, 0.2);
 }
+
 .apple-btn-secondary:active {
+  transform: translateY(0) scale(0.96);
+}
+
+/* Luminous Heading & Text Hover Glows */
+.hover-glow-gold {
+  transition: color 0.25s ease, text-shadow 0.3s ease;
+}
+.hover-glow-gold:hover,
+.group:hover .hover-glow-gold {
+  color: #FFFDF8;
+  text-shadow: 0 0 14px rgba(231, 200, 120, 0.55), 0 0 28px rgba(201, 154, 61, 0.25);
+}
+
+.hover-glow-sindoor {
+  transition: color 0.25s ease, text-shadow 0.3s ease;
+}
+.hover-glow-sindoor:hover,
+.group:hover .hover-glow-sindoor {
+  color: #FFFDF8;
+  text-shadow: 0 0 14px rgba(217, 87, 87, 0.55), 0 0 28px rgba(166, 27, 27, 0.3);
+}
+
+/* Universal Agomoni Interactive Icon / Capsule Hover */
+.agomoni-icon-btn {
+  transition: 
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.25s ease,
+    background 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.agomoni-icon-btn:hover {
+  transform: scale(1.08) translateY(-1px);
+  box-shadow: 
+    0 6px 20px rgba(0, 0, 0, 0.4),
+    0 0 18px rgba(231, 200, 120, 0.35);
+  border-color: rgba(231, 200, 120, 0.6);
+}
+.agomoni-icon-btn:active {
+  transform: scale(0.94);
+}
+
+/* Interactive Pill Tabs & Filter Chips */
+.agomoni-pill-hover {
+  transition: 
+    transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.22s ease,
+    background 0.22s ease,
+    box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.agomoni-pill-hover:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35), 0 0 14px rgba(231, 200, 120, 0.28);
+  border-color: rgba(231, 200, 120, 0.55);
+}
+.agomoni-pill-hover:active {
   transform: scale(0.97);
 }
 

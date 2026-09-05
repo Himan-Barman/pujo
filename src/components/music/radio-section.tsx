@@ -374,10 +374,10 @@ export const RadioSection: React.FC = () => {
                       key={track.id}
                       onClick={() => playTrack(track, filteredTracks)}
                       className={cn(
-                        'p-3 sm:p-3.5 rounded-[22px] flex items-center justify-between gap-3 sm:gap-4 transition-all duration-200 border cursor-pointer group select-none active:scale-[0.99]',
+                        'p-3 sm:p-3.5 rounded-[22px] flex items-center justify-between gap-3 sm:gap-4 transition-all duration-300 border cursor-pointer group select-none active:scale-[0.99]',
                         isCurrent
-                          ? 'bg-[#FFFDF8]/[0.12] backdrop-blur-md border-[#E7C878]/45 shadow-sm'
-                          : 'bg-[#1A1210]/45 hover:bg-[#FFFDF8]/[0.08] border-[#FFFDF8]/6 hover:border-[#FFFDF8]/15'
+                          ? 'bg-[#FFFDF8]/[0.14] backdrop-blur-md border-[#E7C878]/55 shadow-[0_4px_20px_rgba(0,0,0,0.4),0_0_18px_rgba(201,154,61,0.2)]'
+                          : 'bg-[#1A1210]/45 hover:bg-[#FFFDF8]/[0.1] border-[#FFFDF8]/8 hover:border-[#E7C878]/40 hover:shadow-[0_6px_22px_rgba(0,0,0,0.4),0_0_16px_rgba(231,200,120,0.14)] hover:-translate-y-0.5'
                       )}
                     >
                       {/* Left: Play button and 2-Row Track Info */}
@@ -389,10 +389,10 @@ export const RadioSection: React.FC = () => {
                             playTrack(track, filteredTracks);
                           }}
                           className={cn(
-                            'w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center flex-shrink-0 transition-all cursor-pointer shadow-xs active:scale-90',
+                            'w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-300 cursor-pointer shadow-xs active:scale-90',
                             isCurrent && isPlaying
-                              ? 'bg-[#A61B1B] text-[#FFFDF8] scale-105 shadow-md'
-                              : 'bg-[#FFFDF8]/10 backdrop-blur-md text-[#E7C878] border border-[#FFFDF8]/15 group-hover:bg-[#A61B1B] group-hover:text-[#FFFDF8]'
+                              ? 'bg-[#A61B1B] text-[#FFFDF8] scale-105 shadow-[0_0_20px_rgba(166,27,27,0.6)]'
+                              : 'bg-[#FFFDF8]/10 backdrop-blur-md text-[#E7C878] border border-[#FFFDF8]/15 group-hover:bg-[#A61B1B] group-hover:text-[#FFFDF8] group-hover:shadow-[0_0_18px_rgba(166,27,27,0.55)] group-hover:scale-105'
                           )}
                           aria-label={isCurrent && isPlaying ? 'Pause' : 'Play'}
                         >
