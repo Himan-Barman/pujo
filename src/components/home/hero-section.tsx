@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useTransition } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useUIStore } from '@/stores/ui-store';
@@ -28,7 +28,6 @@ import { cn } from '@/lib/utils';
 export const HeroSection: React.FC = () => {
   const language = useUIStore((state) => state.language);
   const userTz = useUserTimezone();
-  const [, startTransition] = useTransition();
 
   const [mounted, setMounted] = useState(false);
 
@@ -61,28 +60,31 @@ export const HeroSection: React.FC = () => {
     }
   }, []);
 
-  // Compute festival state data
-  const festivalState: FestivalStateData = getAgomoniFestivalState(
-    undefined,
-    overrideStateId || undefined
-  );
+  // Compute festival state data (memoized to avoid creating fresh objects on re-render)
+  const festivalState: FestivalStateData = useMemo(() => {
+    return getAgomoniFestivalState(undefined, overrideStateId || undefined);
+  }, [overrideStateId]);
+
+  const targetDate = festivalState.statusCard.targetDate;
+  const isCountdown = festivalState.statusCard.mode === 'countdown';
+  const targetTime = targetDate ? targetDate.getTime() : 0;
 
   // ── Live Countdown State (Updates every second) ──
   const [countdownTime, setCountdownTime] = useState(() =>
-    calculateRemainingTime(festivalState.statusCard.targetDate)
+    calculateRemainingTime(targetDate)
   );
 
   useEffect(() => {
     // Immediate calculation on state change
-    setCountdownTime(calculateRemainingTime(festivalState.statusCard.targetDate));
+    setCountdownTime(calculateRemainingTime(targetDate));
 
-    if (festivalState.statusCard.mode === 'countdown' && festivalState.statusCard.targetDate) {
+    if (isCountdown && targetDate) {
       const timer = setInterval(() => {
-        setCountdownTime(calculateRemainingTime(festivalState.statusCard.targetDate));
+        setCountdownTime(calculateRemainingTime(targetDate));
       }, 1000);
       return () => clearInterval(timer);
     }
-  }, [festivalState.statusCard.mode, festivalState.statusCard.targetDate]);
+  }, [festivalState.stateId, isCountdown, targetTime]);
 
   // ── Auto-Rotating Slogans for Right Card ──
   const [sloganIdx, setSloganIdx] = useState(0);
@@ -98,9 +100,7 @@ export const HeroSection: React.FC = () => {
   const currentSlogan = festivalState.slogans[sloganIdx] || festivalState.slogans[0];
 
   const handleSelectDevState = (stateId: FestivalStateId | null) => {
-    startTransition(() => {
-      setOverrideStateId(stateId);
-    });
+    setOverrideStateId(stateId);
   };
 
   // Helper for CTA icon resolution

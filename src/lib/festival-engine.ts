@@ -50,6 +50,19 @@ export const FESTIVAL_CALENDARS: Record<number, FestivalCalendarYear> = {
   },
 };
 
+export const STATE_SIMULATED_DATES: Record<FestivalStateId, string> = {
+  'pre-mahalaya': '2026-09-01T10:00:00+05:30',
+  'mahalaya': '2026-10-10T05:30:00+05:30',
+  'post-mahalaya': '2026-10-12T10:00:00+05:30',
+  'panchami': '2026-10-15T18:00:00+05:30',
+  'shashthi': '2026-10-16T08:00:00+05:30',
+  'saptami': '2026-10-17T09:00:00+05:30',
+  'ashtami': '2026-10-18T10:00:00+05:30',
+  'navami': '2026-10-19T11:00:00+05:30',
+  'dashami': '2026-10-20T12:00:00+05:30',
+  'post-dashami': '2026-10-25T10:00:00+05:30',
+};
+
 /**
  * Returns the current time-of-day period in Kolkata timezone (UTC+5:30)
  */
@@ -128,7 +141,13 @@ export function getAgomoniFestivalState(
   overrideDate?: Date,
   forceState?: FestivalStateId
 ): FestivalStateData {
-  const activeDate = overrideDate || new Date();
+  let activeDate = overrideDate;
+  if (!activeDate && forceState) {
+    activeDate = new Date(STATE_SIMULATED_DATES[forceState]);
+  } else if (!activeDate) {
+    activeDate = new Date();
+  }
+
   const { stateId, year } = resolveFestivalStateId(activeDate, forceState);
   const timeOfDay = getTimeOfDayInKolkata(activeDate);
   const calendar = FESTIVAL_CALENDARS[year] || FESTIVAL_CALENDARS[2026];
@@ -1023,10 +1042,10 @@ export function getAgomoniFestivalState(
   }
 }
 
-/**
- * Calculates live remaining time to targetDate
- */
-export function calculateRemainingTime(targetDate?: Date): {
+export function calculateRemainingTime(
+  targetDate?: Date | string,
+  fromDate?: Date | string
+): {
   days: number;
   hours: number;
   minutes: number;
@@ -1051,8 +1070,14 @@ export function calculateRemainingTime(targetDate?: Date): {
     };
   }
 
-  const now = new Date().getTime();
-  const diff = targetDate.getTime() - now;
+  const target = typeof targetDate === 'string' ? new Date(targetDate).getTime() : targetDate.getTime();
+  const now = fromDate
+    ? typeof fromDate === 'string'
+      ? new Date(fromDate).getTime()
+      : fromDate.getTime()
+    : new Date().getTime();
+
+  const diff = target - now;
 
   if (diff <= 0) {
     return {

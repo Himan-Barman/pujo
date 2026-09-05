@@ -53,6 +53,8 @@ export interface FestivalStatusCardData {
   highlights?: FestivalStatusHighlight[];
   // Countdown properties (active when mode === 'countdown')
   targetDate?: Date;
+  targetDateISO?: string;
+  simulatedDateISO?: string;
   countdownLabelBn?: string;
   countdownLabelEn?: string;
   targetEventBn?: string;
