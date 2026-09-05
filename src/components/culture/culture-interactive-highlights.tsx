@@ -75,7 +75,7 @@ export const CultureInteractiveHighlights: React.FC<CultureInteractiveHighlights
                   : 'agomoni-filter-tab text-[#FFF8EA]/70 hover:text-[#FFFDF8]'
               )}
             >
-              <Leaf className="w-3.5 h-3.5 text-[#6EE7B7]" />
+              <Leaf className="w-3.5 h-3.5 text-[#E7C878]" />
               <span>{language === 'bn' ? 'নবপত্রিকা' : 'Nabapatrika'}</span>
             </button>
             <button
@@ -102,7 +102,7 @@ export const CultureInteractiveHighlights: React.FC<CultureInteractiveHighlights
             <StaggerItem key={item.id} className="h-full">
               <Link
                 href={`/culture/plants/${item.id}`}
-                className="agomoni-card overflow-hidden transition-all duration-300 flex flex-row sm:flex-col justify-between h-auto sm:h-full group hover:border-[#6EE7B7]/80 hover:bg-[#FFFDF8]/[0.12] cursor-pointer active:scale-[0.98] text-left p-2.5 sm:p-0 shadow-lg gap-3 sm:gap-0 rounded-[20px] sm:rounded-[28px] hover:-translate-y-1 sm:hover:-translate-y-2.5 hover:shadow-[0_20px_45px_rgba(0,0,0,0.7),0_0_25px_rgba(110,231,183,0.2)]"
+                className="agomoni-card overflow-hidden transition-all duration-300 flex flex-row sm:flex-col justify-between h-auto sm:h-full group hover:border-[#E7C878]/80 hover:bg-[#FFFDF8]/[0.12] cursor-pointer active:scale-[0.98] text-left p-2.5 sm:p-0 shadow-lg gap-3 sm:gap-0 rounded-[20px] sm:rounded-[28px] hover:-translate-y-1 sm:hover:-translate-y-2.5 hover:shadow-[0_20px_45px_rgba(0,0,0,0.7),0_0_25px_rgba(231,200,120,0.25)]"
               >
                 {/* Photo Banner with Zoom on Hover */}
                 <div className="relative w-20 h-20 sm:w-full sm:h-52 rounded-xl sm:rounded-none overflow-hidden bg-[#1A1210] flex-shrink-0 self-center sm:self-auto">
@@ -116,8 +116,8 @@ export const CultureInteractiveHighlights: React.FC<CultureInteractiveHighlights
                   <div className="hidden sm:block absolute inset-0 bg-gradient-to-t from-[#1A1210] via-[#1A1210]/25 to-transparent" />
 
                   {/* Badges on Top of Photo (Desktop) */}
-                  <div className="hidden sm:flex absolute top-3 left-3 px-3 py-1 rounded-full bg-[#1A1210]/85 border border-[#6EE7B7]/30 text-[11px] text-[#6EE7B7] font-bold shadow-xs backdrop-blur-md items-center gap-1.5">
-                    <Leaf className="w-3 h-3 text-[#6EE7B7]" />
+                  <div className="hidden sm:flex absolute top-3 left-3 px-3 py-1 rounded-full bg-[#1A1210]/85 border border-[#E7C878]/35 text-[11px] text-[#E7C878] font-bold shadow-xs backdrop-blur-md items-center gap-1.5">
+                    <Leaf className="w-3 h-3 text-[#E7C878]" />
                     <span>{item.number}/৯</span>
                   </div>
 
@@ -131,8 +131,8 @@ export const CultureInteractiveHighlights: React.FC<CultureInteractiveHighlights
                   <div>
                     {/* Mobile Badges Row */}
                     <div className="flex sm:hidden items-center gap-2 mb-1 flex-wrap">
-                      <span className="px-2 py-0.5 rounded-full bg-[#1A1210] border border-[#6EE7B7]/30 text-[9.5px] text-[#6EE7B7] font-bold flex items-center gap-1">
-                        <Leaf className="w-2.5 h-2.5 text-[#6EE7B7]" />
+                      <span className="px-2 py-0.5 rounded-full bg-[#1A1210] border border-[#E7C878]/35 text-[9.5px] text-[#E7C878] font-bold flex items-center gap-1">
+                        <Leaf className="w-2.5 h-2.5 text-[#E7C878]" />
                         <span>{item.number}/৯</span>
                       </span>
                       <span className="text-[10px] text-[#E7C878] font-mono italic truncate max-w-[150px]">
@@ -141,7 +141,7 @@ export const CultureInteractiveHighlights: React.FC<CultureInteractiveHighlights
                     </div>
 
                     <div className="flex items-center justify-between gap-2 mb-0.5 sm:mb-1.5">
-                      <h4 className="text-sm sm:text-lg font-bold text-[#FFF8EA] group-hover:text-[#6EE7B7] font-serif transition-colors truncate">
+                      <h4 className="text-sm sm:text-lg font-bold text-[#FFF8EA] group-hover:text-[#E7C878] font-serif transition-colors truncate">
                         {language === 'bn' ? item.nameBn : item.nameEn}
                       </h4>
                     </div>
@@ -156,7 +156,7 @@ export const CultureInteractiveHighlights: React.FC<CultureInteractiveHighlights
                   </div>
 
                   {/* Desktop Footer Action */}
-                  <div className="hidden sm:flex pt-3 border-t border-[#FFFDF8]/8 items-center justify-between text-xs text-[#6EE7B7] font-bold">
+                  <div className="hidden sm:flex pt-3 border-t border-[#FFFDF8]/8 items-center justify-between text-xs text-[#E7C878] font-bold">
                     <span className="truncate text-[11px] text-[#E7C878] font-serif italic max-w-[150px]">
                       {language === 'bn' ? item.mantraBn : item.mantraEn}
                     </span>
@@ -168,8 +168,8 @@ export const CultureInteractiveHighlights: React.FC<CultureInteractiveHighlights
                 </div>
 
                 {/* Mobile Right Arrow */}
-                <div className="flex sm:hidden items-center justify-center pr-1 text-[#6EE7B7] flex-shrink-0 self-center">
-                  <div className="w-7 h-7 rounded-full bg-[#FFFDF8]/8 border border-[#FFFDF8]/12 flex items-center justify-center group-hover:bg-[#6EE7B7] group-hover:text-[#120B09] transition-colors">
+                <div className="flex sm:hidden items-center justify-center pr-1 text-[#E7C878] flex-shrink-0 self-center">
+                  <div className="w-7 h-7 rounded-full bg-[#FFFDF8]/8 border border-[#FFFDF8]/12 flex items-center justify-center group-hover:bg-[#A61B1B] group-hover:text-[#FFFDF8] transition-colors">
                     <ArrowRight className="w-3.5 h-3.5" />
                   </div>
                 </div>
@@ -239,7 +239,7 @@ export const CultureInteractiveHighlights: React.FC<CultureInteractiveHighlights
 
                   {/* Desktop Footer Action */}
                   <div className="hidden sm:flex pt-3 border-t border-[#FFFDF8]/8 items-center justify-between text-xs text-[#E7C878] font-bold">
-                    <span className="truncate text-[11px] text-[#6EE7B7] font-sans">
+                    <span className="truncate text-[11px] text-[#E7C878] font-sans">
                       {language === 'bn' ? item.focusBn : item.focusEn}
                     </span>
                     <span className="flex items-center gap-1 group-hover:translate-x-1 transition-transform text-[11px]">

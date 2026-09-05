@@ -287,7 +287,7 @@ export default function PlantDetailPage({ params }: PlantDetailPageProps) {
                 <div>
                   {/* Mobile Tag Row */}
                   <div className="flex sm:hidden items-center gap-2 mb-1 flex-wrap">
-                    <span className="px-2 py-0.5 rounded-full bg-[#1A1210] border border-[#6EE7B7]/30 text-[9.5px] text-[#6EE7B7] font-bold">
+                    <span className="px-2 py-0.5 rounded-full bg-[#1A1210] border border-[#E7C878]/35 text-[9.5px] text-[#E7C878] font-bold">
                       {p.number}/৯
                     </span>
                     <span className="text-[10px] text-[#E7C878] font-mono italic truncate max-w-[150px]">
@@ -314,8 +314,8 @@ export default function PlantDetailPage({ params }: PlantDetailPageProps) {
               </div>
 
               {/* Mobile Right Arrow */}
-              <div className="flex sm:hidden items-center justify-center pr-1 text-[#6EE7B7] flex-shrink-0 self-center">
-                <div className="w-7 h-7 rounded-full bg-[#FFFDF8]/8 border border-[#FFFDF8]/12 flex items-center justify-center group-hover:bg-[#6EE7B7] group-hover:text-[#120B09] transition-colors">
+              <div className="flex sm:hidden items-center justify-center pr-1 text-[#E7C878] flex-shrink-0 self-center">
+                <div className="w-7 h-7 rounded-full bg-[#FFFDF8]/8 border border-[#FFFDF8]/12 flex items-center justify-center group-hover:bg-[#A61B1B] group-hover:text-[#FFFDF8] transition-colors">
                   <ArrowRight className="w-3.5 h-3.5" />
                 </div>
               </div>
