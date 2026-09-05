@@ -215,9 +215,9 @@ export const HeroSection: React.FC = () => {
           {/* ────────────────────────────────────────────────────────── */}
           {/* Card A: Adaptive Festival Status & Countdown Box           */}
           {/* ────────────────────────────────────────────────────────── */}
-          <div className="agomoni-card p-3.5 sm:p-5 w-full shadow-2xl flex flex-col justify-between text-left">
+          <div className="agomoni-card p-4 sm:p-5 w-full shadow-2xl flex flex-col justify-between text-left">
             {/* Top Meta Bar */}
-            <div className="flex items-center justify-between gap-2 mb-2.5 sm:mb-3 px-1">
+            <div className="flex items-center justify-between gap-2 mb-2 px-0.5">
               <div className="flex items-center gap-1.5 min-w-0">
                 <span className="w-2 h-2 rounded-full bg-[#D95757] animate-pulse flex-shrink-0" />
                 <span className="text-xs font-bold text-[#FFF8EA] font-serif truncate">
@@ -243,7 +243,7 @@ export const HeroSection: React.FC = () => {
 
             {/* Content Area: Mode A (Live Countdown) vs Mode B (Sacred Day Timings/Highlights) */}
             {festivalState.statusCard.mode === 'countdown' ? (
-              <div className="space-y-2">
+              <div className="space-y-2.5 flex-1 flex flex-col justify-center py-1">
                 <div className="grid grid-cols-4 gap-1.5 sm:gap-2.5">
                   {[
                     {
@@ -281,7 +281,7 @@ export const HeroSection: React.FC = () => {
                 </div>
 
                 <p
-                  className="text-[10px] sm:text-[11px] text-[#FFF8EA]/70 text-center font-sans truncate px-1"
+                  className="text-[10.5px] sm:text-xs text-[#FFF8EA]/75 text-center font-sans truncate px-1"
                   suppressHydrationWarning
                 >
                   {language === 'bn'
@@ -290,15 +290,15 @@ export const HeroSection: React.FC = () => {
                 </p>
               </div>
             ) : (
-              /* Mode B: Active Puja Day Highlights & Auspicious Timings */
-              <div className="space-y-2.5 flex-1 flex flex-col justify-center">
+              /* Mode B: Active Puja Day Highlights & Auspicious Timings (Full width horizontal rows) */
+              <div className="space-y-2 flex-1 flex flex-col justify-center py-0.5">
                 <div>
                   <h4 className="text-sm sm:text-base font-bold font-serif text-[#FFF8EA] leading-snug">
                     {language === 'bn'
                       ? festivalState.statusCard.titleBn
                       : festivalState.statusCard.titleEn}
                   </h4>
-                  <p className="text-[10.5px] sm:text-xs text-[#E7C878] font-sans truncate mt-0.5">
+                  <p className="text-[11px] sm:text-xs text-[#E7C878] font-sans truncate mt-0.5">
                     {language === 'bn'
                       ? festivalState.statusCard.subtitleBn
                       : festivalState.statusCard.subtitleEn}
@@ -306,21 +306,24 @@ export const HeroSection: React.FC = () => {
                 </div>
 
                 {festivalState.statusCard.highlights && (
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-1.5 pt-1">
+                  <div className="space-y-1.5 pt-1">
                     {festivalState.statusCard.highlights.map((h, idx) => (
                       <div
                         key={idx}
-                        className="rounded-[14px] p-2 bg-[#FFFDF8]/8 border border-[#FFFDF8]/12 text-left space-y-0.5"
+                        className="flex items-center justify-between gap-2 px-2.5 sm:px-3 py-1.5 rounded-[12px] bg-[#FFFDF8]/[0.06] border border-[#FFFDF8]/10 hover:border-[#E7C878]/30 transition-colors shadow-xs"
                       >
-                        <span className="text-[9.5px] text-[#FFF8EA]/70 font-sans block truncate">
-                          {language === 'bn' ? h.labelBn : h.labelEn}
-                        </span>
+                        <div className="flex items-center gap-2 min-w-0 flex-1">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#E7C878] flex-shrink-0" />
+                          <span className="text-[11px] sm:text-xs text-[#FFF8EA]/90 font-medium truncate">
+                            {language === 'bn' ? h.labelBn : h.labelEn}
+                          </span>
+                        </div>
                         <div
-                          className="text-[10.5px] sm:text-[11px] font-bold text-[#E7C878] font-mono flex items-center gap-1"
+                          className="px-2 sm:px-2.5 py-0.5 rounded-full bg-[#1A1210]/90 border border-[#E7C878]/30 text-[10.5px] sm:text-[11px] font-bold text-[#E7C878] font-mono flex items-center gap-1.5 flex-shrink-0 shadow-xs"
                           suppressHydrationWarning
                         >
                           <Clock className="w-2.5 h-2.5 text-[#E7C878] flex-shrink-0" />
-                          <span className="truncate">{language === 'bn' ? h.timeBn : h.timeEn}</span>
+                          <span className="whitespace-nowrap">{language === 'bn' ? h.timeBn : h.timeEn}</span>
                         </div>
                       </div>
                     ))}
@@ -333,12 +336,12 @@ export const HeroSection: React.FC = () => {
           {/* ────────────────────────────────────────────────────────── */}
           {/* Card B: Auto-Changing Slogan & Sacred Lore Box              */}
           {/* ────────────────────────────────────────────────────────── */}
-          <div className="agomoni-card p-4 sm:p-6 w-full shadow-2xl flex flex-col justify-center items-center text-center relative overflow-hidden">
+          <div className="agomoni-card p-4 sm:p-5 w-full shadow-2xl flex flex-col justify-between items-center text-center relative overflow-hidden">
             {/* Subtle background radial glow */}
             <div className="absolute inset-0 bg-radial from-[#E7C878]/8 via-transparent to-transparent pointer-events-none" />
 
-            <div className="relative z-10 w-full flex flex-col justify-center items-center min-h-[90px] sm:min-h-[95px]">
-              <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-[#1A1210]/60 border border-[#E7C878]/30 text-[10px] font-bold text-[#E7C878] mb-2 shadow-xs">
+            <div className="w-full flex items-center justify-center mb-1">
+              <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-[#1A1210]/75 border border-[#E7C878]/30 text-[10px] font-bold text-[#E7C878] shadow-xs">
                 <Sparkles className="w-3 h-3 text-[#E7C878] animate-pulse" />
                 <span>
                   {language === 'bn'
@@ -346,27 +349,33 @@ export const HeroSection: React.FC = () => {
                     : festivalState.emotionalKeywordEn || 'Festival Reflection'}
                 </span>
               </div>
+            </div>
 
+            <div className="relative z-10 w-full flex flex-col justify-center items-center my-auto py-2">
               <AnimatePresence mode="wait">
                 <motion.div
-                  key={`slogan-${currentSlogan?.id}-${festivalState.stateId}`}
-                  initial={{ opacity: 0, y: 12, filter: 'blur(5px)' }}
-                  animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                  exit={{ opacity: 0, y: -12, filter: 'blur(5px)' }}
+                  key={`slogan-${currentSlogan?.id || 'default'}-${festivalState.stateId}`}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
                   transition={{
-                    duration: 0.6,
+                    duration: 0.45,
                     ease: [0.16, 1, 0.3, 1],
                   }}
-                  className="space-y-1 w-full"
+                  className="space-y-1.5 w-full"
                 >
-                  <h3 className="text-base sm:text-xl font-bold font-serif text-[#FFF8EA] drop-shadow-sm truncate">
+                  <h3 className="text-sm sm:text-base md:text-lg font-bold font-serif text-[#FFF8EA] drop-shadow-sm leading-snug">
                     {language === 'bn' ? currentSlogan?.titleBn : currentSlogan?.titleEn}
                   </h3>
-                  <p className="text-xs sm:text-sm font-serif text-[#E7C878] italic leading-relaxed drop-shadow-sm line-clamp-2">
+                  <p className="text-xs sm:text-sm font-serif text-[#E7C878] italic leading-relaxed drop-shadow-sm line-clamp-2 max-w-sm mx-auto">
                     {language === 'bn' ? currentSlogan?.quoteBn : currentSlogan?.quoteEn}
                   </p>
                 </motion.div>
               </AnimatePresence>
+            </div>
+
+            <div className="w-full flex items-center justify-center pt-1 border-t border-[#FFFDF8]/8 text-[10px] text-[#FFF8EA]/50 font-sans">
+              <span>{language === 'bn' ? 'অবিরত শারদ ভাবনা' : 'Living Heritage Insights'}</span>
             </div>
           </div>
         </motion.div>
