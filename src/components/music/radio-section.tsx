@@ -217,7 +217,7 @@ export const RadioSection: React.FC = () => {
                         'flex items-center justify-center lg:justify-between gap-1.5 lg:gap-2.5 px-3.5 sm:px-5 py-1.5 sm:py-2.5 lg:p-3.5 rounded-full lg:rounded-[20px] border text-xs sm:text-sm font-bold font-serif whitespace-nowrap lg:whitespace-normal',
                         isActive
                           ? 'bg-gradient-to-r from-[#A61B1B] to-[#741313] border-2 border-[#E7C878] text-[#FFFDF8] shadow-[0_4px_22px_rgba(201,154,61,0.35)] scale-[1.02] lg:scale-100 z-10 lg:z-auto'
-                          : 'bg-[#1A1210]/80 lg:bg-transparent backdrop-blur-xl lg:backdrop-blur-none border-[#FFFDF8]/12 lg:border-transparent text-[#FFF8EA]/80 hover:text-[#FFF8EA] hover:border-[#E7C878]/50 hover:bg-[#FFFDF8]/[0.08]'
+                          : 'agomoni-filter-tab bg-[#1A1210]/80 lg:bg-[#1A1210]/40 backdrop-blur-xl lg:backdrop-blur-none border-[#FFFDF8]/12 lg:border-[#FFFDF8]/8 text-[#FFF8EA]/80 hover:text-[#FFFDF8]'
                       )}
                     >
                       {/* Mobile Active Sparkles */}

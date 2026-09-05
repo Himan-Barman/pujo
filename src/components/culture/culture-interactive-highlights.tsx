@@ -72,7 +72,7 @@ export const CultureInteractiveHighlights: React.FC<CultureInteractiveHighlights
                 'px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full font-bold flex items-center justify-center gap-1.5 sm:gap-2 transition-all duration-200 cursor-pointer active:scale-95 text-xs sm:text-sm flex-1 sm:flex-initial text-center',
                 currentTab === 'nabapatrika'
                   ? 'bg-[#A61B1B] text-[#FFFDF8] shadow-md border border-[#E7C878]/30'
-                  : 'text-[#FFF8EA]/70 hover:text-[#FFF8EA] hover:bg-[#FFFDF8]/8'
+                  : 'agomoni-filter-tab text-[#FFF8EA]/70 hover:text-[#FFFDF8]'
               )}
             >
               <Leaf className="w-3.5 h-3.5 text-[#6EE7B7]" />
@@ -85,7 +85,7 @@ export const CultureInteractiveHighlights: React.FC<CultureInteractiveHighlights
                 'px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full font-bold flex items-center justify-center gap-1.5 sm:gap-2 transition-all duration-200 cursor-pointer active:scale-95 text-xs sm:text-sm flex-1 sm:flex-initial text-center',
                 currentTab === 'weapons'
                   ? 'bg-[#A61B1B] text-[#FFFDF8] shadow-md border border-[#E7C878]/30'
-                  : 'text-[#FFF8EA]/70 hover:text-[#FFF8EA] hover:bg-[#FFFDF8]/8'
+                  : 'agomoni-filter-tab text-[#FFF8EA]/70 hover:text-[#FFFDF8]'
               )}
             >
               <Shield className="w-3.5 h-3.5 text-[#E7C878]" />

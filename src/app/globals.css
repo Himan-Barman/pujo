@@ -246,9 +246,90 @@
   color: rgba(255, 248, 234, 0.45);
 }
 
-/* macOS-style Capsule Buttons */
-.apple-btn-primary {
+/* ═══════════════════════════════════════════════════════════════════ */
+/* macOS-style Liquid Left-to-Right Sliding Sheet Hover & Tap Physics   */
+/* ═══════════════════════════════════════════════════════════════════ */
+
+/* Base class for all buttons & interactive filter options with left-sliding sheet */
+.mac-btn-slide,
+.apple-btn-primary,
+.apple-btn-secondary,
+.apple-btn-dark,
+.agomoni-pill-hover,
+.agomoni-filter-tab,
+.agomoni-icon-btn {
   position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition: 
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.35s ease,
+    box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    color 0.3s ease;
+}
+
+/* Ensure all child elements (icons, texts, badges) stay above the sliding sheet */
+.mac-btn-slide > *,
+.apple-btn-primary > *,
+.apple-btn-secondary > *,
+.apple-btn-dark > *,
+.agomoni-pill-hover > *,
+.agomoni-filter-tab > *,
+.agomoni-icon-btn > * {
+  position: relative;
+  z-index: 2;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* The Sliding Sheet Layer (Originates from the LEFT side) */
+.mac-btn-slide::before,
+.apple-btn-primary::before,
+.apple-btn-secondary::before,
+.apple-btn-dark::before,
+.agomoni-pill-hover::before,
+.agomoni-filter-tab::before,
+.agomoni-icon-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.42s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Trigger sliding sheet on hover, focus-visible, and mobile tap/active */
+.mac-btn-slide:hover::before,
+.mac-btn-slide:focus-visible::before,
+.mac-btn-slide:active::before,
+.apple-btn-primary:hover::before,
+.apple-btn-primary:focus-visible::before,
+.apple-btn-primary:active::before,
+.apple-btn-secondary:hover::before,
+.apple-btn-secondary:focus-visible::before,
+.apple-btn-secondary:active::before,
+.apple-btn-dark:hover::before,
+.apple-btn-dark:focus-visible::before,
+.apple-btn-dark:active::before,
+.agomoni-pill-hover:hover::before,
+.agomoni-pill-hover:focus-visible::before,
+.agomoni-pill-hover:active::before,
+.agomoni-filter-tab:hover::before,
+.agomoni-filter-tab:focus-visible::before,
+.agomoni-filter-tab:active::before,
+.agomoni-icon-btn:hover::before,
+.agomoni-icon-btn:focus-visible::before,
+.agomoni-icon-btn:active::before {
+  transform: scaleX(1);
+}
+
+/* 1. Primary Sindoor Button (Deep Temple Velvet & Gold Sheet from Left) */
+.apple-btn-primary {
   border-radius: 9999px;
   background: linear-gradient(135deg, #A61B1B 0%, #8E1515 100%);
   color: #FFFDF8;
@@ -257,16 +338,14 @@
   box-shadow: 
     0 4px 18px rgba(166, 27, 27, 0.35),
     inset 0 1px 0 rgba(255, 253, 248, 0.2);
-  transition: 
-    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-    background 0.25s ease,
-    border-color 0.25s ease,
-    box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  overflow: hidden;
+}
+
+.apple-btn-primary::before {
+  background: linear-gradient(90deg, #741313 0%, #8E1515 50%, #B71E1E 100%);
+  box-shadow: inset 0 0 16px rgba(231, 200, 120, 0.25);
 }
 
 .apple-btn-primary:hover {
-  background: linear-gradient(135deg, #B71E1E 0%, #741313 100%);
   border-color: rgba(231, 200, 120, 0.7);
   transform: translateY(-2px);
   box-shadow: 
@@ -280,34 +359,8 @@
   box-shadow: 0 2px 10px rgba(166, 27, 27, 0.4);
 }
 
-.apple-btn-dark {
-  position: relative;
-  border-radius: 9999px;
-  background: rgba(36, 27, 24, 0.75);
-  -webkit-backdrop-filter: blur(14px);
-  backdrop-filter: blur(14px);
-  border: 1px solid rgba(231, 200, 120, 0.18);
-  color: #FFF8EA;
-  font-weight: 600;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.apple-btn-dark:hover {
-  background: rgba(46, 34, 30, 0.95);
-  border-color: rgba(231, 200, 120, 0.5);
-  transform: translateY(-2px);
-  box-shadow: 
-    0 8px 24px rgba(0, 0, 0, 0.4),
-    0 0 18px rgba(201, 154, 61, 0.2);
-}
-
-.apple-btn-dark:active {
-  transform: translateY(0) scale(0.96);
-}
-
+/* 2. Secondary Glass Capsule Button (Sindoor Crimson + Gold Fill from Left) */
 .apple-btn-secondary {
-  position: relative;
   border-radius: 9999px;
   background: rgba(255, 253, 248, 0.08);
   -webkit-backdrop-filter: blur(14px);
@@ -318,27 +371,112 @@
   box-shadow: 
     0 4px 14px rgba(0, 0, 0, 0.2),
     inset 0 1px 0 rgba(255, 253, 248, 0.1);
-  transition: 
-    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-    background 0.25s ease,
-    border-color 0.25s ease,
-    color 0.25s ease,
-    box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.apple-btn-secondary::before {
+  background: linear-gradient(90deg, #A61B1B 0%, #8E1515 65%, #741313 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 253, 248, 0.25);
 }
 
 .apple-btn-secondary:hover {
-  background: rgba(255, 253, 248, 0.16);
-  border-color: rgba(231, 200, 120, 0.5);
+  border-color: rgba(231, 200, 120, 0.65);
   color: #FFFDF8;
   transform: translateY(-2px);
   box-shadow: 
-    0 8px 24px rgba(0, 0, 0, 0.35),
+    0 8px 26px rgba(166, 27, 27, 0.45),
     0 0 20px rgba(201, 154, 61, 0.25),
     inset 0 1px 0 rgba(255, 253, 248, 0.2);
 }
 
 .apple-btn-secondary:active {
   transform: translateY(0) scale(0.96);
+}
+
+/* 3. Dark Capsule Button (Deep Red & Charcoal Wipe from Left) */
+.apple-btn-dark {
+  border-radius: 9999px;
+  background: rgba(36, 27, 24, 0.75);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(231, 200, 120, 0.18);
+  color: #FFF8EA;
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+.apple-btn-dark::before {
+  background: linear-gradient(90deg, #5A1616 0%, #741313 60%, #A61B1B 100%);
+}
+
+.apple-btn-dark:hover {
+  border-color: rgba(231, 200, 120, 0.55);
+  transform: translateY(-2px);
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.4),
+    0 0 18px rgba(201, 154, 61, 0.2);
+}
+
+.apple-btn-dark:active {
+  transform: translateY(0) scale(0.96);
+}
+
+/* 4. Filter Options & Pill Chips (Sacred Sindoor-to-Gold Sheet Wipe from Left) */
+.agomoni-pill-hover,
+.agomoni-filter-tab {
+  border-radius: 9999px;
+  background: rgba(26, 18, 16, 0.8);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 253, 248, 0.12);
+  color: rgba(255, 248, 234, 0.8);
+}
+
+.agomoni-pill-hover::before,
+.agomoni-filter-tab::before {
+  background: linear-gradient(90deg, #A61B1B 0%, #8E1515 65%, #741313 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 253, 248, 0.2);
+}
+
+.agomoni-pill-hover:hover,
+.agomoni-filter-tab:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 
+    0 6px 20px rgba(166, 27, 27, 0.4),
+    0 0 16px rgba(231, 200, 120, 0.3);
+  border-color: rgba(231, 200, 120, 0.65);
+  color: #FFFDF8;
+}
+
+.agomoni-pill-hover:active,
+.agomoni-filter-tab:active {
+  transform: scale(0.97);
+}
+
+/* 5. Circular Icon Control Buttons (Left-to-Right Circular Fill) */
+.agomoni-icon-btn {
+  border-radius: 9999px;
+  background: rgba(26, 18, 16, 0.8);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 253, 248, 0.15);
+  color: #E7C878;
+}
+
+.agomoni-icon-btn::before {
+  background: linear-gradient(90deg, #A61B1B 0%, #8E1515 65%, #741313 100%);
+}
+
+.agomoni-icon-btn:hover {
+  transform: scale(1.08) translateY(-1px);
+  box-shadow: 
+    0 6px 20px rgba(166, 27, 27, 0.4),
+    0 0 18px rgba(231, 200, 120, 0.35);
+  border-color: rgba(231, 200, 120, 0.65);
+  color: #FFFDF8;
+}
+
+.agomoni-icon-btn:active {
+  transform: scale(0.94);
 }
 
 /* Luminous Heading & Text Hover Glows */
@@ -358,43 +496,6 @@
 .group:hover .hover-glow-sindoor {
   color: #FFFDF8;
   text-shadow: 0 0 14px rgba(217, 87, 87, 0.55), 0 0 28px rgba(166, 27, 27, 0.3);
-}
-
-/* Universal Agomoni Interactive Icon / Capsule Hover */
-.agomoni-icon-btn {
-  transition: 
-    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-    border-color 0.25s ease,
-    background 0.25s ease,
-    color 0.25s ease,
-    box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.agomoni-icon-btn:hover {
-  transform: scale(1.08) translateY(-1px);
-  box-shadow: 
-    0 6px 20px rgba(0, 0, 0, 0.4),
-    0 0 18px rgba(231, 200, 120, 0.35);
-  border-color: rgba(231, 200, 120, 0.6);
-}
-.agomoni-icon-btn:active {
-  transform: scale(0.94);
-}
-
-/* Interactive Pill Tabs & Filter Chips */
-.agomoni-pill-hover {
-  transition: 
-    transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
-    border-color 0.22s ease,
-    background 0.22s ease,
-    box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.agomoni-pill-hover:hover {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35), 0 0 14px rgba(231, 200, 120, 0.28);
-  border-color: rgba(231, 200, 120, 0.55);
-}
-.agomoni-pill-hover:active {
-  transform: scale(0.97);
 }
 
 /* Subtle Diya Flame Glow Animation */

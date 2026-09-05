@@ -58,7 +58,7 @@ export const HomeCultureSection: React.FC = () => {
                   'flex items-center gap-2 px-4 py-2.5 sm:px-5 sm:py-3 rounded-full text-xs sm:text-sm font-bold transition-all duration-200 whitespace-nowrap cursor-pointer select-none active:scale-95 border flex-shrink-0 shadow-sm',
                   isActive
                     ? 'bg-[#A61B1B] text-[#FFFDF8] border-[#E7C878]/60 shadow-[0_4px_20px_rgba(166,27,27,0.4)] scale-105'
-                    : 'bg-[#1A1210]/70 backdrop-blur-md text-[#FFF8EA]/75 border-[#FFFDF8]/12 hover:border-[#E7C878]/40 hover:text-[#FFF8EA]'
+                    : 'agomoni-filter-tab bg-[#1A1210]/70 backdrop-blur-md text-[#FFF8EA]/75 border-[#FFFDF8]/12 hover:text-[#FFFDF8]'
                 )}
               >
                 <Icon className={cn('w-4 h-4', isActive ? 'text-[#FFFDF8]' : 'text-[#E7C878]')} />
