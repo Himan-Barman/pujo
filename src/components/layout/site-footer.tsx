@@ -19,7 +19,7 @@ export const SiteFooter: React.FC = () => {
 
   const handleShareAgomoni = () => {
     openShare({
-      titleBn: 'আগমনী — যেখানে জীবন্ত হয়ে ওঠেন মা দুর্গা',
+      titleBn: 'আগমনী — শরতের আগমনে মায়ের আবাহন',
       titleEn: 'Agomoni — Where Maa Comes Alive',
       descriptionBn: 'বাঙালির শারদোৎসবের এক নিবিড়, পবিত্র ও জীবন্ত ডিজিটাল রূপ। পুষ্পাঞ্জলি, দেবভোগ, স্তোত্র ও চিরায়ত ঐতিহ্যের আবহ।',
       descriptionEn: 'A digital autumn in Bengal celebrating devotion, sacred rituals, music, and heritage.',
@@ -59,7 +59,7 @@ export const SiteFooter: React.FC = () => {
           </p>
           <p className="text-xs sm:text-sm text-[#E9D8C6] mt-2 sm:mt-3 leading-relaxed">
             {language === 'bn'
-              ? 'যেখানে জীবন্ত হয়ে ওঠেন মা দুর্গা। শারদোৎসবের ভক্তি, ঐতিহ্য, সুর ও পবিত্র মিলনমেলা।'
+              ? 'শরতের আগমনে মায়ের আবাহন। শারদোৎসবের ভক্তি, ঐতিহ্য, সুর ও পবিত্র মিলনমেলা।'
               : 'Where Maa Comes Alive. A digital autumn in Bengal celebrating devotion, sacred rituals, music, and heritage.'}
           </p>
 

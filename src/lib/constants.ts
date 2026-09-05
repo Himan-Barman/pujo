@@ -73,7 +73,7 @@ export const PUJA_DAYS_ORDER = [
 export const FESTIVE_GREETINGS = {
   brandNameBn: 'আগমনী',
   brandNameEn: 'AGOMONI',
-  brandTaglineBn: 'যেখানে জীবন্ত হয়ে ওঠেন মা দুর্গা',
+  brandTaglineBn: 'শরতের আগমনে মায়ের আবাহন',
   brandTaglineEn: 'Where Maa Comes Alive',
   heroHeadingBn: 'মা আসছেন…',
   heroHeadingEn: 'AGOMONI — WHERE MAA COMES ALIVE',

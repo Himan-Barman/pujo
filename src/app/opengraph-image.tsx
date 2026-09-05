@@ -1,5 +1,5 @@
 import { ImageResponse } from 'next/og';
-export const alt = 'Agomoni — যেখানে জীবন্ত হয়ে ওঠেন মা দুর্গা';
+export const alt = 'Agomoni — শরতের আগমনে মায়ের আবাহন';
 export const size = {
   width: 1200,
   height: 630,
@@ -18,10 +18,11 @@ export default async function Image() {
           justifyContent: 'space-between',
           backgroundColor: '#120B09',
           backgroundImage:
-            'radial-gradient(circle at 85% 15%, rgba(166, 27, 27, 0.4) 0%, transparent 55%), radial-gradient(circle at 15% 85%, rgba(201, 154, 61, 0.3) 0%, transparent 55%)',
+            'radial-gradient(circle at 85% 15%, rgba(166, 27, 27, 0.45) 0%, transparent 55%), radial-gradient(circle at 15% 85%, rgba(201, 154, 61, 0.3) 0%, transparent 55%)',
           padding: '50px 65px',
+          fontFamily: 'serif',
           color: '#FFF8EA',
-          border: '8px solid rgba(231, 200, 120, 0.35)',
+          border: '8px solid rgba(231, 200, 120, 0.4)',
           boxSizing: 'border-box',
           position: 'relative',
         }}
@@ -32,8 +33,8 @@ export default async function Image() {
             position: 'absolute',
             top: '20px',
             left: '20px',
-            width: '40px',
-            height: '40px',
+            width: '44px',
+            height: '44px',
             borderTop: '3px solid #E7C878',
             borderLeft: '3px solid #E7C878',
             display: 'flex',
@@ -44,8 +45,8 @@ export default async function Image() {
             position: 'absolute',
             top: '20px',
             right: '20px',
-            width: '40px',
-            height: '40px',
+            width: '44px',
+            height: '44px',
             borderTop: '3px solid #E7C878',
             borderRight: '3px solid #E7C878',
             display: 'flex',
@@ -56,8 +57,8 @@ export default async function Image() {
             position: 'absolute',
             bottom: '20px',
             left: '20px',
-            width: '40px',
-            height: '40px',
+            width: '44px',
+            height: '44px',
             borderBottom: '3px solid #E7C878',
             borderLeft: '3px solid #E7C878',
             display: 'flex',
@@ -68,8 +69,8 @@ export default async function Image() {
             position: 'absolute',
             bottom: '20px',
             right: '20px',
-            width: '40px',
-            height: '40px',
+            width: '44px',
+            height: '44px',
             borderBottom: '3px solid #E7C878',
             borderRight: '3px solid #E7C878',
             display: 'flex',
@@ -87,14 +88,15 @@ export default async function Image() {
             paddingBottom: '24px',
           }}
         >
+          {/* Logo */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
             <div
               style={{
-                width: '54px',
-                height: '54px',
-                borderRadius: '27px',
+                width: '56px',
+                height: '56px',
+                borderRadius: '28px',
                 backgroundColor: '#1A1210',
-                border: '2px solid rgba(231, 200, 120, 0.6)',
+                border: '2px solid rgba(231, 200, 120, 0.7)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -104,10 +106,10 @@ export default async function Image() {
               🪔
             </div>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                 <span
                   style={{
-                    fontSize: '30px',
+                    fontSize: '32px',
                     fontWeight: 800,
                     color: '#FFF8EA',
                     letterSpacing: '1px',
@@ -115,49 +117,51 @@ export default async function Image() {
                 >
                   আগমনী
                 </span>
-                <span style={{ fontSize: '20px', color: '#E7C878' }}>•</span>
+                <span style={{ fontSize: '22px', color: '#E7C878' }}>•</span>
                 <span
                   style={{
                     fontSize: '20px',
                     fontWeight: 700,
                     color: '#E7C878',
-                    letterSpacing: '2px',
+                    letterSpacing: '3px',
                   }}
                 >
                   AGOMONI
                 </span>
               </div>
               <span style={{ fontSize: '14px', color: 'rgba(255, 248, 234, 0.65)' }}>
-                বাঙালির শারদোৎসবের ডিজিটাল মন্দির • Sharodotsav 2026
+                Where Maa Comes Alive • শারদোৎসবের ডিজিটাল মিলনমেলা
               </span>
             </div>
           </div>
 
+          {/* Autumn Festive Badge */}
           <div
             style={{
               display: 'flex',
               alignItems: 'center',
               gap: '8px',
-              backgroundColor: 'rgba(166, 27, 27, 0.45)',
+              backgroundColor: 'rgba(166, 27, 27, 0.4)',
               border: '1.5px solid rgba(231, 200, 120, 0.5)',
               borderRadius: '30px',
-              padding: '10px 22px',
+              padding: '10px 24px',
             }}
           >
-            <span style={{ color: '#E7C878', fontSize: '16px' }}>•</span>
+            <span style={{ color: '#E7C878', fontSize: '18px' }}>✦</span>
             <span
               style={{
                 color: '#FFFDF8',
                 fontSize: '16px',
                 fontWeight: 700,
+                letterSpacing: '1px',
               }}
             >
-              মা আসছেন…
+              শারদোৎসব ২০২৬
             </span>
           </div>
         </div>
 
-        {/* Central Main Title & Description */}
+        {/* Central Master Hero Statement */}
         <div
           style={{
             display: 'flex',
@@ -168,10 +172,10 @@ export default async function Image() {
         >
           <span
             style={{
-              fontSize: '15px',
+              fontSize: '16px',
               fontWeight: 700,
               color: '#E7C878',
-              letterSpacing: '3px',
+              letterSpacing: '4px',
               marginBottom: '12px',
             }}
           >
@@ -188,7 +192,7 @@ export default async function Image() {
               letterSpacing: '-0.5px',
             }}
           >
-            যেখানে জীবন্ত হয়ে ওঠেন মা দুর্গা
+            শরতের আগমনে মায়ের আবাহন
           </h1>
 
           <p

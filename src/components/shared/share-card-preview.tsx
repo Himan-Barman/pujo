@@ -80,7 +80,7 @@ export const ShareCardPreview: React.FC<ShareCardPreviewProps> = ({
               </span>
             </div>
             <p className="text-[9px] sm:text-[10px] text-[#FFF8EA]/60 font-sans leading-none">
-              {isBn ? 'যেখানে জীবন্ত হয়ে ওঠেন মা দুর্গা' : 'Where Maa Comes Alive'}
+              {isBn ? 'শরতের আগমনে মায়ের আবাহন' : 'Where Maa Comes Alive'}
             </p>
           </div>
         </div>

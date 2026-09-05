@@ -1,7 +1,7 @@
 export const SITE_CONFIG = {
   name: 'Agomoni',
   nameBn: 'আগমনী',
-  taglineBn: 'যেখানে জীবন্ত হয়ে ওঠেন মা দুর্গা',
+  taglineBn: 'শরতের আগমনে মায়ের আবাহন',
   taglineEn: 'Where Maa Comes Alive',
   emotionalPhraseBn: 'মা আসছেন…',
   descriptionBn: 'আগমনী — বাঙালির শারদোৎসবের এক নিবিড়, পবিত্র ও জীবন্ত ডিজিটাল রূপ। শারদপ্রভাতের শিউলি, কাশফুল, অঞ্জলি, স্তোত্র ও চিরায়ত ঐতিহ্যের আবহ।',

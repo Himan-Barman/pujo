@@ -144,7 +144,7 @@ export const HeroSection: React.FC = () => {
           </h1>
           <p className="text-[10.5px] sm:text-xs md:text-sm tracking-[0.22em] sm:tracking-[0.3em] uppercase font-sans font-bold text-[#E7C878]/90">
             {language === 'bn'
-              ? 'আগমনী — যেখানে জীবন্ত হয়ে ওঠেন মা দুর্গা'
+              ? 'আগমনী — শরতের আগমনে মায়ের আবাহন'
               : 'AGOMONI — WHERE MAA COMES ALIVE'}
           </p>
         </motion.div>

@@ -266,7 +266,7 @@ export const MobileNavigation: React.FC = () => {
                   onClick={() => {
                     setIsMoreDrawerOpen(false);
                     openShare({
-                      titleBn: 'আগমনী — যেখানে জীবন্ত হয়ে ওঠেন মা দুর্গা',
+                      titleBn: 'আগমনী — শরতের আগমনে মায়ের আবাহন',
                       titleEn: 'Agomoni — Where Maa Comes Alive',
                       descriptionBn: 'বাঙালির শারদোৎসবের এক নিবিড়, পবিত্র ও জীবন্ত ডিজিটাল রূপ।',
                       descriptionEn: 'A digital autumn in Bengal celebrating devotion, sacred rituals, music, and heritage.',

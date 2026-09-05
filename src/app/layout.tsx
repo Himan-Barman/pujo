@@ -67,7 +67,7 @@ export const metadata: Metadata = {
         url: '/api/og',
         width: 1200,
         height: 630,
-        alt: 'Agomoni — যেখানে জীবন্ত হয়ে ওঠেন মা দুর্গা',
+        alt: 'Agomoni — শরতের আগমনে মায়ের আবাহন',
       },
     ],
     locale: 'bn_BD',
